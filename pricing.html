@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrion Health - Pricing Plans</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #043e41;
+            --primary-light: #105e62;
+            --primary-dark: #032b2e;
+            --accent-color: #FF9900;
+            --dark-color: #043e41;
+            --text-color: #425466;
+            --light-gray: #f6f9fc;
+            --medium-gray: #8898aa;
+            --border-color: #e6ebf1;
+            --white: #ffffff;
+            --highlight: #7a73ff;
+            --success: #32D583;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            color: var(--text-color);
+            background-color: var(--light-gray);
+            -webkit-font-smoothing: antialiased;
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        .pricing-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        header {
+            width: 100%;
+            padding: 60px 0 40px;
+            text-align: center;
+            background-color: var(--light-gray);
+        }
+        
+        .logo {
+            max-width: 130px;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: 16px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--medium-gray);
+            max-width: 600px;
+            margin: 0 auto 32px;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+        
+        .pricing-section {
+            width: 100%;
+            padding: 0 0 80px;
+        }
+        
+        .pricing-toggle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 48px;
+            background-color: var(--white);
+            max-width: 300px;
+            margin: 0 auto 48px;
+            border-radius: 40px;
+            padding: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--border-color);
+        }
+        
+        .toggle-btn {
+            padding: 8px 20px;
+            border: none;
+            background: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border-radius: 40px;
+            transition: all 0.2s ease;
+            color: var(--medium-gray);
+            width: 50%;
+        }
+        
+        .toggle-btn.active {
+            background-color: var(--dark-color);
+            color: var(--white);
+        }
+        
+        .pricing-plans {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+            width: 100%;
+        }
+        
+        .plan-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .plan-card:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+        
+        .plan-header {
+            padding: 28px 28px 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .plan-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--dark-color);
+            letter-spacing: -0.3px;
+        }
+        
+        .plan-price {
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 5px;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+        
+        .plan-duration {
+            color: var(--medium-gray);
+            font-size: 0.875rem;
+            font-weight: 400;
+        }
+        
+        .plan-features {
+            padding: 24px 28px;
+        }
+        
+        .feature-category {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--medium-gray);
+            margin: 24px 0 12px;
+        }
+        
+        .feature-category:first-child {
+            margin-top: 0;
+        }
+        
+        .feature-item {
+            padding: 8px 0;
+            display: flex;
+            align-items: flex-start;
+            font-size: 0.9375rem;
+        }
+        
+        .feature-icon {
+            margin-right: 12px;
+            color: var(--success);
+            font-size: 1rem;
+            flex-shrink: 0;
+            line-height: 1.5;
+        }
+        
+        .feature-text {
+            color: var(--text-color);
+            line-height: 1.5;
+        }
+        
+        .plan-cta {
+            padding: 8px 28px 28px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 10px 20px;
+            width: 100%;
+            background-color: transparent;
+            color: var(--dark-color);
+            text-decoration: none;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+        }
+        
+        .cta-button:hover {
+            background-color: rgba(10, 37, 64, 0.03);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .cta-button.primary {
+            background-color: var(--dark-color);
+            color: var(--white);
+            border: none;
+        }
+        
+        .cta-button.primary:hover {
+            background-color: var(--dark-color);
+            opacity: 0.9;
+        }
+        
+        .highlighted-plan {
+            border: 1px solid var(--accent-color);
+            box-shadow: 0 4px 20px rgba(255, 153, 0, 0.1);
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 5px 12px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            box-shadow: 0 2px 8px rgba(255, 153, 0, 0.25);
+        }
+        
+        .feature-table {
+            margin-top: 80px;
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            width: 100%;
+        }
+        
+        .feature-table h2 {
+            text-align: center;
+            padding: 32px 20px;
+            color: var(--dark-color);
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--light-gray);
+            margin: 0;
+        }
+        
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 16px 24px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        th {
+            font-weight: 500;
+            color: var(--medium-gray);
+            font-size: 0.875rem;
+        }
+        
+        td {
+            color: var(--text-color);
+            font-size: 0.9375rem;
+        }
+        
+        th:first-child, td:first-child {
+            padding-left: 32px;
+        }
+        
+        th:last-child, td:last-child {
+            padding-right: 32px;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        tr:hover td {
+            background-color: rgba(247, 250, 252, 0.6);
+        }
+        
+        .check-icon {
+            color: var(--success);
+        }
+        
+        .footer {
+            width: 100%;
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .footer-content p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.875rem;
+        }
+        
+        @media (max-width: 900px) {
+            .pricing-plans {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .plan-price {
+                font-size: 2.2rem;
+            }
+            
+            th, td {
+                padding: 14px 16px;
+            }
+            
+            th:first-child, td:first-child {
+                padding-left: 16px;
+            }
+            
+            th:last-child, td:last-child {
+                padding-right: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="pricing-wrapper">
+        <header>
+            <div class="container">
+                <img src="https://framerusercontent.com/images/BWEaipn67Qc3Jg3inQssO6rrJ4.png" alt="Nutrion Health" class="logo">
+                <h1>Choose the right plan for your nutrition needs</h1>
+                <p class="subtitle">Specialized nutrition coaching tailored for BJJ athletes at every level</p>
+            </div>
+        </header>
+        
+        <section class="pricing-section">
+            <div class="container">
+                <div class="pricing-toggle">
+                    <button class="toggle-btn active" id="monthly-btn">Monthly</button>
+                    <button class="toggle-btn" id="quarterly-btn">3-Month</button>
+                </div>
+                
+                <div class="pricing-plans">
+                    <div class="plan-card">
+                        <div class="plan-header">
+                            <div class="plan-name">Basic</div>
+                            <div class="plan-price" id="basic-price">£95</div>
+                            <div class="plan-duration" id="basic-duration">per month</div>
+                        </div>
+                        <div class="plan-features">
+                            <div class="feature-category">Core Features</div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✓</span>
+                                <span class="feature-text">Continued access to existing meal plan</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✓</span>
+                                <span class="feature-text">Personalized grocery shopping list</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✓</span>
+                                <span class="feature-text">Access to materials library</span>
+                            </div>
+                            
+                            <div class="feature-category">Support</div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✓</span>
+                                <span class="feature-text">Monthly body analyses</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✓</span>
+                                <span class="feature-text">Weekday WhatsApp support</span>
+                            </div>
+                        </div>
+                        <div class="plan-cta">
+                            <a href="#" class="cta-button">Choose Basic</a>
+                        </div>
+                    </div>
+                    
+                    <div class="plan-card highlighted-plan">
+                        <span class="popular-badge">Most Popular</span>
+                        <div class="plan-header">
+                            <div class="plan-name">Premium</div>
+                            <div class="plan-price" id="premium-price">£295</div>
+                            <div class="plan-duration" id="premium-duration">per month</div>
+                        </div>
+                        <div class="plan-features">
+                            <div class="feature-category">Core Features</div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✓</span>
+                                <span class="feature-text">Everything in Basic</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✓</span>
+                                <span class="feature-text">Unlimited new meal plans & adjustments</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✓</span>
+                                <span class="feature-text">Restaurant menu analysis</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✓</span>
+                                <span class="feature-text">Supplement recommendations</span>
+                            </div>
+                            
+                            <div class="feature-category">Support</div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✓</span>
+                                <span class="feature-text">Unlimited body analyses</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✓</span>
+                                <span class="feature-text">7-day WhatsApp support</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✓</span>
+                                <span class="feature-text">Weekly check-ins</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✓</span>
+                                <span class="feature-text">Monthly 1-on-1 video calls</span>
+                            </div>
+                        </div>
+                        <div class="plan-cta">
+                            <a href="#" class="cta-button primary">Choose Premium</a>
+                        </div>
+                    </div>
+                    
+                    <div class="plan-card">
+                        <div class="plan-header">
+                            <div class="plan-name">Elite</div>
+                            <div class="plan-price" id="elite-price">£895</div>
+                            <div class="plan-duration" id="elite-duration">per month</div>
+                        </div>
+                        <div class="plan-features">
+                            <div class="feature-category">Core Features</div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✓</span>
+                                <span class="feature-text">Everything in Premium</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✓</span>
+                                <span class="feature-text">Advanced blood test analysis</span>
+                            </div>
+                            
+                            <div class="feature-category">Support</div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✓</span>
+                                <span class="feature-text">Weekly 1-on-1 video calls</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✓</span>
+                                <span class="feature-text">Priority response time</span>
+                            </div>
+                        </div>
+                        <div class="plan-cta">
+                            <a href="#" class="cta-button">Choose Elite</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-table">
+                    <h2>Complete Feature Comparison</h2>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Service</th>
+                                    <th>Basic</th>
+                                    <th>Premium</th>
+                                    <th>Elite</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Meal plan</td>
+                                    <td>Access to existing plan</td>
+                                    <td>Unlimited new plans & adjustments</td>
+                                    <td>Unlimited new plans & adjustments</td>
+                                </tr>
+                                <tr>
+                                    <td>Access to personalized grocery shopping list</td>
+                                    <td>✓</td>
+                                    <td>✓</td>
+                                    <td>✓</td>
+                                </tr>
+                                <tr>
+                                    <td>Access to materials library</td>
+                                    <td>✓</td>
+                                    <td>✓</td>
+                                    <td>✓</td>
+                                </tr>
+                                <tr>
+                                    <td>Body analyses</td>
+                                    <td>Monthly</td>
+                                    <td>Unlimited</td>
+                                    <td>Unlimited</td>
+                                </tr>
+                                <tr>
+                                    <td>WhatsApp support</td>
+                                    <td>Weekdays only</td>
+                                    <td>7 days a week</td>
+                                    <td>7 days a week</td>
+                                </tr>
+                                <tr>
+                                    <td>Weekly check ins</td>
+                                    <td>—</td>
+                                    <td>✓</td>
+                                    <td>✓</td>
+                                </tr>
+                                <tr>
+                                    <td>Restaurant menu analysis</td>
+                                    <td>—</td>
+                                    <td>✓</td>
+                                    <td>✓</td>
+                                </tr>
+                                <tr>
+                                    <td>Supplement recommendations</td>
+                                    <td>—</td>
+                                    <td>✓</td>
+                                    <td>✓</td>
+                                </tr>
+                                <tr>
+                                    <td>1-on-1 video calls</td>
+                                    <td>—</td>
+                                    <td>Monthly</td>
+                                    <td>Weekly</td>
+                                </tr>
+                                <tr>
+                                    <td>Blood result analysis</td>
+                                    <td>—</td>
+                                    <td>—</td>
+                                    <td>✓</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p>© Nutrion Health LLC 2025</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <script>
+        // Toggle between monthly and quarterly pricing
+        document.addEventListener('DOMContentLoaded', function() {
+            const monthlyBtn = document.getElementById('monthly-btn');
+            const quarterlyBtn = document.getElementById('quarterly-btn');
+            
+            // Pricing elements
+            const basicPrice = document.getElementById('basic-price');
+            const basicDuration = document.getElementById('basic-duration');
+            const premiumPrice = document.getElementById('premium-price');
+            const premiumDuration = document.getElementById('premium-duration');
+            const elitePrice = document.getElementById('elite-price');
+            const eliteDuration = document.getElementById('elite-duration');
+            
+            // Monthly pricing
+            const monthlyPrices = {
+                basic: '£95',
+                premium: '£295',
+                elite: '£895'
+            };
+            
+            // Quarterly pricing
+            const quarterlyPrices = {
+                basic: '£85',
+                premium: '£225',
+                elite: '£695'
+            };
+            
+            // Set monthly pricing (default)
+            function setMonthlyPricing() {
+                basicPrice.textContent = monthlyPrices.basic;
+                basicDuration.textContent = 'per month';
+                premiumPrice.textContent = monthlyPrices.premium;
+                premiumDuration.textContent = 'per month';
+                elitePrice.textContent = monthlyPrices.elite;
+                eliteDuration.textContent = 'per month';
+                
+                monthlyBtn.classList.add('active');
+                quarterlyBtn.classList.remove('active');
+            }
+            
+            // Set quarterly pricing
+            function setQuarterlyPricing() {
+                basicPrice.textContent = quarterlyPrices.basic;
+                basicDuration.textContent = 'per month, billed quarterly';
+                premiumPrice.textContent = quarterlyPrices.premium;
+                premiumDuration.textContent = 'per month, billed quarterly';
+                elitePrice.textContent = quarterlyPrices.elite;
+                eliteDuration.textContent = 'per month, billed quarterly';
+                
+                monthlyBtn.classList.remove('active');
+                quarterlyBtn.classList.add('active');
+            }
+            
+            // Event listeners
+            monthlyBtn.addEventListener('click', setMonthlyPricing);
+            quarterlyBtn.addEventListener('click', setQuarterlyPricing);
+        });
+    </script>
+</body>
+</html> 
