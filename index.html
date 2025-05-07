@@ -6,7 +6,7 @@
     <title>Nutrion Health</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -41,6 +41,11 @@
             overflow-x: hidden;
         }
         
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+        }
+        
         .container {
             width: 90%;
             max-width: 1040px;
@@ -56,7 +61,7 @@
         .hero {
             position: relative;
             overflow: hidden;
-            padding: 90px 0;
+            padding: 150px 0 90px;
             background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.35)), url('https://framerusercontent.com/images/5nj6dksKm16iJmj0f6SsPn5MxU.png');
             background-size: cover;
             background-position: center top;
@@ -71,6 +76,7 @@
             right: 0;
             height: 4px;
             background: var(--accent-color);
+            display: block;
         }
         
         .site-header {
@@ -78,7 +84,7 @@
             top: 0;
             left: 0;
             right: 0;
-            padding: 20px 0;
+            padding: 30px 0;
             z-index: 100;
         }
         
@@ -91,6 +97,7 @@
         .logo {
             max-width: 100px;
             height: auto;
+            filter: brightness(0) invert(1);
         }
         
         .hero-content {
@@ -119,7 +126,7 @@
         }
         
         .hero-text {
-            margin-bottom: 40px;
+            margin-bottom: 0;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
@@ -133,6 +140,8 @@
             color: var(--white);
             margin-bottom: 24px;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
         }
         
         .hero-subheadline {
@@ -140,7 +149,7 @@
             font-weight: 500;
             line-height: 1.3;
             color: var(--white);
-            margin-bottom: 24px;
+            margin-bottom: 30px;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
         }
         
@@ -164,7 +173,7 @@
             text-decoration: none;
             transition: all 0.3s ease;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
         
         .hero-cta:hover {
@@ -181,7 +190,7 @@
             align-items: center;
             justify-content: flex-start;
             width: 100%;
-            margin: 0 0 80px;
+            margin: 0 0 30px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
         }
         
@@ -420,6 +429,13 @@
         }
         
         @media (max-width: 900px) {
+            .hero {
+                padding: 100px 0 70px; /* Reduced from 120px to 100px */
+                background: linear-gradient(to right, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.7)), url('https://framerusercontent.com/images/5nj6dksKm16iJmj0f6SsPn5MxU.png');
+                background-size: cover;
+                background-position: left center; /* Focus on left side of image on mobile */
+            }
+            
             .testimonials {
                 height: 520px; /* Further increased mobile height */
             }
@@ -468,6 +484,22 @@
             
             .testimonial-banner-title {
                 font-size: 12px;
+            }
+            
+            .hero-cta {
+                margin-bottom: 40px; /* Add bottom margin in mobile */
+            }
+            
+            .hero-headline {
+                font-size: 32px;
+            }
+            
+            .hero-subheadline {
+                font-size: 16px;
+            }
+            
+            .hero-description {
+                font-size: 16px;
             }
         }
         
@@ -541,7 +573,6 @@
             background-color: rgba(0, 51, 102, 0.03);
         }
 
-        /* Remove the split background pseudo-element */
         .intro:before {
             display: none;
         }
@@ -615,19 +646,17 @@
             margin-left: -10%; /* Shift slightly to overlap the container edge */
         }
 
+        .intro-image:after {
+            display: none;
+        }
+
         @media (max-width: 900px) {
             .intro-image img {
                 width: 100%;
                 margin-left: 0;
                 max-width: 450px;
             }
-        }
-
-        .intro-image:after {
-            display: none;
-        }
-
-        @media (max-width: 900px) {
+            
             .intro {
                 padding: 70px 0; /* Less padding on mobile */
             }
@@ -639,7 +668,7 @@
             }
             
             .intro-content {
-                order: 2;
+                order: 1; /* Change to display first */
                 padding-right: 0;
                 padding-top: 0;
             }
@@ -649,8 +678,18 @@
                 text-align: center;
             }
             
+            .intro-image-wrapper {
+                padding-top: 0 !important;
+                order: 2; /* Display after intro content */
+                margin: 0 auto;
+                max-width: 450px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
             .intro-image {
-                order: 1;
+                order: 2; /* Change to display after text */
                 margin: 0 auto;
                 max-width: 450px; /* Larger on mobile too */
                 padding-top: 0;
@@ -783,9 +822,16 @@
                 padding: 0 16px;
             }
             
+            .site-header {
+                padding: 20px 0;
+            }
+            
+            .logo {
+                max-width: 80px; /* Smaller logo on mobile */
+            }
+            
             .hero {
-                padding: 70px 0;
-                background-position: 70% top;
+                padding-top: 120px; /* Adjusted top padding for mobile */
             }
             
             .hero-content {
@@ -800,15 +846,15 @@
             }
             
             .hero-headline {
-                font-size: 32px;
+                font-size: 40px; /* Increased from 32px to 40px */
             }
             
             .hero-subheadline {
-                font-size: 18px;
+                font-size: 22px; /* Increased from 18px to 22px */
             }
             
             .hero-description {
-                font-size: 16px;
+                font-size: 18px; /* Increased from 16px to 18px */
             }
             
             .hero-cta {
@@ -1216,7 +1262,7 @@
         
         .scroll-indicator {
             position: absolute;
-            bottom: 25px;
+            bottom: 35px;
             left: 50%;
             transform: translateX(-50%);
             width: 30px;
@@ -1475,6 +1521,78 @@
                 text-align: center;
             }
         }
+
+        /* Add after the existing CSS, before the media queries */
+        .intro-grid-mobile-wrapper {
+            display: none;
+        }
+        
+        /* Add in the mobile media query section */
+        @media (max-width: 900px) {
+            /* Hide desktop layout and show mobile layout */
+            .intro-grid {
+                display: none;
+            }
+            
+            .intro-grid-mobile-wrapper {
+                display: flex;
+                flex-direction: column;
+                gap: 20px; /* Reduced from 30px */
+            }
+            
+            .intro-content-mobile {
+                text-align: left; /* Changed from center to left */
+            }
+            
+            .intro-content-mobile h2 {
+                font-size: 2.2rem;
+                text-align: left; /* Changed from center to left */
+                margin-bottom: 25px; /* Reduced from 30px */
+                color: var(--primary-color);
+            }
+            
+            .intro-content-mobile p {
+                font-size: 1rem;
+                margin-bottom: 20px; /* Reduced from 22px */
+                color: var(--text-color-dark);
+                line-height: 1.6;
+                text-align: left; /* Explicitly set to left */
+            }
+            
+            .intro-image-mobile {
+                margin: 10px auto; /* Reduced from 20px */
+                max-width: 450px;
+            }
+            
+            .intro-image-mobile img {
+                width: 100%;
+                max-width: 450px;
+                margin: 0 auto;
+            }
+            
+            .credentials-text-mobile {
+                text-align: center;
+                margin-top: 0; /* Reduced from 5px to 0 */
+            }
+            
+            .credentials-text-mobile p {
+                margin-bottom: 5px; /* Added small margin between paragraphs */
+            }
+            
+            .credentials-text-mobile .founder-signature {
+                margin-top: 5px; /* Very small top margin */
+            }
+            
+            .credentials-and-cta-mobile {
+                padding-top: 15px; /* Slightly increased from 10px */
+                text-align: center;
+            }
+            
+            .credentials-and-cta-mobile .hero-cta {
+                margin-top: 25px;
+                display: inline-block;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1492,7 +1610,6 @@
                 <div class="hero-text">
                     <h1 class="hero-headline">Performance Nutrition for BJJ Athletes</h1>
                     <h2 class="hero-subheadline">Custom plans and direct support from a black belt who understands the mats</h2>
-                    <a href="https://f19cdvsmvlk.typeform.com/to/O8K7o2hl?utm_source=homepage" class="hero-cta" target="_blank">Get Your Free BJJ Nutrition Assessment</a>
                 </div>
                 
                 <!-- Featured Testimonial -->
@@ -1504,6 +1621,8 @@
                         <div class="testimonial-banner-title">BJJ Black Belt, Euro Champion, ADCC Trials Winner</div>
                     </div>
                 </div>
+                
+                <a href="https://f19cdvsmvlk.typeform.com/to/O8K7o2hl?utm_source=homepage" class="hero-cta" target="_blank">Get Your Free BJJ Nutrition Assessment</a>
             </div>
         </div>
         <div class="scroll-indicator" aria-hidden="true"></div>
@@ -1636,6 +1755,7 @@
     <!-- Daniel Intro -->
     <section class="intro">
         <div class="container">
+            <!-- Desktop layout -->
             <div class="intro-grid">
                 <div class="intro-content">
                     <h2>Performance Fuel: Black Belt Approved</h2>
@@ -1649,14 +1769,51 @@
                         <div class="credential"><i class="fa-solid fa-globe"></i> Clients in 10+ Countries</div>
                     </div>
                     
-                    <a href="https://f19cdvsmvlk.typeform.com/to/O8K7o2hl?utm_source=homepage" class="hero-cta" target="_blank">Get Your Custom BJJ Nutrition Plan</a>
+                    <a href="https://f19cdvsmvlk.typeform.com/to/O8K7o2hl?utm_source=homepage" class="hero-cta" target="_blank">Get Your Free BJJ Nutrition Assessment</a>
                 </div>
                 <div class="intro-image-wrapper" style="padding-top: 90px;">
                     <div class="intro-image">
                         <img src="https://framerusercontent.com/images/1U92DZCBjEuTF9ZcLUywcJ2MPg.png" alt="Daniel Caetano">
                     </div>
+                    <div class="credentials-text">
+                        <p class="founder-signature">Daniel Caetano, <br>Nutritionist and BJJ Black Belt</p>
+                        <p class="experience-note">Helping BJJ athletes from amateur to global elite for over 4 years</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile-specific layout -->
+            <div class="intro-grid-mobile-wrapper">
+                <!-- 1. Content first (without credentials and button) -->
+                <div class="intro-content-mobile">
+                    <h2>Performance Fuel: Black Belt Approved</h2>
+                    <p>Skipping training sessions because your energy is depleted? Struggling to make weight without sacrificing your strength? Competing at 70% of your potential because of preparation mistakes?</p>
+                    <p>I know these challenges firsthand. As a professional BJJ athlete, I struggled with my own nutrition until generic advice from non-specialized nutritionists led me to pursue a Nutrition Science degree while still competing.</p>
+                    <p>Now, I combine nutrition science with 12+ years of BJJ experience to create strategies that actually work for the unique demands of our sport.</p>
+                </div>
+                
+                <!-- 2. Image second -->
+                <div class="intro-image-mobile">
+                    <img src="https://framerusercontent.com/images/1U92DZCBjEuTF9ZcLUywcJ2MPg.png" alt="Daniel Caetano">
+                </div>
+                
+                <!-- 3. Credentials text third -->
+                <div class="credentials-text-mobile">
                     <p class="founder-signature">Daniel Caetano, <br>Nutritionist and BJJ Black Belt</p>
                     <p class="experience-note">Helping BJJ athletes from amateur to global elite for over 4 years</p>
+                </div>
+                
+                <!-- 4. Credentials badges and button last -->
+                <div class="credentials-and-cta-mobile">
+                    <div class="credentials-bar">
+                        <div class="credential"><i class="fa-solid fa-graduation-cap"></i> B.Sc. Nutrition Science</div>
+                        <div class="credential"><i class="fa-solid fa-medal"></i> Professional BJJ Athlete</div>
+                        <div class="credential"><i class="fa-solid fa-globe"></i> Clients in 10+ Countries</div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 25px;">
+                        <a href="https://f19cdvsmvlk.typeform.com/to/O8K7o2hl?utm_source=homepage" class="hero-cta" target="_blank">Get Your Free BJJ Nutrition Assessment</a>
+                    </div>
                 </div>
             </div>
         </div>
