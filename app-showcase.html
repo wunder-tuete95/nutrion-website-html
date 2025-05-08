@@ -1,0 +1,205 @@
+<!-- App Showcase -->
+<section class="features app-showcase">
+    <div class="container">
+        <h2>Your Nutrition Plan in Your Pocket</h2>
+        <p class="support-subtitle">Access your personalized plan anytime, anywhere through our dedicated app</p>
+        
+        <!-- Carousel-style device + feature layout -->
+        <div class="app-carousel-showcase">
+            <button class="carousel-nav carousel-prev" id="carouselPrev" aria-label="Previous feature">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            
+            <div class="carousel-container">
+                <h3 class="app-title">Your Plan in Your Pocket</h3>
+                <p class="app-subtitle">Access your personalized nutrition plan anytime, anywhere</p>
+                
+                <div class="carousel-content">
+                    <div class="device-container">
+                        <div class="device-frame">
+                            <div class="device-notch"></div>
+                            <div class="device-screen">
+                                <!-- These will be swapped via JavaScript -->
+                                <img src="https://storage.googleapis.com/nutrion-website-images/app-screenshots/MealPlan" alt="Nutrion App - Meal Plan" class="app-screenshot active" data-index="0">
+                                <img src="https://storage.googleapis.com/nutrion-website-images/app-screenshots/GroceryList" alt="Nutrion App - Grocery List" class="app-screenshot" data-index="1">
+                                <img src="https://storage.googleapis.com/nutrion-website-images/app-screenshots/Home" alt="Nutrion App - Daily Habits" class="app-screenshot" data-index="2">
+                                <img src="https://storage.googleapis.com/nutrion-website-images/app-screenshots/Recipe.png" alt="Nutrion App - Recipe View" class="app-screenshot" data-index="3">
+                                <img src="https://storage.googleapis.com/nutrion-website-images/app-screenshots/Activity" alt="Nutrion App - Activity Tracking" class="app-screenshot" data-index="4">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-container">
+                        <!-- These will be shown/hidden via JavaScript -->
+                        <div class="carousel-feature active" data-index="0">
+                            <i class="fa-solid fa-utensils app-feature-icon"></i>
+                            <h4 class="app-feature-title">Custom Meal Plans</h4>
+                            <p class="app-feature-text">Your personalized nutrition plan, designed specifically for your BJJ training needs and lifestyle.</p>
+                        </div>
+                        
+                        <div class="carousel-feature" data-index="1">
+                            <i class="fa-solid fa-list-check app-feature-icon"></i>
+                            <h4 class="app-feature-title">Smart Grocery Lists</h4>
+                            <p class="app-feature-text">Automatically generated shopping lists based on your meal plan make food shopping effortless.</p>
+                        </div>
+                        
+                        <div class="carousel-feature" data-index="2">
+                            <i class="fa-solid fa-stairs app-feature-icon"></i>
+                            <h4 class="app-feature-title">Habit Building System</h4>
+                            <p class="app-feature-text">Multi-level habit tracking with streak monitoring to help you develop sustainable nutrition habits.</p>
+                        </div>
+                        
+                        <div class="carousel-feature" data-index="3">
+                            <i class="fa-solid fa-book app-feature-icon"></i>
+                            <h4 class="app-feature-title">Easy-to-Follow Recipes</h4>
+                            <p class="app-feature-text">Simple, healthy recipes with detailed instructions and ingredient lists for each meal.</p>
+                        </div>
+                        
+                        <div class="carousel-feature" data-index="4">
+                            <i class="fa-solid fa-chart-line app-feature-icon"></i>
+                            <h4 class="app-feature-title">Progress Tracking</h4>
+                            <p class="app-feature-text">Monitor your progress with weekly check-ins submitted through our simple digital form.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-dots">
+                    <span class="carousel-dot active" data-index="0"></span>
+                    <span class="carousel-dot" data-index="1"></span>
+                    <span class="carousel-dot" data-index="2"></span>
+                    <span class="carousel-dot" data-index="3"></span>
+                    <span class="carousel-dot" data-index="4"></span>
+                </div>
+                
+                <div class="app-more-features" id="viewMoreFeatures">
+                    <span>View all app features</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+            
+            <button class="carousel-nav carousel-next" id="carouselNext" aria-label="Next feature">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+        
+        <div class="text-center" style="margin-top: 60px;">
+            <a href="https://f19cdvsmvlk.typeform.com/to/O8K7o2hl?utm_source=homepage" class="hero-cta" target="_blank">Get Your Free BJJ Nutrition Assessment</a>
+        </div>
+    </div>
+</section>
+
+<style>
+/* App carousel styles that need to be updated */
+.app-carousel-showcase {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin: 50px auto;
+    max-width: 1100px;
+    position: relative;
+}
+
+.carousel-container {
+    width: 100%;
+    max-width: 900px;
+    position: relative;
+}
+
+.carousel-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.carousel-nav {
+    background-color: var(--white);
+    border: none;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+}
+
+.carousel-nav:hover {
+    background-color: var(--accent-color);
+    color: var(--white);
+    transform: scale(1.1);
+}
+
+.feature-container {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 220px;
+    position: relative;
+    max-width: 320px; /* Make text container narrower */
+}
+
+.carousel-feature {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.carousel-feature.active {
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+}
+
+.app-feature-text {
+    font-size: 15px;
+    line-height: 1.5;
+    margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+    .app-carousel-showcase {
+        flex-direction: column;
+    }
+    
+    .carousel-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    
+    .carousel-prev {
+        left: -5px;
+    }
+    
+    .carousel-next {
+        right: -5px;
+    }
+    
+    .carousel-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .feature-container {
+        height: 180px;
+        margin-top: 20px;
+    }
+}
+</style> 

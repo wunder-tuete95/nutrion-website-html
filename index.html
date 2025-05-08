@@ -134,20 +134,19 @@
         }
         
         .hero-headline {
-            font-size: 56px;
-            font-weight: 700;
+            font-size: 84px; /* Increased from 56px to 64px */
+            font-weight: 800; /* Increased from 700 to 800 */
             line-height: 1.1;
             color: var(--white);
             margin-bottom: 24px;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
             font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
         }
         
         .hero-subheadline {
-            font-size: 24px;
+            font-size: 20px; /* Decreased from 24px to 20px */
             font-weight: 500;
-            line-height: 1.3;
+            line-height: 1.4; /* Adjusted from 1.3 to 1.4 */
             color: var(--white);
             margin-bottom: 30px;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
@@ -846,11 +845,11 @@
             }
             
             .hero-headline {
-                font-size: 40px; /* Increased from 32px to 40px */
+                font-size: 50px; /* Increased from 32px to 40px */
             }
             
             .hero-subheadline {
-                font-size: 22px; /* Increased from 18px to 22px */
+                font-size: 18px; /* Increased from 18px to 22px */
             }
             
             .hero-description {
@@ -1060,108 +1059,6 @@
             }
         }
         
-        /* Results Section */
-        .results {
-            padding: 90px 0;
-            background-color: var(--light-gray);
-        }
-        
-        .results h2 {
-            text-align: center;
-            margin-bottom: 60px;
-            font-size: 36px;
-            color: var(--primary-color);
-        }
-        
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .result-card {
-            background-color: var(--white);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .result-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .result-header {
-            display: flex;
-            align-items: stretch;
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        .result-metric {
-            padding: 30px 20px;
-            background-color: var(--primary-color);
-            color: var(--white);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-width: 100px;
-        }
-        
-        .metric-value {
-            font-size: 2rem;
-            font-weight: 700;
-            line-height: 1;
-            margin-bottom: 5px;
-        }
-        
-        .metric-label {
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .result-detail {
-            padding: 20px;
-            flex-grow: 1;
-        }
-        
-        .result-detail h3 {
-            font-size: 1.25rem;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-        
-        .result-detail p {
-            font-size: 0.85rem;
-            color: var(--text-color-dark);
-            line-height: 1.4;
-        }
-        
-        .result-description {
-            padding: 20px;
-        }
-        
-        .result-description p {
-            font-style: italic;
-            font-size: 0.95rem;
-            color: var(--text-color-dark);
-            line-height: 1.5;
-        }
-        
-        @media (max-width: 768px) {
-            .result-header {
-                flex-direction: column;
-            }
-            
-            .result-metric {
-                width: 100%;
-                padding: 15px;
-            }
-        }
-        
-        /* Support Process */
         .support-process {
             padding: 90px 0;
             background-color: var(--white);
@@ -1235,14 +1132,56 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
         
-        .step-content h3 {
+        .step-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
             font-size: 1.3rem;
             color: var(--primary-color);
+            margin-bottom: 0;
+        }
+        
+        .step-toggle {
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .step-content.active .step-toggle {
+            transform: rotate(180deg);
+        }
+        
+        .step-details {
+            overflow: hidden;
+        }
+        
+        .step-content.active .step-title {
             margin-bottom: 10px;
         }
         
-        .step-content p {
-            margin-bottom: 0;
+        .step-details p {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            color: var(--text-color-dark);
+            line-height: 1.5;
+        }
+        
+        .step-expanded {
+            display: none;
+            padding-top: 15px;
+        }
+        
+        .step-content.active .step-expanded {
+            display: block;
+        }
+        
+        .step-expanded ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .step-expanded li {
+            margin-bottom: 8px;
             font-size: 0.95rem;
             color: var(--text-color-dark);
             line-height: 1.5;
@@ -1593,6 +1532,185 @@
                 display: inline-block;
             }
         }
+
+        .app-showcase {
+            padding: 90px 0;
+            background-color: var(--light-gray);
+        }
+
+        .app-showcase h2 {
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 36px;
+            color: var(--primary-color);
+        }
+
+        .app-showcase .support-subtitle {
+            margin-bottom: 40px;
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-color-dark);
+        }
+
+        /* Device frame styles */
+        .device-frame {
+            position: relative;
+            width: 400px;
+            height: 830px;
+            background-color: #0f0f0f; /* Darker black for iPhone 16 Pro Max */
+            border-radius: 50px; /* Rounder corners for iPhone 16 Pro Max */
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12), 0 10px 20px rgba(0, 0, 0, 0.08);
+            padding: 4px; /* Reduced even further to create an ultra-thin frame */
+            margin-bottom: 20px;
+            border: none; /* Removed border completely */
+        }
+
+        .device-screen {
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            border-radius: 47px; /* Further adjusted to account for thinner frame */
+            overflow: hidden;
+            position: relative;
+        }
+
+        .device-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30%; /* Narrower Dynamic Island */
+            height: 20px; /* Reduced height */
+            background-color: #0f0f0f;
+            border-bottom-left-radius: 14px;
+            border-bottom-right-radius: 14px;
+            z-index: 2;
+        }
+
+        .app-screenshot {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+        }
+
+        /* Overlay styles that are no longer needed but kept for any lingering references */
+        .screenshot-overlay {
+            display: none;
+        }
+
+        /* Zig-Zag Layout Styles */
+        .app-features-showcase {
+            max-width: 1300px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .feature-row {
+            display: flex;
+            flex-direction: row !important;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 120px; /* Increased spacing between rows for larger devices */
+        }
+
+        .feature-content {
+            flex: 0 0 42%;
+            padding: 36px;
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-device {
+            flex: 0 0 53%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .feature-device .device-frame {
+            width: 400px;
+            height: 830px;
+        }
+
+        .feature-content .app-feature-icon {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            display: block;
+            text-align: center;
+            width: 100%;
+        }
+
+        .feature-content .app-feature-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .feature-content .app-feature-text {
+            font-size: 16px;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        /* For odd-numbered features, force the image first */
+        .feature-row:nth-child(odd) .feature-device {
+            order: 1;
+        }
+        .feature-row:nth-child(odd) .feature-content {
+            order: 2;
+        }
+
+        /* For even-numbered features, force the content first */
+        .feature-row:nth-child(even) .feature-device {
+            order: 2;
+        }
+        .feature-row:nth-child(even) .feature-content {
+            order: 1;
+        }
+
+        @media (max-width: 900px) {
+            .feature-row {
+                flex-direction: column !important;
+                margin-bottom: 80px;
+            }
+
+            /* For all mobile features, always show device first, text second */
+            .feature-row .feature-device {
+                flex: 0 0 100%;
+                order: 1 !important;
+                width: 100%;
+                margin-bottom: 30px;
+            }
+
+            .feature-row .feature-content {
+                flex: 0 0 100%;
+                order: 2 !important;
+                width: 100%;
+            }
+
+            .feature-device .device-frame {
+                width: 350px;
+                height: 730px;
+                margin: 0 auto;
+            }
+        }
+
+        /* Animation styles */
+        .reveal-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal-section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
@@ -1609,7 +1727,7 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <h1 class="hero-headline">Performance Nutrition for BJJ Athletes</h1>
-                    <h2 class="hero-subheadline">Custom plans and direct support from a black belt who understands the mats</h2>
+                    <h2 class="hero-subheadline">Custom plans and expert guidance from a certified nutritionist and BJJ black belt</h2>
                 </div>
                 
                 <!-- Featured Testimonial -->
@@ -1819,6 +1937,290 @@
         </div>
     </section>
 
+    <!-- How We Deliver Results -->
+    <section class="delivery-section">
+        <div class="container">
+            <h2>How We Deliver These Results</h2>
+            <div class="features-grid">
+                <div class="feature service-component">
+                    <i class="fa-solid fa-utensils feature-icon"></i>
+                    <h3>Custom Nutrition Plans</h3>
+                    <p>Fully custom meal plans built for you — not generic diet advice.</p>
+                </div>
+                <div class="feature service-component">
+                    <i class="fa-solid fa-comments feature-icon"></i>
+                    <h3>Continuous Support</h3>
+                    <p>Daily WhatsApp access, weekly check-ins, and monthly video consultations to keep you on track.</p>
+                </div>
+                <div class="feature service-component">
+                    <i class="fa-solid fa-dumbbell feature-icon"></i>
+                    <h3>BJJ-Specific Expertise</h3>
+                    <p>Guidance from a nutritionist who is also a BJJ black belt.</p>
+                </div>
+            </div>
+            <div class="text-center" style="margin-top: 40px;">
+                <a href="https://f19cdvsmvlk.typeform.com/to/O8K7o2hl?utm_source=homepage" class="hero-cta" target="_blank">Get Your Free BJJ Nutrition Assessment</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Visualization -->
+    <section class="support-process">
+        <div class="container">
+            <h2>How It Works</h2>
+            
+            <div class="process-timeline">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Initial Assessment <i class="fa-solid fa-chevron-down step-toggle"></i></h3>
+                        <div class="step-details">
+                            <div class="step-expanded">
+                                <p>We analyze your goals, training schedule, diet history, and competition plans to create your personalized nutrition strategy.</p>
+                                <p><strong>This includes:</strong></p>
+                                <ul>
+                                    <li>Comprehensive questionnaire about your health history and goals</li>
+                                    <li>Body composition analysis using submitted photos</li>
+                                    <li>Detailed review of your current diet approach</li>
+                                    <li>Analysis of your training schedule and intensity</li>
+                                    <li>Assessment of your competition calendar and weight management needs</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Custom Meal Plan <i class="fa-solid fa-chevron-down step-toggle"></i></h3>
+                        <div class="step-details">
+                            <div class="step-expanded">
+                                <p>Within 5 business days, you'll receive your initial nutrition plan designed specifically for your body, training style, and lifestyle needs.</p>
+                                <p><strong>Your plan includes:</strong></p>
+                                <ul>
+                                    <li>Daily meal structure tailored to your training schedule</li>
+                                    <li>Customized meal options based on your food preferences</li>
+                                    <li>Simple, easy-to-follow recipes and meal ideas</li>
+                                    <li>Timing recommendations for optimal performance and recovery</li>
+                                    <li>Personalized supplement recommendations to support your goals</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Ongoing Support <i class="fa-solid fa-chevron-down step-toggle"></i></h3>
+                        <div class="step-details">
+                            <div class="step-expanded">
+                                <p>Direct WhatsApp access to your nutritionist for questions, challenges, and adjustments as your training evolves. We're here to support you every step of the way.</p>
+                                <p><strong>Our support includes:</strong></p>
+                                <ul>
+                                    <li>Unlimited WhatsApp messaging with quick response times</li>
+                                    <li>Advice for navigating special occasions and travel</li>
+                                    <li>Real-time troubleshooting for challenges you encounter</li>
+                                    <li>Adjustments to your plan as your training schedule changes</li>
+                                    <li>Guidance for implementing your nutrition plan in real-world situations</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Regular Check-ins <i class="fa-solid fa-chevron-down step-toggle"></i></h3>
+                        <div class="step-details">
+                            <div class="step-expanded">
+                                <p>Weekly progress tracking ensures your nutrition plan evolves with your body and goals. Based on your feedback and results, we'll make personalized adjustments to optimize your plan.</p>
+                                <p><strong>Check-ins cover:</strong></p>
+                                <ul>
+                                    <li>Weekly progress reports submitted through a simple check-in form</li>
+                                    <li>Weight and body composition monitoring</li>
+                                    <li>Energy levels and performance assessments</li>
+                                    <li>Feedback on meal adherence and satisfaction</li>
+                                    <li>Personalized tips and recommendations based on your reported experiences</li>
+                                    <li>Precise plan adjustments based on your results and feedback</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Video Consultations <i class="fa-solid fa-chevron-down step-toggle"></i></h3>
+                        <div class="step-details">
+                            <div class="step-expanded">
+                                <p>In-depth video calls to discuss progress, make major adjustments, and plan for upcoming competitions. Depending on your selected plan, these can be weekly or monthly. We'll continuously refine your plan based on your changing needs.</p>
+                                <p><strong>Consultations include:</strong></p>
+                                <ul>
+                                    <li>Convenient scheduling through our easy-to-use booking calendar</li>
+                                    <li>Comprehensive review of your progress since the last call</li>
+                                    <li>Detailed discussion of what's working and what's not</li>
+                                    <li>Strategic planning for upcoming training blocks</li>
+                                    <li>Education on nutrition principles relevant to your goals</li>
+                                    <li>Setting new targets and adjusting your plan accordingly</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Competition Preparation <i class="fa-solid fa-chevron-down step-toggle"></i></h3>
+                        <div class="step-details">
+                            <div class="step-expanded">
+                                <p>Specialized nutrition timing and strategies for reaching your ideal weight while optimizing performance. We'll help you peak at exactly the right time for competition day.</p>
+                                <p><strong>Preparation includes:</strong></p>
+                                <ul>
+                                    <li>Strategic weight management approaching competition</li>
+                                    <li>Carbohydrate manipulation for optimal energy levels</li>
+                                    <li>Hydration protocols for weigh-ins and competition</li>
+                                    <li>Day-of-competition fueling strategies</li>
+                                    <li>Recovery nutrition for multi-match tournaments</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 60px;">
+                <a href="https://f19cdvsmvlk.typeform.com/to/O8K7o2hl?utm_source=homepage" class="hero-cta" target="_blank">Get Your Free BJJ Nutrition Assessment</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Showcase -->
+    <section class="features app-showcase">
+        <div class="container">
+            <h2>Your Nutrition Plan in Your Pocket</h2>
+            <p class="support-subtitle">Access your personalized plan anytime, anywhere through our dedicated app</p>
+            
+            <!-- Replace carousel with vertical zig-zag layout -->
+            <div class="app-features-showcase">
+                <!-- Feature 1: Custom Meal Plans (Image left, Text right) -->
+                <div class="feature-row reveal-section">
+                    <div class="feature-device">
+                        <div class="device-frame">
+                            <div class="device-notch"></div>
+                            <div class="device-screen">
+                                <img src="https://storage.googleapis.com/nutrion-website-images/app-screenshots/MealPlan.png" alt="Nutrion App - Meal Plan" class="app-screenshot">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-content">
+                        <i class="fa-solid fa-utensils app-feature-icon"></i>
+                        <h4 class="app-feature-title">Custom Meal Plans</h4>
+                        <p class="app-feature-text">Your plan is always up-to-date with real-time updates whenever adjustments are made by your nutritionist.</p>
+                    </div>
+                </div>
+                
+                <!-- Feature 2: Easy-to-Follow Recipes (Text left, Image right) -->
+                <div class="feature-row reveal-section">
+                    <div class="feature-content">
+                        <i class="fa-solid fa-book-open app-feature-icon"></i>
+                        <h4 class="app-feature-title">Easy-to-Follow Recipes</h4>
+                        <p class="app-feature-text">Simple, tasty recipes with step-by-step instructions make meal preparation quick and enjoyable.</p>
+                    </div>
+                    <div class="feature-device">
+                        <div class="device-frame">
+                            <div class="device-notch"></div>
+                            <div class="device-screen">
+                                <img src="https://storage.googleapis.com/nutrion-website-images/app-screenshots/Recipe.png" alt="Nutrion App - Recipe View" class="app-screenshot">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Feature 3: Smart Grocery Lists (Image left, Text right) -->
+                <div class="feature-row reveal-section">
+                    <div class="feature-device">
+                        <div class="device-frame">
+                            <div class="device-notch"></div>
+                            <div class="device-screen">
+                                <img src="https://storage.googleapis.com/nutrion-website-images/app-screenshots/GroceryList.png" alt="Nutrion App - Grocery List" class="app-screenshot">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-content">
+                        <i class="fa-solid fa-list-check app-feature-icon"></i>
+                        <h4 class="app-feature-title">Smart Shopping Lists</h4>
+                        <p class="app-feature-text">Automatically generated shopping lists based on your meal plan to make food shopping effortless.</p>
+                    </div>
+                </div>
+                
+                <!-- Feature 4: Multi-Level Habit System (Text left, Image right) -->
+                <div class="feature-row reveal-section">
+                    <div class="feature-content">
+                        <i class="fa-solid fa-stairs app-feature-icon"></i>
+                        <h4 class="app-feature-title">Multi-Level Habit System</h4>
+                        <p class="app-feature-text">Multi-level habit system with streaks tracking to help you develop sustainable nutrition habits.</p>
+                    </div>
+                    <div class="feature-device">
+                        <div class="device-frame">
+                            <div class="device-notch"></div>
+                            <div class="device-screen">
+                                <img src="https://storage.googleapis.com/nutrion-website-images/app-screenshots/Home.png" alt="Nutrion App - Daily Habits" class="app-screenshot">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Feature 5: Progress Tracking (Image left, Text right) -->
+                <div class="feature-row reveal-section">
+                    <div class="feature-device">
+                        <div class="device-frame">
+                            <div class="device-notch"></div>
+                            <div class="device-screen">
+                                <img src="https://storage.googleapis.com/nutrion-website-images/app-screenshots/Activity.png" alt="Nutrion App - Activity Tracking" class="app-screenshot">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-content">
+                        <i class="fa-solid fa-chart-line app-feature-icon"></i>
+                        <h4 class="app-feature-title">Progress Tracking</h4>
+                        <p class="app-feature-text">Monitor your progress with weekly check-ins submitted through our simple digital form, with results reflected in your plan updates.</p>
+                    </div>
+                </div>
+                
+                <!-- Feature 6: Resource Library (Text left, Image right) -->
+                <div class="feature-row reveal-section">
+                    <div class="feature-content">
+                        <i class="fa-solid fa-folder-open app-feature-icon"></i>
+                        <h4 class="app-feature-title">Resource Library</h4>
+                        <p class="app-feature-text">Access PDF guides and educational materials to deepen your understanding of nutrition for BJJ.</p>
+                    </div>
+                    <div class="feature-device">
+                        <div class="device-frame">
+                            <div class="device-notch"></div>
+                            <div class="device-screen">
+                                <img src="https://storage.googleapis.com/nutrion-website-images/app-screenshots/MaterialsLibrary.png" alt="Nutrion App - Materials Library" class="app-screenshot">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 60px;">
+                <a href="https://f19cdvsmvlk.typeform.com/to/O8K7o2hl?utm_source=homepage" class="hero-cta" target="_blank">Get Your Free BJJ Nutrition Assessment</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add overlay for app features gallery -->
+    <div class="screenshot-overlay" id="appFeaturesOverlay" style="display: none;">
+        <!-- Content has been hidden with display: none since it's no longer needed -->
+    </div>
+
     <!-- Service Comparison -->
     <section class="comparison">
         <div class="container">
@@ -1867,152 +2269,6 @@
                 </div>
             </div>
             <div class="text-center" style="margin-top: 40px;">
-                <a href="https://f19cdvsmvlk.typeform.com/to/O8K7o2hl?utm_source=homepage" class="hero-cta" target="_blank">Get Your Free BJJ Nutrition Assessment</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Results Showcase -->
-    <section class="results">
-        <div class="container">
-            <h2>Real Results from BJJ Athletes</h2>
-            <div class="results-grid">
-                <div class="result-card">
-                    <div class="result-header">
-                        <div class="result-metric">
-                            <div class="metric-value">8kg</div>
-                            <div class="metric-label">Weight Cut</div>
-                        </div>
-                        <div class="result-detail">
-                            <h3>Healthy Weight Management</h3>
-                            <p>For a purple belt competitor preparing for IBJJF European Championship</p>
-                        </div>
-                    </div>
-                    <div class="result-description">
-                        <p>"I managed to make weight while maintaining my strength and energy levels throughout the competition. No extreme methods, just consistent support and adjustments."</p>
-                    </div>
-                </div>
-                <div class="result-card">
-                    <div class="result-header">
-                        <div class="result-metric">
-                            <div class="metric-value">45%</div>
-                            <div class="metric-label">More Energy</div>
-                        </div>
-                        <div class="result-detail">
-                            <h3>Enhanced Training Capacity</h3>
-                            <p>For a brown belt training 6 days per week and working full-time</p>
-                        </div>
-                    </div>
-                    <div class="result-description">
-                        <p>"I used to crash after work before evening training. With personalized nutrition timing, I'm now able to train with full intensity even after long work days."</p>
-                    </div>
-                </div>
-                <div class="result-card">
-                    <div class="result-header">
-                        <div class="result-metric">
-                            <div class="metric-value">2x</div>
-                            <div class="metric-label">Gold Medals</div>
-                        </div>
-                        <div class="result-detail">
-                            <h3>Competition Success</h3>
-                            <p>For a black belt competing in her weight class and absolute division</p>
-                        </div>
-                    </div>
-                    <div class="result-description">
-                        <p>"The competition prep was key to my success. Being at my optimal weight with proper recovery strategies made a huge difference in my performance."</p>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center" style="margin-top: 40px;">
-                <a href="https://f19cdvsmvlk.typeform.com/to/O8K7o2hl?utm_source=homepage" class="hero-cta" target="_blank">Get Your Free BJJ Nutrition Assessment</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- How We Deliver Results -->
-    <section class="delivery-section">
-        <div class="container">
-            <h2>How We Deliver These Results</h2>
-            <div class="features-grid">
-                <div class="feature service-component">
-                    <i class="fa-solid fa-utensils feature-icon"></i>
-                    <h3>Custom Nutrition Plans</h3>
-                    <p>Fully custom meal plans built for you — not generic diet advice.</p>
-                </div>
-                <div class="feature service-component">
-                    <i class="fa-solid fa-comments feature-icon"></i>
-                    <h3>Continuous Support</h3>
-                    <p>Daily WhatsApp access, weekly check-ins, and monthly video consultations to keep you on track.</p>
-                </div>
-                <div class="feature service-component">
-                    <i class="fa-solid fa-dumbbell feature-icon"></i>
-                    <h3>BJJ-Specific Expertise</h3>
-                    <p>Guidance from a nutritionist who is also a BJJ black belt.</p>
-                </div>
-            </div>
-            <div class="text-center" style="margin-top: 40px;">
-                <a href="https://f19cdvsmvlk.typeform.com/to/O8K7o2hl?utm_source=homepage" class="hero-cta" target="_blank">Get Your Free BJJ Nutrition Assessment</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Support Visualization -->
-    <section class="support-process">
-        <div class="container">
-            <h2>How Our Ongoing Support Works</h2>
-            <p class="support-subtitle">Beyond just meal plans: a complete nutrition partnership</p>
-            
-            <div class="process-timeline">
-                <div class="process-step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Initial Assessment</h3>
-                        <p>We analyze your goals, training schedule, diet history, and competition plans to create your personalized nutrition strategy.</p>
-                    </div>
-                </div>
-                
-                <div class="process-step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Custom Meal Plan</h3>
-                        <p>Receive your initial nutrition plan designed specifically for your body, training style, and lifestyle needs.</p>
-                    </div>
-                </div>
-                
-                <div class="process-step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Ongoing Support</h3>
-                        <p>Direct WhatsApp access to your nutritionist for questions, challenges, and quick adjustments as your training evolves.</p>
-                    </div>
-                </div>
-                
-                <div class="process-step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h3>Regular Check-ins</h3>
-                        <p>Weekly progress tracking and adjustments ensure your nutrition plan evolves with your body and goals.</p>
-                    </div>
-                </div>
-                
-                <div class="process-step">
-                    <div class="step-number">5</div>
-                    <div class="step-content">
-                        <h3>Video Consultations</h3>
-                        <p>Monthly in-depth video calls to discuss progress, make major adjustments, and plan for upcoming competitions.</p>
-                    </div>
-                </div>
-                
-                <div class="process-step">
-                    <div class="step-number">6</div>
-                    <div class="step-content">
-                        <h3>Competition Preparation</h3>
-                        <p>Specialized nutrition timing and strategies for optimal performance before, during, and after competitions.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center" style="margin-top: 60px;">
                 <a href="https://f19cdvsmvlk.typeform.com/to/O8K7o2hl?utm_source=homepage" class="hero-cta" target="_blank">Get Your Free BJJ Nutrition Assessment</a>
             </div>
         </div>
@@ -2112,6 +2368,24 @@
     <!-- Animation script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Process steps toggle functionality
+            document.querySelectorAll('.step-title').forEach(title => {
+                title.addEventListener('click', () => {
+                    const stepContent = title.closest('.step-content');
+                    const isActive = stepContent.classList.contains('active');
+                    
+                    // Close all expanded steps
+                    document.querySelectorAll('.step-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // Toggle current step
+                    if (!isActive) {
+                        stepContent.classList.add('active');
+                    }
+                });
+            });
+            
             // Feature cards animation
             const featureCards = document.querySelectorAll('.feature');
             
@@ -2225,6 +2499,316 @@
         // Start the automatic slideshow
         startInterval();
     });
+    </script>
+
+    <!-- Add JavaScript for screenshot viewer at the end of the body tag -->
+    <script>
+        // Initialize screenshot viewer
+        document.addEventListener('DOMContentLoaded', function() {
+            const screenshotCards = document.querySelectorAll('.app-screenshot-card');
+            const overlay = document.querySelector('.screenshot-overlay');
+            const overlayImage = document.querySelector('.overlay-image');
+            const overlayClose = document.querySelector('.overlay-close');
+            
+            // Open overlay when clicking on a screenshot
+            screenshotCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const imgSrc = card.getAttribute('data-img');
+                    overlayImage.src = imgSrc;
+                    overlay.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling
+                });
+            });
+            
+            // Close overlay when clicking on close button or outside the image
+            overlayClose.addEventListener('click', () => {
+                overlay.classList.remove('active');
+                document.body.style.overflow = ''; // Re-enable scrolling
+            });
+            
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = ''; // Re-enable scrolling
+                }
+            });
+            
+            // Close overlay with Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = ''; // Re-enable scrolling
+                }
+            });
+        });
+    </script>
+
+    <!-- Update JavaScript to include gallery functionality -->
+    <script>
+        // The overlay functionality has been removed as it's no longer needed
+    </script>
+
+    <!-- Add carousel functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get carousel elements
+            const prevBtn = document.getElementById('carouselPrev');
+            const nextBtn = document.getElementById('carouselNext');
+            const screenshots = document.querySelectorAll('.device-screen .app-screenshot');
+            const features = document.querySelectorAll('.carousel-feature');
+            const dots = document.querySelectorAll('.carousel-dot');
+            
+            let currentIndex = 0;
+            const maxIndex = screenshots.length - 1;
+            
+            // Initialize carousel
+            updateCarousel(currentIndex);
+            
+            // Navigation functions
+            function updateCarousel(index) {
+                // Update screenshots
+                screenshots.forEach(screenshot => {
+                    if (parseInt(screenshot.dataset.index) === index) {
+                        screenshot.classList.add('active');
+                    } else {
+                        screenshot.classList.remove('active');
+                    }
+                });
+                
+                // Update features
+                features.forEach(feature => {
+                    if (parseInt(feature.dataset.index) === index) {
+                        feature.classList.add('active');
+                    } else {
+                        feature.classList.remove('active');
+                    }
+                });
+                
+                // Update dots
+                dots.forEach(dot => {
+                    if (parseInt(dot.dataset.index) === index) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+                
+                // Update current index
+                currentIndex = index;
+            }
+            
+            function goToPrev() {
+                const newIndex = currentIndex === 0 ? maxIndex : currentIndex - 1;
+                updateCarousel(newIndex);
+            }
+            
+            function goToNext() {
+                const newIndex = currentIndex === maxIndex ? 0 : currentIndex + 1;
+                updateCarousel(newIndex);
+            }
+            
+            // Event listeners
+            if (prevBtn) {
+                prevBtn.addEventListener('click', goToPrev);
+            }
+            
+            if (nextBtn) {
+                nextBtn.addEventListener('click', goToNext);
+            }
+            
+            // Dot navigation
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    updateCarousel(parseInt(dot.dataset.index));
+                });
+            });
+            
+            // Auto-rotate every 5 seconds
+            let carouselInterval = setInterval(goToNext, 5000);
+            
+            // Pause auto-rotation when interacting
+            const carouselContainer = document.querySelector('.carousel-container');
+            if (carouselContainer) {
+                carouselContainer.addEventListener('mouseenter', () => {
+                    clearInterval(carouselInterval);
+                });
+                
+                carouselContainer.addEventListener('mouseleave', () => {
+                    carouselInterval = setInterval(goToNext, 5000);
+                });
+            }
+        });
+    </script>
+
+    <!-- Update JavaScript to handle app carousel -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get carousel elements
+            const deviceScreen = document.querySelector('.app-carousel-showcase .device-screen');
+            const featureContainer = document.querySelector('.app-carousel-showcase .feature-container');
+            const dots = document.querySelectorAll('.carousel-dot');
+            
+            // Create arrays for images and features
+            const screenshots = Array.from(deviceScreen.querySelectorAll('.app-screenshot'));
+            const features = Array.from(featureContainer.querySelectorAll('.carousel-feature'));
+            
+            let currentIndex = 0;
+            
+            // Touch variables
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            // Function to update carousel with no transitions
+            function updateCarousel(index) {
+                // Set current index
+                currentIndex = index;
+                
+                // Update screenshots
+                screenshots.forEach((screenshot, i) => {
+                    if (i === currentIndex) {
+                        screenshot.style.display = 'block';
+                    } else {
+                        screenshot.style.display = 'none';
+                    }
+                });
+                
+                // Update features - completely remove and reinsert to prevent transition issues
+                // First remove all features from DOM
+                features.forEach(feature => {
+                    if (feature.parentNode) {
+                        feature.parentNode.removeChild(feature);
+                    }
+                });
+                
+                // Then insert just the active one
+                if (features[currentIndex]) {
+                    featureContainer.appendChild(features[currentIndex]);
+                }
+                
+                // Update dots
+                dots.forEach((dot, i) => {
+                    if (i === currentIndex) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Set up dot navigation
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', function() {
+                    updateCarousel(index);
+                });
+            });
+            
+            // Add touch event listeners for swipe support
+            const deviceContainer = document.querySelector('.device-container');
+            if (deviceContainer) {
+                deviceContainer.addEventListener('touchstart', function(e) {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, false);
+                
+                deviceContainer.addEventListener('touchend', function(e) {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                }, false);
+            }
+            
+            // Handle swipe direction
+            function handleSwipe() {
+                const swipeThreshold = 50; // Minimum distance for a swipe
+                if (touchEndX < touchStartX - swipeThreshold) {
+                    // Swipe left (next)
+                    let nextIndex = currentIndex + 1;
+                    if (nextIndex >= screenshots.length) nextIndex = 0;
+                    updateCarousel(nextIndex);
+                } else if (touchEndX > touchStartX + swipeThreshold) {
+                    // Swipe right (previous)
+                    let prevIndex = currentIndex - 1;
+                    if (prevIndex < 0) prevIndex = screenshots.length - 1;
+                    updateCarousel(prevIndex);
+                }
+            }
+            
+            // Initialize with first item
+            updateCarousel(0);
+        });
+    </script>
+
+    <!-- Add carousel fix script to end of body -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Reset all carousel items
+            const carouselInit = function() {
+                const screenshots = document.querySelectorAll('.app-screenshot');
+                const features = document.querySelectorAll('.carousel-feature');
+                const dots = document.querySelectorAll('.carousel-dot');
+                
+                // Reset all items
+                screenshots.forEach((screenshot) => {
+                    screenshot.classList.remove('active');
+                });
+                
+                features.forEach((feature) => {
+                    feature.classList.remove('active');
+                });
+                
+                dots.forEach((dot) => {
+                    dot.classList.remove('active');
+                });
+                
+                // Make first items active
+                screenshots[0].classList.add('active');
+                features[0].classList.add('active');
+                dots[0].classList.add('active');
+            };
+            
+            // Initialize on page load
+            carouselInit();
+        });
+    </script>
+
+    <!-- Add scroll reveal animation functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if IntersectionObserver is supported
+            if ('IntersectionObserver' in window) {
+                // Select all sections that should be animated on scroll
+                const sections = document.querySelectorAll('.reveal-section');
+                
+                // Create the observer options
+                const options = {
+                    root: null, // Use the viewport as the root
+                    rootMargin: '0px', // No margin
+                    threshold: 0.15 // Trigger when 15% of the element is visible
+                };
+                
+                // Create the observer
+                const observer = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(entry => {
+                        // If the element is in the viewport
+                        if (entry.isIntersecting) {
+                            // Add the active class to start the animation
+                            entry.target.classList.add('active');
+                            // Once it's been animated, no need to observe it anymore
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, options);
+                
+                // Start observing each section
+                sections.forEach(section => {
+                    observer.observe(section);
+                });
+            } else {
+                // Fallback for browsers that don't support IntersectionObserver
+                const sections = document.querySelectorAll('.reveal-section');
+                sections.forEach(section => {
+                    section.classList.add('active');
+                });
+            }
+        });
     </script>
 </body>
 </html> 
