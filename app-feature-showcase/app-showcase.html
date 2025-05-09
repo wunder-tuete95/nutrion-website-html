@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrion App Features</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #043e41;
+            --primary-light: #105e62;
+            --primary-dark: #032b2e;
+            --accent-color: #FF9900;
+            --text-color: #2A3B47;
+            --text-color-dark: #4a5a68;
+            --light-gray: #F4F7F9;
+            --medium-gray: #8898aa;
+            --border-color: #e6ebf1;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            color: var(--text-color-dark);
+            background-color: var(--light-gray);
+            -webkit-font-smoothing: antialiased;
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-color);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+
+        /* App Showcase Section */
+        .app-showcase {
+            padding: 90px 0;
+            background-color: var(--light-gray);
+        }
+
+        .app-showcase h2 {
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 36px;
+            color: var(--primary-color);
+        }
+
+        .support-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-color-dark);
+            margin-bottom: 60px;
+        }
+
+        /* App Feature Carousel */
+        .app-feature-carousel {
+            position: relative;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        /* Feature Content Container */
+        .feature-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 860px;
+            position: relative;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Device Frame */
+        .device-frame-container {
+            flex: 0 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 420px;
+            margin: 0;
+        }
+
+        .device-frame {
+            position: relative;
+            width: 400px;
+            height: 830px;
+            background-color: #0f0f0f; /* Darker black for iPhone 16 Pro Max */
+            border-radius: 50px; /* Rounder corners for iPhone 16 Pro Max */
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12), 0 10px 20px rgba(0, 0, 0, 0.08);
+            padding: 4px; /* Ultra-thin frame */
+            border: none;
+        }
+
+        .device-screen {
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            border-radius: 47px; /* Adjusted for thinner frame */
+            overflow: hidden;
+            position: relative;
+        }
+
+        .device-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30%; /* Narrower Dynamic Island */
+            height: 20px;
+            background-color: #0f0f0f;
+            border-bottom-left-radius: 14px;
+            border-bottom-right-radius: 14px;
+            z-index: 2;
+        }
+
+        .app-screenshot {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .app-screenshot.active {
+            opacity: 1;
+        }
+
+        /* Feature Content */
+        .feature-text-container {
+            flex: 0 0 auto;
+            padding: 35px;
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 380px;
+            visibility: hidden;
+            right: 100px; /* Fixed position from right edge */
+            transform: translateY(-50%);
+        }
+
+        .feature-text-container.active {
+            opacity: 1;
+            transform: translateY(-50%);
+            visibility: visible;
+        }
+
+        /* Position device on right for even features */
+        .feature-container:nth-child(even) .feature-text-container {
+            right: auto;
+            left: 100px; /* Fixed position from left edge */
+        }
+        
+        .device-frame-container {
+            position: absolute;
+            left: 100px; /* Fixed position from left edge */
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .feature-container:nth-child(even) .device-frame-container {
+            left: auto;
+            right: 100px; /* Fixed position from right edge */
+        }
+
+        .app-feature-icon {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            display: block;
+            text-align: center;
+        }
+
+        .app-feature-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .app-feature-text {
+            font-size: 16px;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        /* Navigation Controls */
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            color: var(--primary-color);
+            font-size: 16px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            opacity: 0.5;
+        }
+
+        .carousel-nav:hover {
+            opacity: 1;
+            background-color: var(--white);
+        }
+
+        .carousel-prev {
+            left: 20px;
+        }
+
+        .carousel-next {
+            right: 20px;
+        }
+
+        /* Call to Action Button */
+        .cta-container {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 16px 36px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #000000;
+            background-color: var(--accent-color);
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            background-color: #ffad33;
+            box-shadow: 0 6px 20px rgba(255, 153, 0, 0.3);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 900px) {
+            .feature-container {
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            .device-frame-container, 
+            .feature-text-container {
+                flex: 0 0 100%;
+                width: 100%;
+                position: relative;
+                transform: none;
+                top: auto;
+                left: auto;
+                right: auto;
+            }
+
+            .device-frame-container {
+                margin-bottom: 30px;
+            }
+
+            .device-frame {
+                width: 350px;
+                height: 730px;
+                margin: 0 auto;
+            }
+
+            .feature-text-container {
+                margin-top: 30px;
+                padding: 30px;
+                visibility: visible;
+            }
+
+            .feature-text-container.active {
+                transform: none;
+            }
+
+            .carousel-nav {
+                top: auto;
+                bottom: 20px;
+                transform: none;
+            }
+
+            .carousel-prev {
+                left: calc(50% - 50px);
+            }
+
+            .carousel-next {
+                right: calc(50% - 50px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="app-showcase">
+        <div class="container">
+            <h2>Your Nutrition Plan in Your Pocket</h2>
+            <p class="support-subtitle">Access your personalized plan anytime, anywhere through our dedicated app</p>
+            
+            <div class="app-feature-carousel">
+                <!-- Feature Container - Holds all features -->
+                <div class="feature-container">
+                    <!-- Device Frame (always visible) -->
+                    <div class="device-frame-container">
+                        <div class="device-frame">
+                            <div class="device-notch"></div>
+                            <div class="device-screen">
+                                <!-- All screenshots stacked, only one visible at a time -->
+                                <img src="https://storage.googleapis.com/nutrion-website-images/app-screenshots/MealPlan.png" alt="Nutrion App - Meal Plan" class="app-screenshot" data-index="0">
+                                <img src="https://storage.googleapis.com/nutrion-website-images/app-screenshots/Recipe.png" alt="Nutrion App - Recipe View" class="app-screenshot" data-index="1">
+                                <img src="https://storage.googleapis.com/nutrion-website-images/app-screenshots/GroceryList.png" alt="Nutrion App - Grocery List" class="app-screenshot" data-index="2">
+                                <img src="https://storage.googleapis.com/nutrion-website-images/app-screenshots/Home.png" alt="Nutrion App - Daily Habits" class="app-screenshot" data-index="3">
+                                <img src="https://storage.googleapis.com/nutrion-website-images/app-screenshots/Activity.png" alt="Nutrion App - Activity Tracking" class="app-screenshot" data-index="4">
+                                <img src="https://storage.googleapis.com/nutrion-website-images/app-screenshots/MaterialsLibrary.png" alt="Nutrion App - Materials Library" class="app-screenshot" data-index="5">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature Text Content (stacked, only one visible at a time) -->
+                    <div class="feature-text-container" data-index="0">
+                        <i class="fa-solid fa-utensils app-feature-icon"></i>
+                        <h4 class="app-feature-title">Custom Meal Plans</h4>
+                        <p class="app-feature-text">Your plan is always up-to-date with real-time updates whenever adjustments are made by your nutritionist.</p>
+                    </div>
+                    
+                    <div class="feature-text-container" data-index="1">
+                        <i class="fa-solid fa-book-open app-feature-icon"></i>
+                        <h4 class="app-feature-title">Easy-to-Follow Recipes</h4>
+                        <p class="app-feature-text">Simple, tasty recipes with step-by-step instructions make meal preparation quick and enjoyable.</p>
+                    </div>
+                    
+                    <div class="feature-text-container" data-index="2">
+                        <i class="fa-solid fa-list-check app-feature-icon"></i>
+                        <h4 class="app-feature-title">Smart Shopping Lists</h4>
+                        <p class="app-feature-text">Automatically generated shopping lists based on your meal plan to make food shopping effortless.</p>
+                    </div>
+                    
+                    <div class="feature-text-container" data-index="3">
+                        <i class="fa-solid fa-stairs app-feature-icon"></i>
+                        <h4 class="app-feature-title">Multi-Level Habit System</h4>
+                        <p class="app-feature-text">Multi-level habit system with streaks tracking to help you develop sustainable nutrition habits.</p>
+                    </div>
+                    
+                    <div class="feature-text-container" data-index="4">
+                        <i class="fa-solid fa-chart-line app-feature-icon"></i>
+                        <h4 class="app-feature-title">Progress Tracking</h4>
+                        <p class="app-feature-text">Monitor your progress with weekly check-ins submitted through our simple digital form, with results reflected in your plan updates.</p>
+                    </div>
+                    
+                    <div class="feature-text-container" data-index="5">
+                        <i class="fa-solid fa-folder-open app-feature-icon"></i>
+                        <h4 class="app-feature-title">Resource Library</h4>
+                        <p class="app-feature-text">Access PDF guides and educational materials to deepen your understanding of nutrition for BJJ.</p>
+                    </div>
+                    
+                    <!-- Subtle Navigation Controls -->
+                    <div class="carousel-nav carousel-prev">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </div>
+                    <div class="carousel-nav carousel-next">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cta-container">
+                <a href="https://f19cdvsmvlk.typeform.com/to/O8K7o2hl?utm_source=homepage" class="hero-cta" target="_blank">Get Your Free BJJ Nutrition Assessment</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all elements
+            const screenshots = document.querySelectorAll('.app-screenshot');
+            const textContainers = document.querySelectorAll('.feature-text-container');
+            const prevBtn = document.querySelector('.carousel-prev');
+            const nextBtn = document.querySelector('.carousel-next');
+            
+            let currentIndex = 0;
+            const maxIndex = screenshots.length - 1;
+            let carouselInterval;
+            
+            // Initialize carousel with first feature
+            function initCarousel() {
+                updateCarousel(0);
+                startAutoRotation();
+            }
+            
+            // Function to update carousel display
+            function updateCarousel(index) {
+                // Update current index
+                currentIndex = index;
+                
+                // Update screenshots
+                screenshots.forEach(screenshot => {
+                    if (parseInt(screenshot.dataset.index) === index) {
+                        screenshot.classList.add('active');
+                    } else {
+                        screenshot.classList.remove('active');
+                    }
+                });
+                
+                // Update text containers
+                textContainers.forEach(container => {
+                    if (parseInt(container.dataset.index) === index) {
+                        container.classList.add('active');
+                    } else {
+                        container.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Navigation functions
+            function goToPrev() {
+                const newIndex = currentIndex === 0 ? maxIndex : currentIndex - 1;
+                updateCarousel(newIndex);
+                restartAutoRotation();
+            }
+            
+            function goToNext() {
+                const newIndex = currentIndex === maxIndex ? 0 : currentIndex + 1;
+                updateCarousel(newIndex);
+                restartAutoRotation();
+            }
+            
+            // Auto rotation functions
+            function startAutoRotation() {
+                // Clear any existing interval
+                if (carouselInterval) {
+                    clearInterval(carouselInterval);
+                }
+                // Start a new interval
+                carouselInterval = setInterval(goToNext, 6000); // 6 seconds per feature
+            }
+            
+            function restartAutoRotation() {
+                clearInterval(carouselInterval);
+                startAutoRotation();
+            }
+            
+            // Set up navigation event listeners
+            prevBtn.addEventListener('click', goToPrev);
+            nextBtn.addEventListener('click', goToNext);
+            
+            // Touch events for swipe support
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            const carousel = document.querySelector('.app-feature-carousel');
+            
+            carousel.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            }, {passive: true});
+            
+            carousel.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, {passive: true});
+            
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                if (touchEndX < touchStartX - swipeThreshold) {
+                    // Swipe left (next)
+                    goToNext();
+                } else if (touchEndX > touchStartX + swipeThreshold) {
+                    // Swipe right (previous)
+                    goToPrev();
+                }
+            }
+            
+            // Pause auto-rotation when interacting
+            carousel.addEventListener('mouseenter', () => {
+                clearInterval(carouselInterval);
+            });
+            
+            carousel.addEventListener('mouseleave', () => {
+                startAutoRotation();
+            });
+            
+            // Initialize the carousel
+            initCarousel();
+            
+            // Make first screenshot and text visible initially
+            if (screenshots.length > 0) {
+                screenshots[0].classList.add('active');
+                textContainers[0].classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -411,20 +411,25 @@
             justify-content: center;
             cursor: pointer;
             z-index: 10;
+            color: var(--primary-color);
+            font-size: 16px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
+            opacity: 0.5;
+            border: none;
         }
         
-        .testimonial-nav:hover {
-            background-color: var(--accent-color);
-            color: var(--white);
+        .carousel-nav:hover {
+            opacity: 1;
+            background-color: var(--white);
         }
         
         .testimonial-prev {
-            left: -20px;
+            left: -80px;
         }
         
         .testimonial-next {
-            right: -20px;
+            right: -80px;
         }
         
         @media (max-width: 900px) {
@@ -712,43 +717,103 @@
         /* FAQ */
         .faq {
             padding: 90px 0;
-            background-color: var(--white);
+            background-color: var(--light-gray);
         }
         
         .faq h2 {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 20px;
+            font-size: 36px;
+            color: var(--primary-color);
+        }
+        
+        .faq-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
         }
         
         .faq-item {
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 20px;
+            background-color: var(--white);
+            border-radius: 8px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
         }
         
         .faq-question {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--primary-color);
             font-weight: 600;
-            padding: 20px 0;
+            padding: 20px 25px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
+        }
+        
+        .faq-question .arrow {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-question .arrow {
+            transform: rotate(45deg);
         }
         
         .faq-answer {
-            padding: 0 0 20px;
-            display: none;
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
         
-        .faq-answer.active {
-            display: block;
+        .faq-item.active .faq-answer {
+            max-height: 500px; /* Large enough to fit content */
+            padding-bottom: 25px;
         }
         
         .faq-answer p {
             font-size: 0.95rem;
             color: var(--text-color-dark);
-            line-height: 1.5;
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        @media (max-width: 900px) {
+            .faq-question {
+                font-size: 1rem;
+                padding: 15px 20px;
+            }
+            
+            .faq-answer {
+                padding: 0 20px;
+            }
+            
+            .faq-item.active .faq-answer {
+                padding-bottom: 20px;
+            }
         }
         
         /* CTA Section */
@@ -953,109 +1018,171 @@
         
         .comparison h2 {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 15px;
             font-size: 36px;
             color: var(--primary-color);
         }
         
-        .comparison-table {
-            width: 100%;
-            border-radius: 8px;
+        .comparison-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .comparison-container {
+            display: flex;
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .comparison-column {
+            flex: 1;
+            border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .comparison-column:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .comparison-column.nutrion {
+            border: 2px solid var(--accent-color);
         }
         
         .comparison-header {
-            display: flex;
-            background-color: var(--primary-color);
             color: var(--white);
-            font-weight: 600;
-        }
-        
-        .comparison-header .comparison-cell {
-            padding: 20px;
+            padding: 25px 20px;
             text-align: center;
-            font-size: 1.1rem;
         }
         
-        .comparison-row {
-            display: flex;
-            border-bottom: 1px solid var(--border-color);
+        .comparison-header.standard {
+            background-color: var(--medium-gray);
+        }
+        
+        .comparison-header.nutrion {
+            background-color: var(--primary-color);
+            position: relative;
+        }
+        
+        .comparison-header.nutrion:after {
+            content: "Recommended";
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: var(--accent-color);
+            color: var(--primary-dark);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 5px 15px;
+            border-bottom-left-radius: 8px;
+        }
+        
+        .comparison-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .comparison-subtitle-column {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .comparison-items {
+            padding: 0;
             background-color: var(--white);
         }
         
-        .comparison-row:last-child {
+        .comparison-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .comparison-item:last-child {
             border-bottom: none;
         }
         
-        .comparison-feature {
-            flex: 1;
-            padding: 20px;
-            font-weight: 600;
-            background-color: var(--light-gray);
-        }
-        
-        .comparison-cell {
-            flex: 1;
-            padding: 20px;
+        .comparison-icon {
+            flex-shrink: 0;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-right: 15px;
+            color: var(--white);
         }
         
-        .comparison-cell.standard {
-            background-color: rgba(0, 0, 0, 0.02);
+        .comparison-item.nutrion .comparison-icon {
+            background-color: var(--accent-color);
         }
         
-        .comparison-cell.nutrion {
-            background-color: rgba(255, 153, 0, 0.05);
+        .comparison-item.standard .comparison-icon {
+            background-color: var(--medium-gray);
         }
         
-        .yes, .no {
-            position: relative;
-            padding-left: 25px;
+        .comparison-content {
+            flex-grow: 1;
         }
         
-        .yes:before, .no:before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 18px;
-            height: 18px;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: contain;
+        .comparison-label {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--primary-color);
         }
         
-        .yes {
-            color: var(--success);
+        .comparison-description {
+            font-size: 0.9rem;
+            color: var(--text-color-dark);
+            line-height: 1.4;
         }
         
-        .yes:before {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233ECF8E'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E");
+        .comparison-note {
+            background-color: rgba(255, 153, 0, 0.1);
+            border-left: 3px solid var(--accent-color);
+            padding: 15px 20px;
+            margin: 30px auto 0;
+            max-width: 800px;
+            border-radius: 0 8px 8px 0;
         }
         
-        .no {
-            color: var(--medium-gray);
+        .comparison-note-content {
+            font-size: 0.95rem;
+            color: var(--text-color-dark);
+            line-height: 1.5;
         }
         
-        .no:before {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238898aa'%3E%3Cpath d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z'/%3E%3C/svg%3E");
+        .comparison-cta {
+            margin-top: 40px;
+            text-align: center;
         }
         
-        @media (max-width: 768px) {
-            .comparison-header, .comparison-row {
+        @media (max-width: 900px) {
+            .comparison-container {
                 flex-direction: column;
             }
             
-            .comparison-feature {
-                border-bottom: 1px solid var(--border-color);
+            .comparison-column.nutrion {
+                order: -1; /* Show Nutrion column first on mobile */
             }
             
-            .comparison-cell.standard {
-                border-bottom: 1px solid var(--border-color);
+            .comparison-item {
+                padding: 15px;
+            }
+            
+            .comparison-title {
+                font-size: 1.3rem;
             }
         }
         
@@ -1592,124 +1719,191 @@
             height: 100%;
             object-fit: cover;
             object-position: top;
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 0.5s ease;
         }
 
-        /* Overlay styles that are no longer needed but kept for any lingering references */
-        .screenshot-overlay {
-            display: none;
+        .app-screenshot.active {
+            opacity: 1;
         }
 
-        /* Zig-Zag Layout Styles */
-        .app-features-showcase {
-            max-width: 1300px;
-            margin: 50px auto;
-            padding: 0 20px;
+        /* App Feature Carousel */
+        .app-feature-carousel {
+            position: relative;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px 0;
         }
 
-        .feature-row {
+        /* Feature Content Container */
+        .feature-container {
             display: flex;
-            flex-direction: row !important;
             align-items: center;
-            justify-content: space-between;
-            margin-bottom: 120px; /* Increased spacing between rows for larger devices */
+            justify-content: center;
+            min-height: 860px;
+            position: relative;
+            width: 100%;
+            margin: 0 auto;
         }
 
-        .feature-content {
-            flex: 0 0 42%;
-            padding: 36px;
-            background-color: var(--white);
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-        }
-
-        .feature-device {
-            flex: 0 0 53%;
+        /* Device Frame Container */
+        .device-frame-container {
+            flex: 0 0 auto;
             display: flex;
             justify-content: center;
             align-items: center;
+            position: absolute;
+            left: 70px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 420px;
+            margin: 0;
+        }
+
+        /* Feature Text Container */
+        .feature-text-container {
+            flex: 0 0 auto;
+            padding: 50px 30px;
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 380px;
+            visibility: hidden;
+            right: 90px; /* Increased from 70px to 90px to move text box further left */
+            text-align: center;
+        }
+
+        .feature-text-container.active {
+            opacity: 1;
+            transform: translateY(-50%);
+            visibility: visible;
+        }
+
+        /* Position device on right for even features */
+        .feature-container:nth-child(even) .feature-text-container {
+            right: auto;
+            left: 70px;
         }
         
-        .feature-device .device-frame {
-            width: 400px;
-            height: 830px;
+        .feature-container:nth-child(even) .device-frame-container {
+            left: auto;
+            right: 70px;
         }
 
-        .feature-content .app-feature-icon {
-            font-size: 32px;
-            margin-bottom: 20px;
-            color: var(--accent-color);
-            display: block;
-            text-align: center;
-            width: 100%;
-        }
-
-        .feature-content .app-feature-title {
-            font-size: 24px;
-            margin-bottom: 15px;
+        /* Carousel Navigation */
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
             color: var(--primary-color);
-            font-weight: 600;
-            text-align: center;
-        }
-
-        .feature-content .app-feature-text {
             font-size: 16px;
-            line-height: 1.6;
-            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            opacity: 0.5;
+            border: none;
+        }
+        
+        .carousel-nav:hover {
+            opacity: 1;
+            background-color: var(--white);
         }
 
-        /* For odd-numbered features, force the image first */
-        .feature-row:nth-child(odd) .feature-device {
-            order: 1;
-        }
-        .feature-row:nth-child(odd) .feature-content {
-            order: 2;
+        .carousel-prev {
+            left: 20px;
         }
 
-        /* For even-numbered features, force the content first */
-        .feature-row:nth-child(even) .feature-device {
-            order: 2;
-        }
-        .feature-row:nth-child(even) .feature-content {
-            order: 1;
+        .carousel-next {
+            right: 30px; /* Increased from 20px to 30px to add more space */
         }
 
+        /* Mobile Responsiveness for Carousel */
         @media (max-width: 900px) {
-            .feature-row {
-                flex-direction: column !important;
-                margin-bottom: 80px;
+            .feature-container {
+                flex-direction: column;
+                min-height: auto;
             }
 
-            /* For all mobile features, always show device first, text second */
-            .feature-row .feature-device {
+            .device-frame-container, 
+            .feature-text-container {
                 flex: 0 0 100%;
-                order: 1 !important;
                 width: 100%;
+                position: relative;
+                transform: none;
+                top: auto;
+                left: auto;
+                right: auto;
+            }
+
+            .device-frame-container {
                 margin-bottom: 30px;
             }
 
-            .feature-row .feature-content {
-                flex: 0 0 100%;
-                order: 2 !important;
-                width: 100%;
+            .feature-text-container {
+                margin-top: 30px;
+                margin-bottom: 30px;
+                padding: 30px;
+                visibility: visible;
+                /* opacity: 1;
+                border-top: 4px solid var(--accent-color); */
             }
 
-            .feature-device .device-frame {
-                width: 350px;
-                height: 730px;
-                margin: 0 auto;
+            .feature-text-container.active {
+                transform: none;
+            }
+
+            .carousel-nav {
+                top: auto;
+                bottom: 20px;
+                transform: none;
+            }
+
+            .carousel-prev {
+                left: calc(50% - 50px);
+            }
+
+            .carousel-next {
+                right: calc(50% - 50px);
             }
         }
 
-        /* Animation styles */
-        .reveal-section {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+        /* App feature elements styling to match service-component */
+        .app-feature-icon {
+            font-size: 36px;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            display: block;
         }
-
-        .reveal-section.active {
-            opacity: 1;
-            transform: translateY(0);
+        
+        .app-feature-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .app-feature-text {
+            font-size: 0.95rem;
+            color: var(--text-color-dark);
+            line-height: 1.5;
+            text-align: center;
         }
     </style>
 </head>
@@ -1958,9 +2152,6 @@
                     <p>Guidance from a nutritionist who is also a BJJ black belt.</p>
                 </div>
             </div>
-            <div class="text-center" style="margin-top: 40px;">
-                <a href="https://f19cdvsmvlk.typeform.com/to/O8K7o2hl?utm_source=homepage" class="hero-cta" target="_blank">Get Your Free BJJ Nutrition Assessment</a>
-            </div>
         </div>
     </section>
 
@@ -2092,10 +2283,6 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="text-center" style="margin-top: 60px;">
-                <a href="https://f19cdvsmvlk.typeform.com/to/O8K7o2hl?utm_source=homepage" class="hero-cta" target="_blank">Get Your Free BJJ Nutrition Assessment</a>
-            </div>
         </div>
     </section>
 
@@ -2105,107 +2292,68 @@
             <h2>Your Nutrition Plan in Your Pocket</h2>
             <p class="support-subtitle">Access your personalized plan anytime, anywhere through our dedicated app</p>
             
-            <!-- Replace carousel with vertical zig-zag layout -->
-            <div class="app-features-showcase">
-                <!-- Feature 1: Custom Meal Plans (Image left, Text right) -->
-                <div class="feature-row reveal-section">
-                    <div class="feature-device">
+            <div class="app-feature-carousel">
+                <!-- Feature Container - Holds all features -->
+                <div class="feature-container">
+                    <!-- Device Frame (always visible) -->
+                    <div class="device-frame-container">
                         <div class="device-frame">
                             <div class="device-notch"></div>
                             <div class="device-screen">
-                                <img src="https://storage.googleapis.com/nutrion-website-images/app-screenshots/MealPlan.png" alt="Nutrion App - Meal Plan" class="app-screenshot">
+                                <!-- All screenshots stacked, only one visible at a time -->
+                                <img src="https://storage.googleapis.com/nutrion-website-images/app-screenshots/MealPlan.png" alt="Nutrion App - Meal Plan" class="app-screenshot" data-index="0">
+                                <img src="https://storage.googleapis.com/nutrion-website-images/app-screenshots/Recipe.png" alt="Nutrion App - Recipe View" class="app-screenshot" data-index="1">
+                                <img src="https://storage.googleapis.com/nutrion-website-images/app-screenshots/GroceryList.png" alt="Nutrion App - Grocery List" class="app-screenshot" data-index="2">
+                                <img src="https://storage.googleapis.com/nutrion-website-images/app-screenshots/Home.png" alt="Nutrion App - Daily Habits" class="app-screenshot" data-index="3">
+                                <img src="https://storage.googleapis.com/nutrion-website-images/app-screenshots/Activity.png" alt="Nutrion App - Activity Tracking" class="app-screenshot" data-index="4">
+                                <img src="https://storage.googleapis.com/nutrion-website-images/app-screenshots/MaterialsLibrary.png" alt="Nutrion App - Materials Library" class="app-screenshot" data-index="5">
                             </div>
                         </div>
                     </div>
-                    <div class="feature-content">
+                    
+                    <!-- Feature Text Content (stacked, only one visible at a time) -->
+                    <div class="feature-text-container" data-index="0">
                         <i class="fa-solid fa-utensils app-feature-icon"></i>
-                        <h4 class="app-feature-title">Custom Meal Plans</h4>
-                        <p class="app-feature-text">Your plan is always up-to-date with real-time updates whenever adjustments are made by your nutritionist.</p>
+                        <h3 class="app-feature-title">Custom Meal Plans</h3>
+                        <p class="app-feature-text">Fully custom meal plans built for you — not generic diet advice.</p>
                     </div>
-                </div>
-                
-                <!-- Feature 2: Easy-to-Follow Recipes (Text left, Image right) -->
-                <div class="feature-row reveal-section">
-                    <div class="feature-content">
+                    
+                    <div class="feature-text-container" data-index="1">
                         <i class="fa-solid fa-book-open app-feature-icon"></i>
-                        <h4 class="app-feature-title">Easy-to-Follow Recipes</h4>
+                        <h3 class="app-feature-title">Easy-to-Follow Recipes</h3>
                         <p class="app-feature-text">Simple, tasty recipes with step-by-step instructions make meal preparation quick and enjoyable.</p>
                     </div>
-                    <div class="feature-device">
-                        <div class="device-frame">
-                            <div class="device-notch"></div>
-                            <div class="device-screen">
-                                <img src="https://storage.googleapis.com/nutrion-website-images/app-screenshots/Recipe.png" alt="Nutrion App - Recipe View" class="app-screenshot">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Feature 3: Smart Grocery Lists (Image left, Text right) -->
-                <div class="feature-row reveal-section">
-                    <div class="feature-device">
-                        <div class="device-frame">
-                            <div class="device-notch"></div>
-                            <div class="device-screen">
-                                <img src="https://storage.googleapis.com/nutrion-website-images/app-screenshots/GroceryList.png" alt="Nutrion App - Grocery List" class="app-screenshot">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="feature-content">
+                    
+                    <div class="feature-text-container" data-index="2">
                         <i class="fa-solid fa-list-check app-feature-icon"></i>
-                        <h4 class="app-feature-title">Smart Shopping Lists</h4>
+                        <h3 class="app-feature-title">Smart Shopping Lists</h3>
                         <p class="app-feature-text">Automatically generated shopping lists based on your meal plan to make food shopping effortless.</p>
                     </div>
-                </div>
-                
-                <!-- Feature 4: Multi-Level Habit System (Text left, Image right) -->
-                <div class="feature-row reveal-section">
-                    <div class="feature-content">
+                    
+                    <div class="feature-text-container" data-index="3">
                         <i class="fa-solid fa-stairs app-feature-icon"></i>
-                        <h4 class="app-feature-title">Multi-Level Habit System</h4>
+                        <h3 class="app-feature-title">Multi-Level Habit System</h3>
                         <p class="app-feature-text">Multi-level habit system with streaks tracking to help you develop sustainable nutrition habits.</p>
                     </div>
-                    <div class="feature-device">
-                        <div class="device-frame">
-                            <div class="device-notch"></div>
-                            <div class="device-screen">
-                                <img src="https://storage.googleapis.com/nutrion-website-images/app-screenshots/Home.png" alt="Nutrion App - Daily Habits" class="app-screenshot">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Feature 5: Progress Tracking (Image left, Text right) -->
-                <div class="feature-row reveal-section">
-                    <div class="feature-device">
-                        <div class="device-frame">
-                            <div class="device-notch"></div>
-                            <div class="device-screen">
-                                <img src="https://storage.googleapis.com/nutrion-website-images/app-screenshots/Activity.png" alt="Nutrion App - Activity Tracking" class="app-screenshot">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="feature-content">
+                    
+                    <div class="feature-text-container" data-index="4">
                         <i class="fa-solid fa-chart-line app-feature-icon"></i>
-                        <h4 class="app-feature-title">Progress Tracking</h4>
-                        <p class="app-feature-text">Monitor your progress with weekly check-ins submitted through our simple digital form, with results reflected in your plan updates.</p>
+                        <h3 class="app-feature-title">Progress Tracking</h3>
+                        <p class="app-feature-text">Monitor your progress with weekly check-ins submitted through our simple digital form.</p>
                     </div>
-                </div>
-                
-                <!-- Feature 6: Resource Library (Text left, Image right) -->
-                <div class="feature-row reveal-section">
-                    <div class="feature-content">
+                    
+                    <div class="feature-text-container" data-index="5">
                         <i class="fa-solid fa-folder-open app-feature-icon"></i>
-                        <h4 class="app-feature-title">Resource Library</h4>
+                        <h3 class="app-feature-title">Resource Library</h3>
                         <p class="app-feature-text">Access PDF guides and educational materials to deepen your understanding of nutrition for BJJ.</p>
                     </div>
-                    <div class="feature-device">
-                        <div class="device-frame">
-                            <div class="device-notch"></div>
-                            <div class="device-screen">
-                                <img src="https://storage.googleapis.com/nutrion-website-images/app-screenshots/MaterialsLibrary.png" alt="Nutrion App - Materials Library" class="app-screenshot">
-                            </div>
-                        </div>
+                    
+                    <!-- Subtle Navigation Controls -->
+                    <div class="carousel-nav carousel-prev">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </div>
+                    <div class="carousel-nav carousel-next">
+                        <i class="fa-solid fa-chevron-right"></i>
                     </div>
                 </div>
             </div>
@@ -2225,50 +2373,115 @@
     <section class="comparison">
         <div class="container">
             <h2>Why Choose a BJJ-Specific Nutrition Coach?</h2>
-            <div class="comparison-table">
-                <div class="comparison-header">
-                    <div class="comparison-cell"></div>
-                    <div class="comparison-cell standard">Generic Nutrition Programs</div>
-                    <div class="comparison-cell nutrion">Nutrion BJJ Coaching</div>
+            <p class="comparison-subtitle">The difference between generic nutrition advice and specialized coaching designed specifically for BJJ athletes can be the edge you need to succeed on the mats.</p>
+            
+            <div class="comparison-container">
+                <!-- Generic Column -->
+                <div class="comparison-column standard">
+                    <div class="comparison-header standard">
+                        <h3 class="comparison-title">Generic Nutrition Programs</h3>
+                        <p class="comparison-subtitle-column">One-size-fits-all approach</p>
+                    </div>
+                    
+                    <div class="comparison-items">
+                        <div class="comparison-item standard">
+                            <div class="comparison-icon">
+                                <i class="fa-solid fa-dumbbell"></i>
+                            </div>
+                            <div class="comparison-content">
+                                <h4 class="comparison-label">Training Knowledge</h4>
+                                <p class="comparison-description">Limited understanding of BJJ's unique physical demands and energy requirements.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="comparison-item standard">
+                            <div class="comparison-icon">
+                                <i class="fa-solid fa-scale-balanced"></i>
+                            </div>
+                            <div class="comparison-content">
+                                <h4 class="comparison-label">Weight Management</h4>
+                                <p class="comparison-description">Generic weight cut advice without understanding BJJ competition timing and recovery needs.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="comparison-item standard">
+                            <div class="comparison-icon">
+                                <i class="fa-solid fa-comments"></i>
+                            </div>
+                            <div class="comparison-content">
+                                <h4 class="comparison-label">Support System</h4>
+                                <p class="comparison-description">Limited check-ins and generic guidance not specific to your training and competition schedule.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="comparison-item standard">
+                            <div class="comparison-icon">
+                                <i class="fa-solid fa-calendar"></i>
+                            </div>
+                            <div class="comparison-content">
+                                <h4 class="comparison-label">Competition Prep</h4>
+                                <p class="comparison-description">Standard meal plans that don't account for competition cycles or specific performance timing.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="comparison-row">
-                    <div class="comparison-feature">Understanding of Training Demands</div>
-                    <div class="comparison-cell standard">
-                        <span class="no">Limited knowledge of BJJ's unique physical demands</span>
+                
+                <!-- Nutrion Column -->
+                <div class="comparison-column nutrion">
+                    <div class="comparison-header nutrion">
+                        <h3 class="comparison-title">Nutrion BJJ Coaching</h3>
+                        <p class="comparison-subtitle-column">Tailored for BJJ performance</p>
                     </div>
-                    <div class="comparison-cell nutrion">
-                        <span class="yes">First-hand experience as an active BJJ black belt</span>
-                    </div>
-                </div>
-                <div class="comparison-row">
-                    <div class="comparison-feature">Competition Support</div>
-                    <div class="comparison-cell standard">
-                        <span class="no">Generic weight cut advice without sport context</span>
-                    </div>
-                    <div class="comparison-cell nutrion">
-                        <span class="yes">Specialized plans for competition cycles with timing precision</span>
-                    </div>
-                </div>
-                <div class="comparison-row">
-                    <div class="comparison-feature">Personalized Support</div>
-                    <div class="comparison-cell standard">
-                        <span class="no">Limited check-ins and generic guidance</span>
-                    </div>
-                    <div class="comparison-cell nutrion">
-                        <span class="yes">7-day access with ongoing adjustments based on training feedback</span>
-                    </div>
-                </div>
-                <div class="comparison-row">
-                    <div class="comparison-feature">BJJ Athlete Focus</div>
-                    <div class="comparison-cell standard">
-                        <span class="no">One-size-fits-all approaches</span>
-                    </div>
-                    <div class="comparison-cell nutrion">
-                        <span class="yes">Specialized knowledge of BJJ nutrition needs</span>
+                    
+                    <div class="comparison-items">
+                        <div class="comparison-item nutrion">
+                            <div class="comparison-icon">
+                                <i class="fa-solid fa-dumbbell"></i>
+                            </div>
+                            <div class="comparison-content">
+                                <h4 class="comparison-label">BJJ Specific Knowledge</h4>
+                                <p class="comparison-description">First-hand experience as an active BJJ black belt who understands the energy demands of training and competing.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="comparison-item nutrion">
+                            <div class="comparison-icon">
+                                <i class="fa-solid fa-scale-balanced"></i>
+                            </div>
+                            <div class="comparison-content">
+                                <h4 class="comparison-label">Strategic Weight Management</h4>
+                                <p class="comparison-description">Specialized plans for weight management that preserve strength and energy specifically for BJJ competitions.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="comparison-item nutrion">
+                            <div class="comparison-icon">
+                                <i class="fa-solid fa-comments"></i>
+                            </div>
+                            <div class="comparison-content">
+                                <h4 class="comparison-label">Continuous Support</h4>
+                                <p class="comparison-description">7-day access with ongoing adjustments based on your specific training feedback and performance goals.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="comparison-item nutrion">
+                            <div class="comparison-icon">
+                                <i class="fa-solid fa-calendar"></i>
+                            </div>
+                            <div class="comparison-content">
+                                <h4 class="comparison-label">Competition Precision</h4>
+                                <p class="comparison-description">Detailed nutrition timing and strategy for optimal performance during tournaments and competitions.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="text-center" style="margin-top: 40px;">
+            
+            <div class="comparison-note">
+                <p class="comparison-note-content"><strong>"As a BJJ athlete myself, I know that generic nutrition advice rarely works for our sport. That's why I've built a program that addresses the specific challenges we face on and off the mats."</strong> — Daniel Caetano, Nutritionist & BJJ Black Belt</p>
+            </div>
+            
+            <div class="comparison-cta">
                 <a href="https://f19cdvsmvlk.typeform.com/to/O8K7o2hl?utm_source=homepage" class="hero-cta" target="_blank">Get Your Free BJJ Nutrition Assessment</a>
             </div>
         </div>
@@ -2278,40 +2491,64 @@
     <section class="faq">
         <div class="container">
             <h2>Frequently Asked Questions</h2>
-            <div class="faq-item">
-                <div class="faq-question">
-                    What makes Nutrion different from other nutrition programs?
-                    <span class="arrow">+</span>
-                </div>
-                <div class="faq-answer">
-                    <p>Nutrion is specifically designed for BJJ athletes, with nutrition plans that work around your training schedule. Your coach is both a nutritionist and an active BJJ black belt who understands the unique demands of the sport from first-hand experience. This dual expertise allows for truly personalized guidance that generic nutrition programs simply can't offer.</p>
-                </div>
+            <div class="faq-subtitle">
+                <p>Here are some common questions about our nutrition coaching services. If you have any other questions, feel free to contact us!</p>
             </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    I have a busy life and no established routine. Will this program work for me?
-                    <span class="arrow">+</span>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What makes Nutrion different from other nutrition programs?
+                        <span class="arrow">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Nutrion is specifically designed for BJJ athletes, with nutrition plans that work around your training schedule. Your coach is both a nutritionist and an active BJJ black belt who understands the unique demands of the sport from first-hand experience. This dual expertise allows for truly personalized guidance that generic nutrition programs simply can't offer.</p>
+                    </div>
                 </div>
-                <div class="faq-answer">
-                    <p>Absolutely! We specifically design our nutrition plans around your existing schedule and preferences. The program adapts to your life, not the other way around, making it ideal for busy athletes. Our approach focuses on practical, sustainable strategies that fit into your lifestyle, rather than rigid meal plans that require complete lifestyle changes.</p>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        I have a busy life and no established routine. Will this program work for me?
+                        <span class="arrow">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! We specifically design our nutrition plans around your existing schedule and preferences. The program adapts to your life, not the other way around, making it ideal for busy athletes. Our approach focuses on practical, sustainable strategies that fit into your lifestyle, rather than rigid meal plans that require complete lifestyle changes.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    Can your program help me with weight management for competitions?
-                    <span class="arrow">+</span>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can your program help me with weight management for competitions?
+                        <span class="arrow">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, weight management for competition is one of our specialties. Whether you're looking to cut weight, maintain, or gain muscle, our personalized approach creates sustainable plans tailored to your specific competition schedule. We provide strategies that help you reach your target weight while maintaining strength and energy for optimal performance on competition day.</p>
+                    </div>
                 </div>
-                <div class="faq-answer">
-                    <p>Yes, weight management for competition is one of our specialties. Whether you're looking to cut weight, maintain, or gain muscle, our personalized approach creates sustainable plans tailored to your specific competition schedule. We provide strategies that help you reach your target weight while maintaining strength and energy for optimal performance on competition day.</p>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What if I have dietary restrictions or allergies?
+                        <span class="arrow">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We work with all types of dietary restrictions and preferences, including vegetarian, vegan, gluten-free, dairy-free, and other allergy-specific needs. Your nutrition plan will be fully customized to accommodate your unique requirements while ensuring you get all the nutrients needed for optimal BJJ performance and recovery.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    What if I have dietary restrictions or allergies?
-                    <span class="arrow">+</span>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How long does it take to see results?
+                        <span class="arrow">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Most clients start seeing noticeable changes in energy levels and recovery within the first 2 weeks. For body composition changes, you can typically expect visible results within 4-6 weeks of consistent implementation. Competition weight management timelines are discussed individually based on your specific goals and starting point.</p>
+                    </div>
                 </div>
-                <div class="faq-answer">
-                    <p>We work with all types of dietary restrictions and preferences, including vegetarian, vegan, gluten-free, dairy-free, and other allergy-specific needs. Your nutrition plan will be fully customized to accommodate your unique requirements while ensuring you get all the nutrients needed for optimal BJJ performance and recovery.</p>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do I need to track calories or macros every day?
+                        <span class="arrow">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Not necessarily. While we do use calorie and macro tracking as a tool when needed, our focus is on developing sustainable habits rather than creating dependency on tracking apps. Some clients benefit from tracking initially before transitioning to more intuitive approaches, while others may never need to track. We personalize the approach based on your preferences and what works best for your lifestyle.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2344,21 +2581,22 @@
         // Simple FAQ toggle functionality
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
-                const answer = question.nextElementSibling;
-                const isActive = answer.classList.contains('active');
+                const faqItem = question.closest('.faq-item');
+                const isActive = faqItem.classList.contains('active');
                 
-                // Close all answers
-                document.querySelectorAll('.faq-answer').forEach(item => {
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
                     item.classList.remove('active');
                 });
                 
+                // Reset all arrow icons
                 document.querySelectorAll('.arrow').forEach(arrow => {
                     arrow.textContent = '+';
                 });
                 
-                // Toggle current answer
+                // Toggle current FAQ item
                 if (!isActive) {
-                    answer.classList.add('active');
+                    faqItem.classList.add('active');
                     question.querySelector('.arrow').textContent = '-';
                 }
             });
@@ -2807,6 +3045,193 @@
                 sections.forEach(section => {
                     section.classList.add('active');
                 });
+            }
+            
+            // Add animation for comparison columns
+            const comparisonColumns = document.querySelectorAll('.comparison-column');
+            
+            const comparisonObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        // Add delay based on index (the second column appears slightly after the first)
+                        setTimeout(() => {
+                            entry.target.classList.add('animate-in');
+                        }, index * 200); // 200ms delay between columns
+                        comparisonObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+            
+            comparisonColumns.forEach(column => {
+                column.classList.add('pre-animation');
+                comparisonObserver.observe(column);
+            });
+            
+            // Add animation for comparison note
+            const comparisonNote = document.querySelector('.comparison-note');
+            if (comparisonNote) {
+                comparisonNote.classList.add('pre-animation');
+                
+                const noteObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => {
+                                entry.target.classList.add('animate-in');
+                            }, 400); // Add a delay after the columns
+                            noteObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                noteObserver.observe(comparisonNote);
+            }
+            
+            // Add animation for FAQ items
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            const faqObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        // Add delay based on index
+                        setTimeout(() => {
+                            entry.target.classList.add('animate-in');
+                        }, index * 100); // 100ms delay between each FAQ item
+                        faqObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            faqItems.forEach(item => {
+                item.classList.add('pre-animation');
+                faqObserver.observe(item);
+            });
+        });
+    </script>
+    
+    <!-- App Feature Carousel functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all elements for the app feature carousel
+            const screenshots = document.querySelectorAll('.app-screenshot');
+            const textContainers = document.querySelectorAll('.feature-text-container');
+            const prevBtn = document.querySelector('.carousel-prev');
+            const nextBtn = document.querySelector('.carousel-next');
+            
+            let currentIndex = 0;
+            const maxIndex = screenshots.length - 1;
+            let carouselInterval;
+            
+            // Initialize carousel with first feature
+            function initCarousel() {
+                updateCarousel(0);
+                startAutoRotation();
+            }
+            
+            // Function to update carousel display
+            function updateCarousel(index) {
+                // Update current index
+                currentIndex = index;
+                
+                // Update screenshots
+                screenshots.forEach(screenshot => {
+                    if (parseInt(screenshot.dataset.index) === index) {
+                        screenshot.classList.add('active');
+                    } else {
+                        screenshot.classList.remove('active');
+                    }
+                });
+                
+                // Update text containers
+                textContainers.forEach(container => {
+                    if (parseInt(container.dataset.index) === index) {
+                        container.classList.add('active');
+                    } else {
+                        container.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Navigation functions
+            function goToPrev() {
+                const newIndex = currentIndex === 0 ? maxIndex : currentIndex - 1;
+                updateCarousel(newIndex);
+                restartAutoRotation();
+            }
+            
+            function goToNext() {
+                const newIndex = currentIndex === maxIndex ? 0 : currentIndex + 1;
+                updateCarousel(newIndex);
+                restartAutoRotation();
+            }
+            
+            // Auto rotation functions
+            function startAutoRotation() {
+                // Clear any existing interval
+                if (carouselInterval) {
+                    clearInterval(carouselInterval);
+                }
+                // Start a new interval
+                carouselInterval = setInterval(goToNext, 6000); // 6 seconds per feature
+            }
+            
+            function restartAutoRotation() {
+                clearInterval(carouselInterval);
+                startAutoRotation();
+            }
+            
+            // Set up navigation event listeners
+            if (prevBtn) {
+                prevBtn.addEventListener('click', goToPrev);
+            }
+            
+            if (nextBtn) {
+                nextBtn.addEventListener('click', goToNext);
+            }
+            
+            // Touch events for swipe support
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            const carousel = document.querySelector('.app-feature-carousel');
+            
+            if (carousel) {
+                carousel.addEventListener('touchstart', function(e) {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, {passive: true});
+                
+                carousel.addEventListener('touchend', function(e) {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                }, {passive: true});
+                
+                // Pause auto-rotation when interacting
+                carousel.addEventListener('mouseenter', () => {
+                    clearInterval(carouselInterval);
+                });
+                
+                carousel.addEventListener('mouseleave', () => {
+                    startAutoRotation();
+                });
+            }
+            
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                if (touchEndX < touchStartX - swipeThreshold) {
+                    // Swipe left (next)
+                    goToNext();
+                } else if (touchEndX > touchStartX + swipeThreshold) {
+                    // Swipe right (previous)
+                    goToPrev();
+                }
+            }
+            
+            // Initialize the carousel
+            initCarousel();
+            
+            // Make first screenshot and text visible initially
+            if (screenshots.length > 0) {
+                screenshots[0].classList.add('active');
+                textContainers[0].classList.add('active');
             }
         });
     </script>
