@@ -46,12 +46,6 @@
             font-weight: 800;
         }
         
-        /* Add this style for solving the line between CTA and footer */
-        .cta-footer-wrapper {
-            display: block; /* Always a block to ensure continuity */
-            background: linear-gradient(to right, var(--primary-dark), var(--primary-color), var(--primary-dark));
-        }
-        
         .container {
             width: 90%;
             max-width: 1040px;
@@ -828,12 +822,6 @@
             text-align: center;
             background: linear-gradient(to right, var(--primary-dark), var(--primary-color), var(--primary-dark));
             color: var(--white);
-            border-bottom: none;
-        }
-        
-        /* When inside the wrapper, remove the background */
-        .cta-footer-wrapper .cta-section {
-            background: none;
         }
         
         .cta-section h2 {
@@ -877,16 +865,10 @@
         
         /* Footer */
         .footer {
+            background: linear-gradient(to right, var(--primary-dark), var(--primary-color), var(--primary-dark));
             color: var(--white);
             padding: 40px 0 30px;
             text-align: center;
-            border-top: none;
-        }
-        
-        /* When inside the wrapper, remove the background and reduce top padding */
-        .cta-footer-wrapper .footer {
-            background: none;
-            padding-top: 20px;
         }
 
         .footer-logo {
@@ -933,12 +915,6 @@
             
             .logo {
                 max-width: 80px; /* Smaller logo on mobile */
-            }
-            
-            /* Add specific styles to fix the border issue */
-            .cta-section, .footer {
-                border-top: 0 !important;
-                border-bottom: 0 !important;
             }
             
             .hero {
@@ -2269,7 +2245,7 @@
 
         /* Assessment Form Styles */
         .assessment-form {
-            padding: 120px 0;
+            padding: 90px 0;
             background-color: var(--light-gray);
             text-align: center;
         }
@@ -2333,11 +2309,7 @@
         .form-check {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 12px;
-        }
-        
-        .form-check:last-of-type {
-            margin-bottom: 0;
+            margin-bottom: 15px;
         }
         
         .form-check input {
@@ -2351,28 +2323,19 @@
             color: var(--text-color-dark);
         }
         
-        .checkbox-container {
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-        }
-        
         .form-privacy {
-            margin: 0;
-            padding-top: 5px;
+            margin: 20px 0;
             font-size: 0.85rem;
             color: var(--medium-gray);
             line-height: 1.4;
         }
         
         .form-submit {
-            margin-top: 0;
-            margin-bottom: 0;
+            margin-top: 10px;
             width: 100%;
             justify-content: center;
             cursor: pointer;
             border: none;
-            padding: 18px 3px;
-            font-size: 18px;
         }
         
         .form-submit:hover {
@@ -2381,9 +2344,8 @@
         
         .form-message {
             text-align: center;
-            margin-top: 0;
-            margin-bottom: 0;
-            padding: 5px 10px;
+            margin-top: 15px;
+            padding: 10px;
             border-radius: 8px;
             font-weight: 500;
         }
@@ -2391,18 +2353,16 @@
         .form-message.success {
             background-color: rgba(62, 207, 142, 0.1);
             color: var(--success);
-            margin-top: 5px;
         }
         
         .form-message.error {
             background-color: rgba(255, 76, 76, 0.1);
             color: #ff4c4c;
-            margin-top: 5px;
         }
         
         @media (max-width: 900px) {
             .assessment-form {
-                padding: 80px 0;
+                padding: 60px 0;
             }
             
             .assessment-form h2 {
@@ -2410,7 +2370,8 @@
             }
             
             .assessment-form-subtitle {
-                display: none; /* Hide subtitle on mobile */
+                font-size: 1rem;
+                margin-bottom: 30px;
             }
             
             .form-container {
@@ -2429,63 +2390,6 @@
             
             .form-check label {
                 font-size: 15px;
-            }
-        }
-        
-        /* Add error styling to the form fields */
-        .form-group.error input {
-            border-color: #ff4c4c;
-            background-color: rgba(255, 76, 76, 0.05);
-        }
-        
-        .form-check.error {
-            color: #ff4c4c;
-        }
-        
-        .form-message.error {
-            background-color: rgba(255, 76, 76, 0.1);
-            color: #ff4c4c;
-            padding: 10px;
-            border-radius: 8px;
-            margin-top: 15px;
-            font-weight: 500;
-            line-height: 1.5;
-        }
-
-        /* Add a new style for mobile that makes the CTA and footer appear as one element */
-        .cta-footer-wrapper {
-            display: contents; /* By default, this behaves like the elements aren't wrapped */
-        }
-
-        @media (max-width: 900px) {
-            /* Make CTA and footer part of a single continuous element on mobile */
-            .cta-footer-wrapper {
-                display: block; /* Show as a single container on mobile */
-                background: linear-gradient(to right, var(--primary-dark), var(--primary-color), var(--primary-dark));
-            }
-            
-            /* Remove individual backgrounds and padding adjustments for mobile */
-            .cta-footer-wrapper .cta-section,
-            .cta-footer-wrapper .footer {
-                background: none;
-                margin: 0;
-                padding-top: 40px;
-                padding-bottom: 40px;
-                border: none;
-            }
-            
-            /* No top padding for footer to eliminate any gap */
-            .cta-footer-wrapper .footer {
-                padding-top: 0;
-            }
-
-            .container {
-                width: 95%;
-                padding: 0 16px;
-            }
-            
-            .site-header {
-                padding: 20px 0;
             }
         }
     </style>
@@ -2517,8 +2421,7 @@
                     </div>
                 </div>
                 
-                <!-- Hero CTA Button -->
-                <a href="#assessment-form" class="hero-cta">Get Your Free BJJ Nutrition Assessment</a>
+                <a href="https://f19cdvsmvlk.typeform.com/to/O8K7o2hl?utm_source=homepage" class="hero-cta" target="_blank">Get Your Free BJJ Nutrition Assessment</a>
             </div>
         </div>
         <div class="scroll-indicator" aria-hidden="true"></div>
@@ -2562,9 +2465,8 @@
                 </div>
             </div>
             
-            <!-- Features Section CTA -->
             <div class="text-center" style="margin-top: 40px;">
-                <a href="#assessment-form" class="hero-cta">Get Your Free BJJ Nutrition Assessment</a>
+                <a href="https://f19cdvsmvlk.typeform.com/to/O8K7o2hl?utm_source=homepage" class="hero-cta" target="_blank">Get Your Free BJJ Nutrition Assessment</a>
             </div>
         </div>
     </section>
@@ -2666,8 +2568,7 @@
                         <div class="credential"><i class="fa-solid fa-globe"></i> Clients in 10+ Countries</div>
                     </div>
                     
-                    <!-- Intro Section CTA -->
-                    <a href="#assessment-form" class="hero-cta">Get Your Free BJJ Nutrition Assessment</a>
+                    <a href="https://f19cdvsmvlk.typeform.com/to/O8K7o2hl?utm_source=homepage" class="hero-cta" target="_blank">Get Your Free BJJ Nutrition Assessment</a>
                 </div>
                 <div class="intro-image-wrapper" style="padding-top: 90px;">
                     <div class="intro-image">
@@ -2709,9 +2610,8 @@
                         <div class="credential"><i class="fa-solid fa-globe"></i> Clients in 10+ Countries</div>
                     </div>
                     
-                    <!-- Mobile-specific layout CTA -->
                     <div style="text-align: center; margin-top: 25px;">
-                        <a href="#assessment-form" class="hero-cta">Get Your Free BJJ Nutrition Assessment</a>
+                        <a href="https://f19cdvsmvlk.typeform.com/to/O8K7o2hl?utm_source=homepage" class="hero-cta" target="_blank">Get Your Free BJJ Nutrition Assessment</a>
                     </div>
                 </div>
             </div>
@@ -2945,9 +2845,8 @@
                 </div>
             </div>
             
-            <!-- App Showcase CTA -->
             <div class="text-center" style="margin-top: 60px;">
-                <a href="#assessment-form" class="hero-cta">Get Your Free BJJ Nutrition Assessment</a>
+                <a href="https://f19cdvsmvlk.typeform.com/to/O8K7o2hl?utm_source=homepage" class="hero-cta" target="_blank">Get Your Free BJJ Nutrition Assessment</a>
             </div>
         </div>
     </section>
@@ -3069,9 +2968,8 @@
                 <p class="comparison-note-content"><strong>"As a BJJ athlete myself, I know that generic nutrition advice rarely works for our sport. That's why I've built a program that addresses the specific challenges we face on and off the mats."</strong> — Daniel Caetano, Nutritionist & BJJ Black Belt</p>
             </div>
             
-            <!-- Comparison CTA -->
             <div class="comparison-cta">
-                <a href="#assessment-form" class="hero-cta">Get Your Free BJJ Nutrition Assessment</a>
+                <a href="https://f19cdvsmvlk.typeform.com/to/O8K7o2hl?utm_source=homepage" class="hero-cta" target="_blank">Get Your Free BJJ Nutrition Assessment</a>
             </div>
         </div>
     </section>
@@ -3186,539 +3084,63 @@
         </div>
     </section>
 
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to perform better on the mats?</h2>
+            <a href="https://f19cdvsmvlk.typeform.com/to/O8K7o2hl?utm_source=homepage" class="hero-cta" target="_blank">Get Your Free BJJ Nutrition Assessment</a>
+            <p class="cta-subheadline">Stop wasting your potential — start fueling your BJJ today</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <img src="https://framerusercontent.com/images/BWEaipn67Qc3Jg3inQssO6rrJ4.png" alt="Nutrion Health" class="footer-logo">
+            <div class="footer-links">
+                <!-- <a href="#" class="footer-link">About Us</a>
+                <a href="pricing.html" class="footer-link">Pricing</a>
+                <a href="#" class="footer-link">Contact</a>
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Terms of Service</a> -->
+            </div>
+            <p class="copyright">© 2025 Nutrion Health. All rights reserved.</p>
+        </div>
+    </footer>
+
     <!-- Free Assessment Form Section -->
     <section id="assessment-form" class="assessment-form">
         <div class="container">
             <h2>Get Your Free BJJ Nutrition Assessment</h2>
-            <p class="assessment-form-subtitle">Get expert nutrition guidance tailored for BJJ athletes and a free 1-on-1 consultation</p>
+            <p class="assessment-form-subtitle">Complete the form below to receive your personalized BJJ nutrition assessment via email.</p>
 
             <div class="form-container">
                 <form id="bjj-assessment-form" class="bjj-form">
                     <div class="form-group">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    
-                    <div class="form-group">
                         <label for="email">Your Email Address</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
                     </div>
                     
-                    <div class="checkbox-container">
-                        <div class="form-check">
-                            <input type="checkbox" id="is-bjj" name="is_active_bjj" required>
-                            <label for="is-bjj">I am an active BJJ practitioner ready to level up my performance</label>
-                        </div>
-                        
-                        <div class="form-check">
-                            <input type="checkbox" id="is-adult" name="is_over_18" required>
-                            <label for="is-adult">I am 18 years or older</label>
-                        </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="is-bjj" name="is_active_bjj" required>
+                        <label for="is-bjj">I am an active BJJ practitioner</label>
                     </div>
                     
-                    <button type="submit" class="hero-cta form-submit">Yes, I Want My FREE Analysis</button>
-                    
-                    <div class="form-message" id="form-message"></div>
+                    <div class="form-check">
+                        <input type="checkbox" id="is-adult" name="is_over_18" required>
+                        <label for="is-adult">I am 18 years or older</label>
+                    </div>
                     
                     <div class="form-privacy">
-                        <p style="margin: 8px 0 0; padding: 0;">By submitting this form, you agree to receive email communications from Nutrion Health. We'll never share your information. You can unsubscribe at any time.</p>
+                        <p>By submitting this form, you agree to receive email communications from Nutrion Health. We'll never share your information. You can unsubscribe at any time.</p>
                     </div>
+                    
+                    <button type="submit" class="hero-cta form-submit">Submit Your Assessment Request</button>
+                    
+                    <div class="form-message" id="form-message"></div>
                 </form>
             </div>
         </div>
     </section>
-
-    <!-- Wrapper for CTA and Footer -->
-    <div class="cta-footer-wrapper">
-        <!-- CTA Section -->
-        <section class="cta-section">
-            <div class="container">
-                <h2>Ready to perform better on the mats?</h2>
-                <a href="#assessment-form" class="hero-cta">Get Your Free BJJ Nutrition Assessment</a>
-                <p class="cta-subheadline">Stop wasting your potential — start fueling your BJJ today</p>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="container">
-                <img src="https://framerusercontent.com/images/BWEaipn67Qc3Jg3inQssO6rrJ4.png" alt="Nutrion Health" class="footer-logo">
-                <div class="footer-links">
-                    <!-- <a href="#" class="footer-link">About Us</a>
-                    <a href="pricing.html" class="footer-link">Pricing</a>
-                    <a href="#" class="footer-link">Contact</a>
-                    <a href="#" class="footer-link">Privacy Policy</a>
-                    <a href="#" class="footer-link">Terms of Service</a> -->
-                </div>
-                <p class="copyright">© 2025 Nutrion Health. All rights reserved.</p>
-            </div>
-        </footer>
-    </div>
-
-   
-    <script>
-        // Simple FAQ toggle functionality
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const faqItem = question.closest('.faq-item');
-                const isActive = faqItem.classList.contains('active');
-                
-                // Close all FAQ items
-                document.querySelectorAll('.faq-item').forEach(item => {
-                    item.classList.remove('active');
-                });
-                
-                // Reset all arrow icons
-                document.querySelectorAll('.arrow').forEach(arrow => {
-                    arrow.textContent = '+';
-                });
-                
-                // Toggle current FAQ item
-                if (!isActive) {
-                    faqItem.classList.add('active');
-                    question.querySelector('.arrow').textContent = '-';
-                }
-            });
-        });
-    </script>
-
-    <!-- Form Submission Script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get all CTA buttons that should scroll to the form
-            const ctaButtons = document.querySelectorAll('a.hero-cta[href="#assessment-form"]');
-            const form = document.getElementById('assessment-form');
-            
-            // Add click handlers to CTA buttons to scroll to the form
-            ctaButtons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    form.scrollIntoView({ behavior: 'smooth' });
-                });
-            });
-            
-            // Form submission handler
-            const bjjForm = document.getElementById('bjj-assessment-form');
-            const formMessage = document.getElementById('form-message');
-            
-            bjjForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Reset any previous error messages
-                formMessage.textContent = '';
-                formMessage.className = 'form-message';
-                
-                // Remove any previous error styling
-                document.querySelectorAll('.form-group.error, .form-check.error').forEach(el => {
-                    el.classList.remove('error');
-                });
-                
-                // Basic client-side validation
-                const name = document.getElementById('name').value.trim();
-                const email = document.getElementById('email').value.trim();
-                const isBjj = document.getElementById('is-bjj').checked;
-                const isAdult = document.getElementById('is-adult').checked;
-                
-                let hasErrors = false;
-                let errorMessage = 'Please correct the following:';
-                
-                // Check each field and apply error styling
-                if (!name) {
-                    document.getElementById('name').parentElement.classList.add('error');
-                    errorMessage += '<br>• Enter your name';
-                    hasErrors = true;
-                }
-                
-                if (!email) {
-                    document.getElementById('email').parentElement.classList.add('error');
-                    errorMessage += '<br>• Enter your email address';
-                    hasErrors = true;
-                } else if (!isValidEmail(email)) {
-                    document.getElementById('email').parentElement.classList.add('error');
-                    errorMessage += '<br>• Enter a valid email address';
-                    hasErrors = true;
-                }
-                
-                if (!isBjj) {
-                    document.getElementById('is-bjj').parentElement.classList.add('error');
-                    errorMessage += '<br>• Confirm you are an active BJJ practitioner';
-                    hasErrors = true;
-                }
-                
-                if (!isAdult) {
-                    document.getElementById('is-adult').parentElement.classList.add('error');
-                    errorMessage += '<br>• Confirm you are 18 years or older';
-                    hasErrors = true;
-                }
-                
-                if (hasErrors) {
-                    formMessage.innerHTML = errorMessage;
-                    formMessage.className = 'form-message error';
-                    return;
-                }
-                
-                // If validation passes, prepare form data
-                const formData = {
-                    name: name,
-                    email: email,
-                    is_active_bjj: isBjj,
-                    is_over_18: isAdult,
-                    submission_date: new Date().toISOString()
-                };
-                
-                // Show loading state
-                const submitButton = bjjForm.querySelector('button[type="submit"]');
-                const originalButtonText = submitButton.textContent;
-                submitButton.textContent = 'Submitting...';
-                submitButton.disabled = true;
-                
-                // Send data to Zapier webhook
-                fetch('https://hooks.zapier.com/hooks/catch/15710462/27301n5/', {
-                    method: 'POST',
-                    body: JSON.stringify(formData),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    // Success! Show success message and reset form
-                    formMessage.textContent = 'Thank you! Your assessment request has been submitted successfully.';
-                    formMessage.className = 'form-message success';
-                    bjjForm.reset();
-                })
-                .catch(error => {
-                    // Handle error
-                    console.error('Error:', error);
-                    formMessage.textContent = 'There was an error submitting your request. Please try again.';
-                    formMessage.className = 'form-message error';
-                })
-                .finally(() => {
-                    // Reset button
-                    submitButton.textContent = originalButtonText;
-                    submitButton.disabled = false;
-                });
-            });
-            
-            // Email validation helper
-            function isValidEmail(email) {
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return emailRegex.test(email);
-            }
-        });
-    </script>
-
-    <!-- Animation script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Process steps toggle functionality
-            document.querySelectorAll('.step-title').forEach(title => {
-                title.addEventListener('click', () => {
-                    const stepContent = title.closest('.step-content');
-                    const isActive = stepContent.classList.contains('active');
-                    
-                    // Close all expanded steps
-                    document.querySelectorAll('.step-content').forEach(content => {
-                        content.classList.remove('active');
-                    });
-                    
-                    // Toggle current step
-                    if (!isActive) {
-                        stepContent.classList.add('active');
-                    }
-                });
-            });
-            
-            // Feature cards animation
-            const featureCards = document.querySelectorAll('.feature');
-            
-            const featureObserver = new IntersectionObserver((entries) => {
-                entries.forEach((entry, index) => {
-                    if (entry.isIntersecting) {
-                        // Add delay based on index
-                        setTimeout(() => {
-                            entry.target.classList.add('animate-in');
-                        }, index * 150); // 150ms delay between each card
-                        featureObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.2 });
-            
-            featureCards.forEach(card => {
-                card.classList.add('pre-animation');
-                featureObserver.observe(card);
-            });
-            
-            // Service component cards animation
-            const serviceCards = document.querySelectorAll('.service-component');
-            
-            const serviceObserver = new IntersectionObserver((entries) => {
-                entries.forEach((entry, index) => {
-                    if (entry.isIntersecting) {
-                        // Add delay based on index
-                        setTimeout(() => {
-                            entry.target.classList.add('animate-in');
-                        }, index * 150); // 150ms delay between each card
-                        serviceObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.2 });
-            
-            serviceCards.forEach(card => {
-                card.classList.add('pre-animation');
-                serviceObserver.observe(card);
-            });
-        });
-    </script>
-
-    <!-- Add JavaScript for testimonials slider -->
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const slides = document.querySelectorAll('.testimonial-slide');
-        const controlsContainer = document.querySelector('.testimonial-controls');
-        const prevButton = document.querySelector('.testimonial-prev');
-        const nextButton = document.querySelector('.testimonial-next');
-        
-        let currentSlide = 0;
-        let slideInterval;
-        
-        // Create dots
-        slides.forEach((_, index) => {
-            const dot = document.createElement('div');
-            dot.classList.add('testimonial-dot');
-            if (index === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => {
-                goToSlide(index);
-                restartInterval();
-            });
-            controlsContainer.appendChild(dot);
-        });
-        
-        const dots = document.querySelectorAll('.testimonial-dot');
-        
-        // Set up navigation
-        prevButton.addEventListener('click', () => {
-            goToSlide(currentSlide - 1);
-            restartInterval();
-        });
-        
-        nextButton.addEventListener('click', () => {
-            goToSlide(currentSlide + 1);
-            restartInterval();
-        });
-        
-        // Functions
-        function goToSlide(slideIndex) {
-            // Handle wrapping
-            if (slideIndex < 0) {
-                slideIndex = slides.length - 1;
-            } else if (slideIndex >= slides.length) {
-                slideIndex = 0;
-            }
-            
-            // Hide current slide
-            slides[currentSlide].classList.remove('active');
-            dots[currentSlide].classList.remove('active');
-            
-            // Show new slide
-            currentSlide = slideIndex;
-            slides[currentSlide].classList.add('active');
-            dots[currentSlide].classList.add('active');
-        }
-        
-        function nextSlide() {
-            goToSlide(currentSlide + 1);
-        }
-        
-        function startInterval() {
-            slideInterval = setInterval(nextSlide, 5000);
-        }
-        
-        function restartInterval() {
-            clearInterval(slideInterval);
-            startInterval();
-        }
-        
-        // Start the automatic slideshow
-        startInterval();
-    });
-    </script>
-
-    <!-- App Feature Carousel functionality -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get all elements for the app feature carousel
-            const screenshots = document.querySelectorAll('.app-screenshot');
-            const textContainers = document.querySelectorAll('.feature-text-container');
-            const prevBtn = document.querySelector('.carousel-prev');
-            const nextBtn = document.querySelector('.carousel-next');
-            
-            let currentIndex = 0;
-            const maxIndex = screenshots.length - 1;
-            let carouselInterval;
-            let isAnimating = false; // Flag to prevent rapid clicking
-            
-            // Initialize carousel
-            function initCarousel() {
-                // Make first items active at start
-                updateCarousel(0, false);
-                startAutoRotation();
-            }
-            
-            // Function to update carousel display with animation handling
-            function updateCarousel(index, animate = true) {
-                if (isAnimating) return; // Prevent concurrent animations
-                isAnimating = true;
-                
-                // Update current index
-                currentIndex = index;
-                
-                // First hide all screenshots and text containers
-                screenshots.forEach(screenshot => {
-                    screenshot.style.opacity = '0';
-                    setTimeout(() => {
-                        screenshot.classList.remove('active');
-                    }, animate ? 300 : 0);
-                });
-                
-                textContainers.forEach(container => {
-                    container.style.opacity = '0';
-                    setTimeout(() => {
-                        container.classList.remove('active');
-                    }, animate ? 300 : 0);
-                });
-                
-                // Then show the current ones after a brief delay
-                setTimeout(() => {
-                    // Update screenshots
-                    screenshots.forEach(screenshot => {
-                        if (parseInt(screenshot.dataset.index) === index) {
-                            screenshot.classList.add('active');
-                            setTimeout(() => {
-                                screenshot.style.opacity = '1';
-                            }, 50);
-                        }
-                    });
-                    
-                    // Update text containers
-                    textContainers.forEach(container => {
-                        if (parseInt(container.dataset.index) === index) {
-                            container.classList.add('active');
-                            setTimeout(() => {
-                                container.style.opacity = '1';
-                            }, 50);
-                        }
-                    });
-                    
-                    // Allow animations again after transition completes
-                    setTimeout(() => {
-                        isAnimating = false;
-                    }, animate ? 500 : 0);
-                }, animate ? 300 : 0);
-            }
-            
-            // Navigation functions
-            function goToPrev() {
-                if (isAnimating) return; // Prevent rapid clicking
-                const newIndex = currentIndex === 0 ? maxIndex : currentIndex - 1;
-                updateCarousel(newIndex);
-                restartAutoRotation();
-            }
-            
-            function goToNext() {
-                if (isAnimating) return; // Prevent rapid clicking
-                const newIndex = currentIndex === maxIndex ? 0 : currentIndex + 1;
-                updateCarousel(newIndex);
-                restartAutoRotation();
-            }
-            
-            // Auto rotation functions
-            function startAutoRotation() {
-                // Clear any existing interval
-                if (carouselInterval) {
-                    clearInterval(carouselInterval);
-                }
-                // Start a new interval
-                const isMobile = window.innerWidth <= 900;
-                const rotationTime = isMobile ? 4000 : 6000; // 4 seconds on mobile, 6 on desktop
-                carouselInterval = setInterval(() => {
-                    if (!isAnimating) { // Only auto-advance if not currently animating
-                        goToNext();
-                    }
-                }, rotationTime);
-            }
-            
-            function restartAutoRotation() {
-                clearInterval(carouselInterval);
-                startAutoRotation();
-            }
-            
-            // Set up navigation event listeners
-            if (prevBtn) {
-                prevBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    goToPrev();
-                });
-            }
-            
-            if (nextBtn) {
-                nextBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    goToNext();
-                });
-            }
-            
-            // Touch events for swipe support
-            let touchStartX = 0;
-            let touchEndX = 0;
-            
-            const deviceFrame = document.querySelector('.device-frame');
-            
-            if (deviceFrame) {
-                deviceFrame.addEventListener('touchstart', function(e) {
-                    touchStartX = e.changedTouches[0].screenX;
-                }, {passive: true});
-                
-                deviceFrame.addEventListener('touchend', function(e) {
-                    if (isAnimating) return; // Prevent rapid swiping
-                    touchEndX = e.changedTouches[0].screenX;
-                    handleSwipe();
-                }, {passive: true});
-            }
-            
-            function handleSwipe() {
-                const swipeThreshold = 50;
-                if (touchEndX < touchStartX - swipeThreshold) {
-                    // Swipe left (next)
-                    goToNext();
-                } else if (touchEndX > touchStartX + swipeThreshold) {
-                    // Swipe right (previous)
-                    goToPrev();
-                }
-            }
-            
-            // Update auto-rotation interval on window resize
-            window.addEventListener('resize', function() {
-                restartAutoRotation();
-            });
-            
-            // Add transition styles for smoother animation
-            screenshots.forEach(screenshot => {
-                screenshot.style.transition = 'opacity 0.5s ease';
-            });
-            
-            textContainers.forEach(container => {
-                container.style.transition = 'opacity 0.5s ease';
-            });
-            
-            // Initialize the carousel
-            initCarousel();
-        });
-    </script>
 </body>
 </html> 

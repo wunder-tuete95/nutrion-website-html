@@ -1,0 +1,10 @@
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to perform better on the mats?</h2>
+            <a href="https://f19cdvsmvlk.typeform.com/to/O8K7o2hl?utm_source=homepage" class="hero-cta" target="_blank">Get Your Free BJJ Nutrition Assessment</a>
+            <p class="cta-subheadline">Stop wasting your potential — start fueling your BJJ today</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
