@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BJJ Nutrition Assessment | Nutrion Health</title>
+    <meta name="description" content="Complete your personalized BJJ nutrition assessment in 5 minutes and get expert recommendations.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #032b2e;
+            --primary-dark: #021f21;
+            --accent-color: #ff9900;
+            --text-color-dark: #2c3e50;
+            --medium-gray: #7f8c8d;
+            --light-gray: #f8f9fa;
+            --border-color: #e1e8ed;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color-dark);
+            background-color: var(--white);
+        }
+
+        /* Header */
+        .site-header {
+            background-color: var(--white);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 40px;
+            width: auto;
+        }
+
+        .back-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--accent-color);
+        }
+
+        /* Assessment Section */
+        .assessment-section {
+            padding: 60px 0;
+            background-color: var(--light-gray);
+            min-height: calc(100vh - 80px);
+        }
+
+        .assessment-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .assessment-header h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .assessment-header p {
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Progress Indicator */
+        .progress-container {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .progress-text {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .progress-time {
+            color: var(--accent-color);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: var(--light-gray);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-color), #ffb84d);
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 4px;
+        }
+
+        /* Typeform Container */
+        .typeform-container {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            min-height: 600px;
+        }
+
+        .typeform-embed {
+            width: 100%;
+            height: 600px;
+            border: none;
+        }
+
+        /* Loading State */
+        .loading-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 600px;
+            color: var(--medium-gray);
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--light-gray);
+            border-top: 4px solid var(--accent-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .assessment-header h1 {
+                font-size: 2rem;
+            }
+
+            .assessment-section {
+                padding: 40px 0;
+            }
+
+            .progress-container {
+                padding: 15px;
+            }
+
+            .typeform-embed {
+                height: 500px;
+            }
+
+            .loading-state {
+                height: 500px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .assessment-header h1 {
+                font-size: 1.75rem;
+            }
+
+            .progress-header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Site Header -->
+    <header class="site-header">
+        <div class="container header-container">
+            <img src="https://framerusercontent.com/images/BWEaipn67Qc3Jg3inQssO6rrJ4.png" alt="Nutrion Health" class="logo">
+            <a href="landing-page.html" class="back-link">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Home
+            </a>
+        </div>
+    </header>
+
+    <!-- Assessment Section -->
+    <section class="assessment-section">
+        <div class="container">
+            <div class="assessment-header">
+                <h1>Your BJJ Nutrition Assessment</h1>
+                <p>Complete this 5-minute assessment to get your personalized nutrition recommendations</p>
+            </div>
+
+            <!-- Progress Indicator -->
+            <div class="progress-container">
+                <div class="progress-header">
+                    <span class="progress-text">Assessment Progress</span>
+                    <span class="progress-time">
+                        <i class="fa-solid fa-clock"></i>
+                        ~5 minutes remaining
+                    </span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+
+            <!-- Typeform Container -->
+            <div class="typeform-container">
+                <div class="loading-state" id="loadingState">
+                    <div class="loading-spinner"></div>
+                    <p>Loading your assessment...</p>
+                </div>
+                <iframe 
+                    id="typeformEmbed"
+                    class="typeform-embed" 
+                    src=""
+                    style="display: none;"
+                    onload="hideLoading()">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Get URL parameters for name and email
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Build Typeform URL with parameters
+        function buildTypeformUrl() {
+            const baseUrl = 'https://f19cdvsmvlk.typeform.com/to/nXwlbfXE';
+            const name = getUrlParameter('name');
+            const email = getUrlParameter('email');
+            
+            let url = baseUrl;
+            const params = [];
+            
+            // Add UTM parameter (you can customize this)
+            params.push('utm=landing_page');
+            
+            // Add name and email_link parameters as expected by your Typeform
+            if (name) params.push(`name=${encodeURIComponent(name)}`);
+            if (email) params.push(`email_link=${encodeURIComponent(email)}`);
+            
+            if (params.length > 0) {
+                url += '#' + params.join('&');
+            }
+            
+            return url;
+        }
+
+        // Initialize the assessment
+        function initializeAssessment() {
+            const typeformEmbed = document.getElementById('typeformEmbed');
+            const typeformUrl = buildTypeformUrl();
+            
+            typeformEmbed.src = typeformUrl;
+        }
+
+        // Hide loading state when iframe loads
+        function hideLoading() {
+            document.getElementById('loadingState').style.display = 'none';
+            document.getElementById('typeformEmbed').style.display = 'block';
+            
+            // Start progress animation
+            setTimeout(() => {
+                document.getElementById('progressFill').style.width = '15%';
+            }, 500);
+        }
+
+        // Simulate progress updates (you can integrate with Typeform's API for real progress)
+        function updateProgress() {
+            const progressFill = document.getElementById('progressFill');
+            let currentProgress = 15;
+            
+            const interval = setInterval(() => {
+                currentProgress += Math.random() * 10;
+                if (currentProgress > 90) currentProgress = 90;
+                
+                progressFill.style.width = currentProgress + '%';
+                
+                if (currentProgress >= 90) {
+                    clearInterval(interval);
+                }
+            }, 10000); // Update every 10 seconds
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeAssessment();
+            setTimeout(updateProgress, 2000);
+        });
+
+        // Listen for Typeform completion (if using Typeform embed SDK)
+        window.addEventListener('message', function(event) {
+            if (event.data.type === 'form_submit') {
+                document.getElementById('progressFill').style.width = '100%';
+                document.querySelector('.progress-time').innerHTML = '<i class="fa-solid fa-check"></i> Complete!';
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,3046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrion Health</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #043e41;
+            --primary-light: #105e62;
+            --primary-dark: #032b2e;
+            --accent-color: #FF9900;
+            --purple-accent: #7A4E9D;
+            --text-color: #2A3B47;
+            --text-color-dark: #4a5a68;
+            --light-gray: #F4F7F9;
+            --medium-gray: #8898aa;
+            --border-color: #e6ebf1;
+            --white: #ffffff;
+            --highlight: #7a73ff;
+            --success: #3ECF8E;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            color: var(--text-color-dark);
+            background-color: var(--white);
+            -webkit-font-smoothing: antialiased;
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        /* Header/Hero Section */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: 100px 0 90px; /* Reduced top padding from 150px to 120px */
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.35)), url('https://framerusercontent.com/images/5nj6dksKm16iJmj0f6SsPn5MxU.png');
+            background-size: cover;
+            background-position: center top;
+            color: var(--white);
+        }
+        
+        .hero:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent-color);
+            display: block;
+        }
+        
+        .site-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 0px 0; /* Reduced from 30px to 15px since no logo */
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            max-width: 100px;
+            height: auto;
+            filter: brightness(0) invert(1);
+        }
+        
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            position: relative;
+            z-index: 1;
+            max-width: 580px;
+            margin-left: 0;
+            margin-right: auto;
+            padding-left: 0;
+        }
+        
+        @media (min-width: 900px) {
+            .hero-content {
+                padding-left: 0;
+            }
+        }
+        
+        @media (min-width: 1200px) {
+            .hero-content {
+                padding-left: 0;
+            }
+        }
+        
+        .hero-text {
+            margin-bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+        }
+        
+        .hero-headline {
+            font-size: 56px; /* Increased from 52px to 56px */
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--white);
+            margin-bottom: 18px; /* Increased from 16px to 18px */
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .hero-subheadline {
+            font-size: 20px; /* Increased from 18px to 20px */
+            font-weight: 500;
+            line-height: 1.4;
+            color: var(--white);
+            margin-bottom: 22px; /* Increased from 20px to 22px */
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-description {
+            font-size: 18px; /* Increased from 16px to 18px */
+            font-weight: 400;
+            line-height: 1.5;
+            color: var(--white);
+            margin-bottom: 22px; /* Increased from 18px to 22px */
+            max-width: 600px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-value-stack {
+            margin-bottom: 25px; /* Increased from 20px to 25px */
+        }
+        
+        .value-item {
+            font-size: 16px; /* Increased from 15px to 16px */
+            font-weight: 500;
+            color: var(--white);
+            margin-bottom: 8px; /* Increased from 6px to 8px */
+            display: flex;
+            align-items: center;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        .value-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .hero-guarantee {
+            text-align: center;
+            margin-top: 15px;
+            display: none; /* Hide the redundant guarantee section */
+        }
+        
+        .hero-guarantee span {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-cta {
+            display: inline-block;
+            padding: 14px 30px; /* Reduced from 16px 36px */
+            font-size: 16px; /* Reduced from 18px to 16px */
+            font-weight: 600;
+            color: #000000;
+            background-color: var(--accent-color);
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+            margin-bottom: 25px; /* Adjusted margin for new position */
+        }
+        
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            background-color: #ffad33;
+            box-shadow: 0 6px 20px rgba(255, 153, 0, 0.3);
+        }
+        
+        .testimonial-banner {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            padding: 18px; /* Reduced from 24px to 18px */
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+            margin: 0 0 20px; /* Reduced from 30px to 20px */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .testimonial-banner-avatar {
+            width: 50px; /* Reduced from 60px to 50px */
+            height: 50px; /* Reduced from 60px to 50px */
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 16px; /* Reduced from 20px to 16px */
+            border: 3px solid var(--accent-color);
+        }
+        
+        .testimonial-banner-content {
+            flex: 1;
+        }
+        
+        .testimonial-banner-text {
+            font-size: 16px; /* Reduced from 18px to 16px */
+            line-height: 1.4; /* Reduced from 1.5 to 1.4 */
+            color: var(--text-color-dark);
+            font-style: italic;
+            margin-bottom: 6px; /* Reduced from 8px to 6px */
+        }
+        
+        .testimonial-banner-name {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 16px; /* Reduced from 18px to 16px */
+        }
+        
+        .testimonial-banner-title {
+            font-size: 13px; /* Reduced from 14px to 13px */
+            color: var(--medium-gray);
+        }
+        
+        .social-proof-bar {
+            background: linear-gradient(to right, var(--primary-dark), var(--primary-color), var(--primary-dark));
+            padding: 80px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        
+        .logos-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin: 40px auto;
+            max-width: 1200px;
+            padding: 0 20px;
+            flex-wrap: wrap;
+        }
+        
+        .logo-item {
+            height: 100px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+            padding: 10px;
+            border-radius: 12px;
+            background-color: transparent;
+            border: none;
+            width: auto;
+            object-fit: contain;
+            max-width: 120px;
+        }
+        
+        .logo-item:hover {
+            transform: scale(1.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            background-color: transparent;
+            border: none;
+            z-index: 10;
+            position: relative;
+        }
+        
+        .social-proof-title {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 90px 0;
+            background-color: var(--light-gray);
+            text-align: center;
+            height: 480px; /* Further increased section height */
+            position: relative;
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            height: 360px; /* Further increased container height */
+        }
+        
+        .testimonial-slide {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            padding: 30px;
+            text-align: left;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            margin: 0 auto;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: auto; /* Height based on content */
+            max-height: 100%; /* Don't exceed container */
+            overflow-y: auto; /* Scroll if needed */
+        }
+        
+        .testimonial-slide.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+            border: 3px solid var(--accent-color);
+        }
+        
+        .testimonial-name {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .testimonial-title {
+            font-size: 14px;
+            color: var(--medium-gray);
+            line-height: 1.4;
+        }
+        
+        .testimonial-text {
+            font-size: 18px;
+            line-height: 1.5;
+            color: var(--text-color-dark);
+            font-style: italic;
+            margin-top: 8px;
+            overflow-y: visible;
+        }
+        
+        .testimonial-controls {
+            position: absolute;
+            bottom: 30px; /* Moved even lower */
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        
+        .testimonial-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-dot.active {
+            background-color: var(--accent-color);
+            transform: scale(1.2);
+        }
+        
+        .testimonial-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: var(--white);
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            color: var(--primary-color);
+            font-size: 16px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            opacity: 0.5;
+            border: none;
+        }
+        
+        
+        .testimonial-prev {
+            left: -80px;
+        }
+        
+        .testimonial-next {
+            right: -80px;
+        }
+        
+        @media (max-width: 900px) {
+            .hero {
+                padding: 100px 0 70px; /* Reduced from 120px to 100px */
+                background: linear-gradient(to right, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.7)), url('https://framerusercontent.com/images/5nj6dksKm16iJmj0f6SsPn5MxU.png');
+                background-size: cover;
+                background-position: left center; /* Focus on left side of image on mobile */
+            }
+            
+            .testimonials {
+                height: 520px; /* Further increased mobile height */
+            }
+            
+            .testimonial-slider {
+                width: 90%;
+                height: 400px; /* Further increased mobile slider height */
+            }
+            
+            .testimonial-nav {
+                display: none;
+            }
+            
+            /* Smaller font sizes for mobile */
+            .testimonial-name {
+                font-size: 16px;
+            }
+            
+            .testimonial-title {
+                font-size: 12px;
+            }
+            
+            .testimonial-text {
+                font-size: 14px;
+                line-height: 1.4;
+            }
+            
+            .testimonial-slide {
+                padding: 20px;
+            }
+            
+            .testimonial-avatar {
+                width: 60px;
+                height: 60px;
+            }
+            
+            /* Add hero testimonial mobile styles */
+            .testimonial-banner-text {
+                font-size: 14px;
+                line-height: 1.4;
+            }
+            
+            .testimonial-banner-name {
+                font-size: 16px;
+            }
+            
+            .testimonial-banner-title {
+                font-size: 12px;
+            }
+            
+            .hero-cta {
+                margin-bottom: 40px; /* Add bottom margin in mobile */
+            }
+            
+            .hero-headline {
+                font-size: 36px; /* Increased from 32px */
+            }
+            
+            .hero-subheadline {
+                font-size: 18px; /* Keep at 18px for mobile */
+            }
+            
+            .hero-description {
+                font-size: 18px; /* Keep at 18px for mobile */
+            }
+        }
+        
+        /* Features */
+        .features {
+            padding: 60px 0;
+            background-color: var(--white);
+        }
+        
+        .features h2 {
+            margin-bottom: 60px;
+            text-align: center;
+            font-size: 36px;
+            color: var(--primary-color);
+        }
+        
+        .features-grid, .service-components {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .features-grid {
+            margin-bottom: 0;
+        }
+        
+        .feature {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 30px 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--accent-color);
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 36px;
+            width: auto;
+            height: auto;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+            display: block;
+        }
+        
+        .feature h3 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .feature p {
+            font-size: 0.95rem;
+            color: var(--text-color-dark);
+            line-height: 1.5;
+            text-align: center;
+        }
+        
+        /* Intro Section */
+        .intro {
+            padding: 100px 0; /* Slightly more vertical padding */
+            position: relative;
+            overflow: hidden;
+            background-color: rgba(0, 51, 102, 0.03);
+        }
+
+        .intro:before {
+            display: none;
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 55% 45%; /* Adjusted from 1fr 1fr to make left column larger */
+            gap: 60px;
+            align-items: start;
+            position: relative;
+            z-index: 1;
+        }
+
+        .intro-content {
+            padding-right: 40px; /* More padding */
+            padding-top: 30px; /* Start text higher */
+        }
+
+        .intro-content h2 {
+            font-size: 3rem; /* Larger headline */
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            line-height: 1.1;
+            text-align: left;
+        }
+
+        .intro-content p {
+            font-size: 1rem; /* Slightly larger text */
+            margin-bottom: 22px;
+            color: var(--text-color-dark);
+            line-height: 1.6;
+        }
+
+        .intro-content strong {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .founder-signature {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin: 30px 0 0;
+            text-align: center;
+        }
+
+        .founder-signature:before {
+            content: "";
+            position: absolute;
+            top: -15px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        .intro-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .intro-image img {
+            width: 120%; /* Make image larger */
+            max-width: 600px; /* Increase max width */
+            border-radius: 0;
+            position: relative;
+            z-index: 1;
+            margin-left: -10%; /* Shift slightly to overlap the container edge */
+        }
+
+        .intro-image:after {
+            display: none;
+        }
+
+        @media (max-width: 900px) {
+            .intro-image img {
+                width: 100%;
+                margin-left: 0;
+                max-width: 450px;
+            }
+            
+            .intro {
+                padding: 70px 0; /* Less padding on mobile */
+            }
+            
+            .intro-grid {
+                grid-template-columns: 1fr;
+                align-items: center;
+                gap: 30px; /* Less gap on mobile */
+            }
+            
+            .intro-content {
+                order: 1; /* Change to display first */
+                padding-right: 0;
+                padding-top: 0;
+            }
+            
+            .intro-content h2 {
+                font-size: 2.2rem; /* Smaller on mobile */
+                text-align: center;
+            }
+            
+            .intro-image-wrapper {
+                padding-top: 0 !important;
+                order: 2; /* Display after intro content */
+                margin: 0 auto;
+                max-width: 450px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .intro-image {
+                order: 2; /* Change to display after text */
+                margin: 0 auto;
+                max-width: 450px; /* Larger on mobile too */
+                padding-top: 0;
+            }
+            
+            .intro-image img {
+                width: 100%; /* Reset width on mobile */
+                margin-left: 0; /* Reset positioning on mobile */
+            }
+            
+            .founder-signature {
+                text-align: center;
+            }
+            
+            .founder-signature:before {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+        
+        /* Updated CTA section with adjusted padding */
+        .cta-section {
+            padding: 90px 0 70px;
+            text-align: center;
+            background: linear-gradient(to right, var(--primary-dark), var(--primary-color), var(--primary-dark));
+            color: var(--white);
+            border-bottom: none;
+        }
+        
+        .cta-section h2 {
+            margin-bottom: 30px;
+            color: var(--white);
+            font-size: 36px;
+        }
+        
+        /* Enhanced CTA button */
+        .cta-section .hero-cta {
+            margin-bottom: 0;
+            background-color: var(--white);
+            color: var(--primary-color);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+            font-size: 1.1rem;
+            padding: 18px 38px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .cta-section .hero-cta:hover {
+            background-color: var(--light-gray);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* CTA subheadline styling */
+        .cta-subheadline {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            margin-top: 25px;
+            margin-bottom: 0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+            font-style: italic;
+            letter-spacing: 0.2px;
+        }
+        
+        /* Footer */
+        .footer {
+            background: linear-gradient(to right, var(--primary-dark), var(--primary-color), var(--primary-dark));
+            color: var(--white);
+            padding: 40px 0 30px;
+            text-align: center;
+            border-top: none;
+        }
+
+        .footer-logo {
+            max-width: 120px;
+            margin-bottom: 10px;
+            filter: brightness(0) invert(1); /* Make the logo white for better contrast */
+        }
+        
+        /* .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        } */
+        
+        /* .footer-link {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+        
+        .footer-link:hover {
+            color: var(--white);
+        } */
+        
+        .copyright {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.875rem;
+            margin-top: 10px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 900px) {
+            .container {
+                width: 95%;
+                padding: 0 16px;
+            }
+            
+            .site-header {
+                padding: 20px 0;
+            }
+            
+            .logo {
+                max-width: 80px; /* Smaller logo on mobile */
+            }
+            
+            /* Add specific styles to fix the border issue */
+            .cta-section, .footer {
+                border-top: 0 !important;
+                border-bottom: 0 !important;
+            }
+            
+            .hero {
+                padding-top: 120px; /* Adjusted top padding for mobile */
+            }
+            
+            .hero-content {
+                align-items: center;
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .hero-text {
+                align-items: center;
+            }
+            
+            .hero-headline {
+                font-size: 50px; /* Increased from 32px to 40px */
+            }
+            
+            .hero-subheadline {
+                font-size: 18px; /* Increased from 18px to 22px */
+            }
+            
+            .hero-description {
+                font-size: 18px; /* Increased from 16px to 18px */
+            }
+            
+            .hero-cta {
+                padding: 14px 28px;
+                font-size: 16px;
+            }
+            
+            .testimonial-banner {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+                justify-content: center;
+                margin: 0 auto 60px;
+            }
+            
+            .testimonial-banner-avatar {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .logos-container {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
+                padding: 0 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .logo-item {
+                height: 70px;
+                padding: 8px;
+                max-width: 100px;
+            }
+            
+            /* Reset special positioning for mobile */
+            .logos-container img:nth-child(-n+4),
+            .logos-container img:nth-child(5),
+            .logos-container img:nth-child(6),
+            .logos-container img:nth-child(7) {
+                grid-column: auto;
+            }
+            
+            .logos-container img:nth-last-child(-n+3) {
+                margin-top: 0;
+            }
+            
+            /* Center the last logo if there's an odd number */
+            .logos-container img:last-child:nth-child(odd) {
+                grid-column: auto;
+            }
+            
+            .testimonial-slider {
+                width: 90%;
+            }
+            
+            .testimonial-nav {
+                display: none;
+            }
+            
+            .testimonials-grid,
+            .features-grid,
+            .intro-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .intro-content {
+                order: 2;
+            }
+            
+            .intro-image {
+                order: 1;
+                margin: 0 auto;
+                max-width: 400px;
+            }
+            
+            .intro-content h2 {
+                font-size: 2rem;
+            }
+            
+            .cta-section h2 {
+                font-size: 28px;
+            }
+            
+            .features-grid, .service-components {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .hero {
+                background-position: 80% top;
+            }
+        }
+        
+        /* Comparison Section */
+        .comparison {
+            padding: 90px 0;
+            background-color: var(--white);
+        }
+        
+        .comparison h2 {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 36px;
+            color: var(--primary-color);
+        }
+        
+        .comparison-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .comparison-container {
+            display: flex;
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .comparison-column {
+            flex: 1;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .comparison-column:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .comparison-column.nutrion {
+            border: 2px solid var(--accent-color);
+        }
+        
+        .comparison-header {
+            color: var(--white);
+            padding: 25px 20px;
+            text-align: center;
+        }
+        
+        .comparison-header.standard {
+            background-color: var(--medium-gray);
+        }
+        
+        .comparison-header.nutrion {
+            background-color: var(--primary-color);
+            position: relative;
+        }
+        
+        .comparison-header.nutrion:after {
+            content: "Recommended";
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: var(--accent-color);
+            color: var(--primary-dark);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 5px 15px;
+            border-bottom-left-radius: 8px;
+        }
+        
+        .comparison-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .comparison-subtitle-column {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .comparison-items {
+            padding: 0;
+            background-color: var(--white);
+        }
+        
+        .comparison-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .comparison-item:last-child {
+            border-bottom: none;
+        }
+        
+        .comparison-icon {
+            flex-shrink: 0;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--white);
+        }
+        
+        .comparison-item.nutrion .comparison-icon {
+            background-color: var(--accent-color);
+        }
+        
+        .comparison-item.standard .comparison-icon {
+            background-color: var(--medium-gray);
+        }
+        
+        .comparison-content {
+            flex-grow: 1;
+        }
+        
+        .comparison-label {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+        
+        .comparison-description {
+            font-size: 0.9rem;
+            color: var(--text-color-dark);
+            line-height: 1.4;
+        }
+        
+        .comparison-note {
+            background-color: rgba(255, 153, 0, 0.1);
+            border-left: 3px solid var(--accent-color);
+            padding: 15px 20px;
+            margin: 30px auto 0;
+            max-width: 800px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .comparison-note-content {
+            font-size: 0.95rem;
+            color: var(--text-color-dark);
+            line-height: 1.5;
+        }
+        
+        .comparison-cta {
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        @media (max-width: 900px) {
+            .comparison-container {
+                flex-direction: column;
+            }
+            
+            .comparison-column.nutrion {
+                order: -1; /* Show Nutrion column first on mobile */
+            }
+            
+            .comparison-item {
+                padding: 15px;
+            }
+            
+            .comparison-title {
+                font-size: 1.3rem;
+            }
+        }
+        
+        .support-process {
+            padding: 90px 0;
+            background-color: var(--white);
+        }
+        
+        .support-process h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 36px;
+            color: var(--primary-color);
+        }
+        
+        .support-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+            margin-bottom: 60px;
+        }
+        
+        .process-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .process-timeline:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 24px;
+            width: 3px;
+            background-color: var(--accent-color);
+            z-index: 0;
+        }
+        
+        .process-step {
+            position: relative;
+            margin-bottom: 50px;
+            display: flex;
+            z-index: 1;
+        }
+        
+        .process-step:last-child {
+            margin-bottom: 0;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-right: 25px;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 0 0 5px rgba(255, 153, 0, 0.2);
+        }
+        
+        .step-content {
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            padding: 25px;
+            flex-grow: 1;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .step-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 0;
+        }
+        
+        .step-toggle {
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .step-content.active .step-toggle {
+            transform: rotate(180deg);
+        }
+        
+        .step-details {
+            overflow: hidden;
+        }
+        
+        .step-content.active .step-title {
+            margin-bottom: 10px;
+        }
+        
+        .step-details p {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            color: var(--text-color-dark);
+            line-height: 1.5;
+        }
+        
+        .step-expanded {
+            display: none;
+            padding-top: 15px;
+        }
+        
+        .step-content.active .step-expanded {
+            display: block;
+        }
+        
+        .step-expanded ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .step-expanded li {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            color: var(--text-color-dark);
+            line-height: 1.5;
+        }
+        
+        @media (max-width: 768px) {
+            .process-timeline:before {
+                left: 20px;
+            }
+            
+            .step-number {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 35px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 50px;
+            z-index: 5;
+        }
+        
+        .scroll-indicator:after {
+            content: "";
+            width: 12px;
+            height: 12px;
+            position: absolute;
+            left: 50%;
+            top: 10px;
+            transform: translateX(-50%) rotate(45deg);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.8);
+            border-right: 2px solid rgba(255, 255, 255, 0.8);
+            animation: scrollDown 2s infinite;
+        }
+        
+        @keyframes scrollDown {
+            0% {
+                transform: translateX(-50%) rotate(45deg) translate(0, 0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-50%) rotate(45deg) translate(10px, 10px);
+                opacity: 0;
+            }
+        }
+
+        .service-package {
+            background-color: var(--light-gray);
+            border-radius: 12px;
+            padding: 40px 20px;
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .service-package h3 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+
+        .service-components {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .service-component {
+            background-color: var(--white);
+            padding: 50px 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--accent-color);
+            text-align: center;
+        }
+
+        .service-component:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            color: var(--accent-color);
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .service-component h4 {
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+            text-align: center;
+        }
+
+        .service-component p {
+            font-size: 0.95rem;
+            color: var(--text-color-dark);
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .service-components {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .pre-animation {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-heading {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            margin-top: 30px;
+        }
+
+        .intro .hero-cta {
+            font-size: 1.1rem; /* Slightly larger button text */
+            padding: 16px 32px; /* Larger button */
+            margin-top: 10px; /* Add some spacing */
+        }
+
+        @media (max-width: 900px) {
+            /* Other mobile styling remains the same */
+            
+            .intro .hero-cta {
+                margin: 0 auto;
+                display: block;
+                max-width: 280px;
+            }
+        }
+
+        .intro-image-wrapper {
+            padding-top: 90px;
+        }
+
+        @media (max-width: 900px) {
+            .intro-image-wrapper {
+                padding-top: 0 !important;
+                order: 1;
+                margin: 0 auto;
+                max-width: 450px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .credentials-wrapper {
+            margin-top: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .founder-signature {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin: 30px 0 0;
+            text-align: center;
+        }
+
+        .founder-signature:before {
+            content: none;
+        }
+
+        .experience-note {
+            font-size: 0.9rem;
+            color: var(--medium-gray);
+            font-style: italic;
+            margin: 5px 0 0;
+            text-align: center;
+        }
+
+        .intro-content .hero-cta {
+            margin-top: 30px;
+        }
+
+        @media (max-width: 900px) {
+            .intro-image-wrapper {
+                padding-top: 0 !important;
+                order: 1;
+                margin: 0 auto;
+                max-width: 450px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .intro-content {
+                order: 2;
+                padding-right: 0;
+                padding-top: 0;
+            }
+            
+            .intro-content h2 {
+                font-size: 2.2rem;
+                text-align: center;
+            }
+            
+            .intro-content .hero-cta {
+                margin: 30px auto 0;
+                display: block;
+                max-width: 280px;
+            }
+        }
+
+        .credentials-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 25px 0 30px;
+        }
+
+        .credential {
+            background-color: rgba(0, 51, 102, 0.05);
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .credential i {
+            color: var(--accent-color);
+        }
+
+        .experience-note {
+            font-size: 0.9rem;
+            color: var(--medium-gray);
+            font-style: italic;
+            margin: 5px 0 0;
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .credentials-bar {
+                justify-content: center;
+            }
+            
+            .experience-note {
+                text-align: center;
+            }
+        }
+
+        /* Add after the existing CSS, before the media queries */
+        .intro-grid-mobile-wrapper {
+            display: none;
+        }
+        
+        /* Add in the mobile media query section */
+        @media (max-width: 900px) {
+            /* Hide desktop layout and show mobile layout */
+            .intro-grid {
+                display: none;
+            }
+            
+            .intro-grid-mobile-wrapper {
+                display: flex;
+                flex-direction: column;
+                gap: 20px; /* Reduced from 30px */
+            }
+            
+            .intro-content-mobile {
+                text-align: left; /* Changed from center to left */
+            }
+            
+            .intro-content-mobile h2 {
+                font-size: 2.2rem;
+                text-align: left; /* Changed from center to left */
+                margin-bottom: 25px; /* Reduced from 30px */
+                color: var(--primary-color);
+            }
+            
+            .intro-content-mobile p {
+                font-size: 1rem;
+                margin-bottom: 20px; /* Reduced from 22px */
+                color: var(--text-color-dark);
+                line-height: 1.6;
+                text-align: left; /* Explicitly set to left */
+            }
+            
+            .intro-image-mobile {
+                margin: 10px auto; /* Reduced from 20px */
+                max-width: 450px;
+            }
+            
+            .intro-image-mobile img {
+                width: 100%;
+                max-width: 450px;
+                margin: 0 auto;
+            }
+            
+            .credentials-text-mobile {
+                text-align: center;
+                margin-top: 0; /* Reduced from 5px to 0 */
+            }
+            
+            .credentials-text-mobile p {
+                margin-bottom: 5px; /* Added small margin between paragraphs */
+            }
+            
+            .credentials-text-mobile .founder-signature {
+                margin-top: 5px; /* Very small top margin */
+            }
+            
+            .credentials-and-cta-mobile {
+                padding-top: 15px; /* Slightly increased from 10px */
+                text-align: center;
+            }
+            
+            .credentials-and-cta-mobile .hero-cta {
+                margin-top: 25px;
+                display: inline-block;
+            }
+        }
+
+        /* Free Assessment Section Styles */
+        .free-assessment {
+            padding: 90px 0;
+            background-color: var(--white);
+        }
+
+        .free-assessment h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 36px;
+            color: var(--primary-color);
+        }
+
+        .assessment-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+            margin-bottom: 10px; /* Reduce space before social proof */
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .assessment-social-proof {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-top: 0; /* Remove extra top margin */
+            margin-bottom: 40px; /* Keep space before grid */
+            font-style: italic;
+        }
+
+        .assessment-urgency {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .assessment-urgency p {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin: 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .assessment-urgency i {
+            color: var(--accent-color);
+        }
+
+        .assessment-guarantee {
+            background-color: rgba(62, 207, 142, 0.1);
+            border-left: 4px solid #3ecf8e;
+            padding: 20px 25px;
+            margin: 30px auto 20px;
+            max-width: 800px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .assessment-guarantee p {
+            font-size: 0.95rem;
+            color: var(--text-color-dark);
+            line-height: 1.5;
+            margin: 0;
+            text-align: center;
+        }
+
+        .assessment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .assessment-item {
+            background-color: var(--light-gray);
+            border-radius: 12px;
+            padding: 30px;
+            display: flex;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .assessment-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .assessment-icon {
+            font-size: 24px;
+            color: var(--accent-color);
+            margin-right: 20px;
+            padding-top: 3px;
+        }
+
+        .assessment-content {
+            flex: 1;
+        }
+
+        .assessment-title {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .assessment-description {
+            font-size: 0.95rem;
+            color: var(--text-color-dark);
+            line-height: 1.5;
+            margin-bottom: 15px; /* Add space between description and detail badges */
+        }
+
+        .assessment-note {
+            background-color: rgba(255, 153, 0, 0.1);
+            border-left: 3px solid var(--accent-color);
+            padding: 15px 20px;
+            margin: 0 auto 40px;
+            max-width: 800px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .assessment-note p {
+            font-size: 0.95rem;
+            color: var(--text-color-dark);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .assessment-cta {
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .assessment-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .assessment-item {
+                flex-direction: column;
+            }
+            
+            .assessment-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+                font-size: 28px;
+                text-align: center;
+            }
+            
+            .assessment-title {
+                text-align: center;
+            }
+            
+            .assessment-description {
+                text-align: center;
+            }
+        }
+        
+        /* Updated Assessment Item Styles to Match Screenshot Design */
+        .assessment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .assessment-item {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 50px 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: none;
+            border-top: 4px solid var(--accent-color);
+            display: block;
+        }
+
+        .assessment-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .assessment-icon {
+            font-size: 36px;
+            width: auto;
+            height: auto;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+            display: block;
+            margin-right: 0;
+            padding-top: 0;
+            text-align: center;
+        }
+
+        .assessment-content {
+            display: block;
+            text-align: center;
+        }
+
+        .assessment-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .assessment-description {
+            font-size: 0.95rem;
+            color: var(--text-color-dark);
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .assessment-details {
+            margin-top: 15px; /* Ensure consistent spacing above detail badges */
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .detail-badge {
+            background-color: rgba(255, 153, 0, 0.1);
+            color: var(--primary-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            border: 1px solid rgba(255, 153, 0, 0.2);
+        }
+
+        .detail-badge i {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+        }
+
+        .assessment-value {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .value-highlight {
+            background: linear-gradient(135deg, var(--primary-color), #043e41);
+            color: var(--white);
+            padding: 25px 30px;
+            border-radius: 12px;
+            display: inline-block;
+            box-shadow: 0 8px 25px rgba(3, 43, 46, 0.2);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .value-highlight h4 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .value-highlight h4 i {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+
+        .value-highlight p {
+            font-size: 0.95rem;
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 900px) {
+            .assessment-item {
+                padding: 40px 20px;
+            }
+            
+            .assessment-details {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .detail-badge {
+                font-size: 0.8rem;
+                padding: 3px 10px;
+            }
+            
+            .value-highlight {
+                padding: 20px 25px;
+                margin: 0 20px;
+            }
+            
+            .value-highlight h4 {
+                font-size: 1.2rem;
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+
+        /* Assessment Form Styles */
+        .assessment-form {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 80px 0;
+        }
+
+        .assessment-form h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .assessment-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--medium-gray);
+            margin-bottom: 10px;
+        }
+
+        .assessment-social-proof {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 40px;
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-color-dark);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .form-group.error input {
+            border-color: #e74c3c;
+        }
+
+        .form-submit {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .form-message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .form-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .form-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .form-privacy {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .form-privacy p {
+            font-size: 0.9rem;
+            color: var(--medium-gray);
+            line-height: 1.4;
+        }
+
+        .form-check {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .form-check:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .form-check input {
+            margin-top: 5px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .form-check label {
+            font-size: 16px;
+            color: var(--text-color-dark);
+        }
+
+        .checkbox-container {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-3px);
+        }
+
+        .form-message {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 0;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .form-message.success {
+            background-color: rgba(62, 207, 142, 0.1);
+            color: var(--success);
+            margin-top: 5px;
+        }
+
+        .form-message.error {
+            background-color: rgba(255, 76, 76, 0.1);
+            color: #ff4c4c;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 900px) {
+            .assessment-form {
+                padding: 80px 0;
+            }
+            
+            .assessment-form h2 {
+                font-size: 28px;
+            }
+            
+            .assessment-form-subtitle {
+                display: none; /* Hide subtitle on mobile */
+            }
+            
+            .form-container {
+                padding: 25px;
+                width: 90%;
+            }
+            
+            .form-group {
+                margin-bottom: 20px;
+            }
+            
+            .form-group input {
+                padding: 10px 12px;
+                font-size: 15px;
+            }
+            
+            .form-check label {
+                font-size: 15px;
+            }
+        }
+        
+        /* Add error styling to the form fields */
+        .form-group.error input {
+            border-color: #ff4c4c;
+            background-color: rgba(255, 76, 76, 0.05);
+        }
+        
+        .form-check.error {
+            color: #ff4c4c;
+        }
+        
+        .form-message.error {
+            background-color: rgba(255, 76, 76, 0.1);
+            color: #ff4c4c;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .assessment-social-proof {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .assessment-credentials {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: var(--white);
+            padding: 25px 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 30px auto 40px;
+            max-width: 800px;
+            box-shadow: 0 8px 25px rgba(4, 62, 65, 0.2);
+        }
+
+        .assessment-credentials p {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .assessment-credentials {
+                padding: 20px 25px;
+                margin: 25px auto 35px;
+            }
+            
+            .assessment-credentials p {
+                font-size: 1rem;
+            }
+        }
+
+        .instant-delivery-banner {
+            background: linear-gradient(135deg, var(--accent-color), #ffad33);
+            color: #000000;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-align: center;
+            margin: 0 auto 40px;
+            max-width: 500px;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(255, 153, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .instant-delivery-banner i {
+            font-size: 1.2rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .assessment-credentials {
+                padding: 20px 25px;
+                margin: 25px auto 35px;
+            }
+            
+            .assessment-credentials p {
+                font-size: 1rem;
+            }
+            
+            .instant-delivery-banner {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+                max-width: 90%;
+            }
+        }
+
+        .assessment-credentials p {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .assessment-footer {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .assessment-value-simple {
+            margin-bottom: 20px;
+        }
+
+        .assessment-value-simple p {
+            font-size: 1rem;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        .assessment-credentials-simple {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .assessment-credentials-simple p {
+            font-size: 0.95rem;
+            color: var(--text-color-dark);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .assessment-final-note {
+            margin-bottom: 0;
+        }
+
+        .assessment-final-note p {
+            font-size: 0.9rem;
+            color: var(--medium-gray);
+            margin: 0;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .assessment-credentials {
+                padding: 20px 25px;
+                margin: 25px auto 35px;
+            }
+            
+            .assessment-credentials p {
+                font-size: 1rem;
+            }
+            
+            .assessment-credentials-simple {
+                padding: 15px;
+            }
+            
+            .assessment-value-simple p {
+                font-size: 1rem;
+            }
+        }
+
+        .value-badge {
+            background-color: rgba(255, 153, 0, 0.1);
+            color: var(--primary-color);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid rgba(255, 153, 0, 0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .value-badge:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(255, 153, 0, 0.15);
+        }
+
+        .value-badge-price {
+            background-color: rgba(255, 153, 0, 0.1);
+            color: var(--primary-color);
+            border: 1px solid rgba(255, 153, 0, 0.2);
+        }
+
+        .value-badge-card {
+            background-color: rgba(255, 153, 0, 0.1);
+            color: var(--primary-color);
+            border: 1px solid rgba(255, 153, 0, 0.2);
+        }
+
+        .value-badge-instant {
+            background-color: rgba(255, 153, 0, 0.1);
+            color: var(--primary-color);
+            border: 1px solid rgba(255, 153, 0, 0.2);
+        }
+
+        .strikethrough {
+            text-decoration: line-through;
+        }
+
+        /* Value Badges Styling - Updated to match page design */
+        .assessment-value-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .strikethrough {
+            text-decoration: line-through;
+            text-decoration-color: var(--medium-gray);
+            text-decoration-thickness: 2px;
+            margin-right: 8px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <!-- Site Header -->
+    <header class="site-header">
+        <div class="container header-container">
+            <img src="https://framerusercontent.com/images/BWEaipn67Qc3Jg3inQssO6rrJ4.png" alt="Nutrion Health" class="logo">
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-headline">Stop Energy Crashes Killing Your BJJ Performance</h1>
+                    
+                    <p class="hero-description">Get your FREE 5-minute assessment and receive a detailed analysis of your current nutrition + personalized recommendations to optimize your BJJ performance.</p>
+                    
+                    <div class="hero-value-stack">
+                        <div class="value-item">✓ Complete analysis of your current diet and meal timing</div>
+                        <div class="value-item">✓ FREE 25-minute consultation call (Usually $100)</div>
+                    </div>
+                    
+                    <!-- Hero CTA Button - moved before testimonial -->
+                    <a href="#assessment-form" class="hero-cta">Get My FREE Assessment Now (Limited Spots This Week)</a>
+                </div>
+                
+                <!-- Featured Testimonial -->
+                <div class="testimonial-banner">
+                    <img src="https://framerusercontent.com/images/oyeOmZZt62caqVWpCwYinajVQ.png" alt="Nia Blackman" class="testimonial-banner-avatar">
+                    <div class="testimonial-banner-content">
+                        <p class="testimonial-banner-text">"This is the best I've felt physically! I'm super grateful for the support and guidance on my nutrition and weight management from Daniel."</p>
+                        <div class="testimonial-banner-name">Nia Blackman</div>
+                        <div class="testimonial-banner-title">BJJ Black Belt, Euro Champion, ADCC Trials Winner</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator" aria-hidden="true"></div>
+    </section>
+    
+    <!-- Social Proof Bar -->
+    <div class="social-proof-bar">
+        <div class="container">
+            <h3 class="social-proof-title">Trusted by World-Class Competitors</h3>
+            <div class="logos-container">
+                <img src="https://framerusercontent.com/images/D9wWBDyeBNdohHqjn8LWSttrs.png" alt="IBJJF World Championship" class="logo-item" title="IBJJF World Championship">
+                <img src="https://framerusercontent.com/images/pBw1iKmBeNNwc1HEfIXhCSPJyBo.png" alt="ADCC World Championships" class="logo-item" title="ADCC World Championships">
+                <img src="https://framerusercontent.com/images/XboUiWrKfpENiKT97tDeZGD2rJw.png" alt="AJP Tour" class="logo-item" title="AJP Tour">
+                <img src="https://framerusercontent.com/images/rJ1Aq0dZtPYBCbGr1t0LKmAUknk.png" alt="IBJJF European Championship" class="logo-item" title="IBJJF European Championship">
+                <img src="https://framerusercontent.com/images/rXChhBhVysN2wv8ASl0q8X6q9qs.png" alt="EBI" class="logo-item" title="Eddie Bravo Invitational">
+                <img src="https://framerusercontent.com/images/AVpaR3AiCuAHnMTmE2eboxsRW98.png" alt="ADCC European Trials" class="logo-item" title="ADCC European Trials">
+                <img src="https://framerusercontent.com/images/7J0Iwqk9dXx1O2A12yl4AHvO8.png" alt="IBJJF Grand Slam" class="logo-item" title="IBJJF Grand Slam">
+            </div>
+        </div>
+    </div>
+
+    <!-- What's Included in Your Free BJJ Nutrition Assessment? -->
+    <section class="free-assessment">
+        <div class="container">
+            <h2>Get Your Free BJJ Nutrition Assessment</h2>
+            <p class="assessment-subtitle">Complete in 5 minutes → Get instant results</p>
+            <p class="assessment-social-proof">Trusted by 130+ BJJ competitors from white belt to ADCC champions</p>
+            
+            <div class="assessment-grid">
+                <div class="assessment-item">
+                    <div class="assessment-icon">
+                        <i class="fa-solid fa-magnifying-glass-chart"></i>
+                    </div>
+                    <div class="assessment-content">
+                        <h3 class="assessment-title">Comprehensive Diet Analysis</h3>
+                        <p class="assessment-description">Evaluation of your current nutrition against BJJ performance goals</p>
+                        <div class="assessment-details">
+                            <span class="detail-badge"><i class="fa-solid fa-clock"></i> 5 minutes to complete</span>
+                            <span class="detail-badge"><i class="fa-solid fa-bolt"></i> Instant results</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="assessment-item">
+                    <div class="assessment-icon">
+                        <i class="fa-solid fa-file-circle-check"></i>
+                    </div>
+                    <div class="assessment-content">
+                        <h3 class="assessment-title">Targeted Feedback Report</h3>
+                        <p class="assessment-description">Personalized recommendations for your specific situation</p>
+                        <div class="assessment-details">
+                            <span class="detail-badge"><i class="fa-solid fa-chart-line"></i> Detailed feedback</span>
+                            <span class="detail-badge"><i class="fa-solid fa-user"></i> Personalized insights</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="assessment-item">
+                    <div class="assessment-icon">
+                        <i class="fa-solid fa-video"></i>
+                    </div>
+                    <div class="assessment-content">
+                        <h3 class="assessment-title">Free Consultation Call</h3>
+                        <p class="assessment-description">Expert guidance to discuss your results and next steps</p>
+                        <div class="assessment-details">
+                            <span class="detail-badge"><i class="fa-solid fa-phone"></i> 25-minute expert call</span>
+                            <span class="detail-badge"><i class="fa-solid fa-calendar"></i> Book at your convenience</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Simplified Value & Credentials -->
+            <div class="assessment-footer">
+                <div class="assessment-value-badges">
+                    <span class="value-badge value-badge-price"><span class="strikethrough">$200+</span> FREE</span>
+                    <span class="value-badge value-badge-card">🚫 No Credit Card</span>
+                    <span class="value-badge value-badge-instant">⚡ Instant Results</span>
+                </div>
+                <div class="assessment-credentials-simple">
+                    <p>Assessment developed by <strong>Daniel Caetano</strong> (B.Sc. Nutrition Science, BJJ Black Belt) based on years of experience with elite athletes</p>
+                </div>
+                <div class="assessment-final-note">
+                    <p>Even if you don't work with us, you'll leave with a clear action plan. Limited consultation spots available weekly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="container">
+        <div class="testimonial-slider">
+            <div class="testimonial-slide active">
+                <div class="testimonial-header">
+                    <img src="https://framerusercontent.com/images/SD4WtR2dgTTIwe9gGQzz2TXnobs.png" alt="Rosa Walsh" class="testimonial-avatar">
+                    <div>
+                        <div class="testimonial-name">Rosa Walsh</div>
+                        <div class="testimonial-title">BJJ Black Belt, Euro Black Belt Nogi Champion, Team Ireland Grappling</div>
+                    </div>
+                </div>
+                <div class="testimonial-text">
+                    "I have worked with Daniel and Vanessa the past month and have never experienced a service so user friendly and effective. The food is simple and delicious. The app is incredibly user-friendly and they are always on hand to help! Couldn't recommend them enough!"
+                </div>
+            </div>
+            
+            <div class="testimonial-slide">
+                <div class="testimonial-header">
+                    <img src="https://framerusercontent.com/images/8BtfKn9BorteAnzHxNP8S7m7keM.png" alt="Cheri McMahon" class="testimonial-avatar">
+                    <div>
+                        <div class="testimonial-name">Cheri McMahon</div>
+                        <div class="testimonial-title">BJJ Blue Belt</div>
+                    </div>
+                </div>
+                <div class="testimonial-text">
+                    "Danny has been great in helping me achieve my nutrition goals. This has resulted in more consistency and ability to maintain healthy food choices and finally see the results I wanted, despite having a very busy and hectic work schedule. The weekly deep dive check-ins help identify trends and patterns in behaviour and habits which has meant I can look out for these tripwires to prevent future problems occurring. Thanks Danny & Vanessa for providing great support."
+                </div>
+            </div>
+            
+            <div class="testimonial-slide">
+                <div class="testimonial-header">
+                    <img src="https://framerusercontent.com/images/LP8fsF7QDXp4uA8FnpOy1Qo5URI.png" alt="Paloma Dias" class="testimonial-avatar">
+                    <div>
+                        <div class="testimonial-name">Paloma Dias</div>
+                        <div class="testimonial-title">BJJ Black Belt, BJJ Master</div>
+                    </div>
+                </div>
+                <div class="testimonial-text">
+                    "Makes your goals more practical and efficient! It's complete, I can maintain my routine without worrying about making mistakes!"
+                </div>
+            </div>
+            
+            <div class="testimonial-slide">
+                <div class="testimonial-header">
+                    <img src="https://framerusercontent.com/images/aGABfp9HGU26mw86FYKWs9S3g.png" alt="Sula-Mae Loewenthal" class="testimonial-avatar">
+                    <div>
+                        <div class="testimonial-name">Sula-Mae Loewenthal</div>
+                        <div class="testimonial-title">BJJ Black Belt, ADCC Trials Winner</div>
+                    </div>
+                </div>
+                <div class="testimonial-text">
+                    "I've been working with Nutrion for over two years now and I don't have a single bad word to say! They have always been super kind and responsive and have most importantly helped me with both weight loss and weight gain over the last two years depending on my goals. I've noticed way less stress and anxiety when it comes to my nutrition, I can just trust that they've got it handled."
+                </div>
+            </div>
+            
+            <div class="testimonial-slide">
+                <div class="testimonial-header">
+                    <img src="https://framerusercontent.com/images/Pj0ESCWuO20rFxsl0JSmd7g0CXI.png" alt="Carlotta Vollmar" class="testimonial-avatar">
+                    <div>
+                        <div class="testimonial-name">Carlotta Vollmar</div>
+                        <div class="testimonial-title">European Purple Belt Nogi Champion</div>
+                    </div>
+                </div>
+                <div class="testimonial-text">
+                    "I can't thank Daniel and Vanessa enough. I used their expertise to prepare myself for a pretty big competition and it couldn't have gone any better! Their knowledge and support is unmatched, because of them I didn't need to worry about "my weight" but could focus on getting better and stronger. I can't recommend to work with them enough! 💞"
+                </div>
+            </div>
+            
+            <div class="testimonial-nav testimonial-prev">
+                <i class="fa-solid fa-chevron-left"></i>
+            </div>
+            <div class="testimonial-nav testimonial-next">
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+        </div>
+        <div class="testimonial-controls"></div>
+    </div>
+</section>
+
+    <!-- Daniel Intro -->
+    <section class="intro">
+        <div class="container">
+            <!-- Desktop layout -->
+            <div class="intro-grid">
+                <div class="intro-content">
+                    <h2>Performance Fuel: Designed for Women Competitors</h2>
+                    <p>As a BJJ Black Belt with a Nutrition Science degree, I've helped 130+ competitors optimize their performance without sacrificing strength or energy. I combine 12+ years of competition experience with evidence-based nutrition science to create strategies that actually work for the unique demands of our sport.</p>
+                    
+                    <div class="credentials-bar">
+                        <div class="credential"><i class="fa-solid fa-graduation-cap"></i> B.Sc. Nutrition Science</div>
+                        <div class="credential"><i class="fa-solid fa-medal"></i> Professional BJJ Athlete</div>
+                        <div class="credential"><i class="fa-solid fa-globe"></i> Clients in 10+ Countries</div>
+                    </div>
+                    
+                    <!-- Intro Section CTA -->
+                    <a href="#assessment-form" class="hero-cta">Get Your Free BJJ Nutrition Assessment</a>
+                </div>
+                <div class="intro-image-wrapper" style="padding-top: 90px;">
+                    <div class="intro-image">
+                        <img src="https://framerusercontent.com/images/1U92DZCBjEuTF9ZcLUywcJ2MPg.png" alt="Daniel Caetano">
+                    </div>
+                    <div class="credentials-text">
+                        <p class="founder-signature">Daniel Caetano, <br>Nutritionist and BJJ Black Belt</p>
+                        <p class="experience-note">Helping BJJ athletes from amateur to global elite for over 4 years</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile-specific layout -->
+            <div class="intro-grid-mobile-wrapper">
+                <!-- 1. Content first (without credentials and button) -->
+                <div class="intro-content-mobile">
+                    <h2>Performance Fuel: Designed for Women Competitors</h2>
+                    <p>As a BJJ Black Belt with a Nutrition Science degree, I've helped 130+ competitors optimize their performance without sacrificing strength or energy. I combine 12+ years of competition experience with evidence-based nutrition science to create strategies that actually work for the unique demands of our sport.</p>
+                </div>
+                
+                <!-- 2. Image second -->
+                <div class="intro-image-mobile">
+                    <img src="https://framerusercontent.com/images/1U92DZCBjEuTF9ZcLUywcJ2MPg.png" alt="Daniel Caetano">
+                </div>
+                
+                <!-- 3. Credentials text third -->
+                <div class="credentials-text-mobile">
+                    <p class="founder-signature">Daniel Caetano, <br>Nutritionist and BJJ Black Belt</p>
+                    <p class="experience-note">Helping BJJ athletes from amateur to global elite for over 4 years</p>
+                </div>
+                
+                <!-- 4. Credentials badges and button last -->
+                <div class="credentials-and-cta-mobile">
+                    <div class="credentials-bar">
+                        <div class="credential"><i class="fa-solid fa-graduation-cap"></i> B.Sc. Nutrition Science</div>
+                        <div class="credential"><i class="fa-solid fa-medal"></i> Professional BJJ Athlete</div>
+                        <div class="credential"><i class="fa-solid fa-globe"></i> Clients in 10+ Countries</div>
+                    </div>
+                    
+                    <!-- Mobile-specific layout CTA -->
+                    <div style="text-align: center; margin-top: 25px;">
+                        <a href="#assessment-form" class="hero-cta">Get Your Free BJJ Nutrition Assessment</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Assessment Form Section -->
+    <section id="assessment-form" class="assessment-form">
+        <div class="container">
+            <h2>Get My Free BJJ Nutrition Assessment</h2>
+            <p class="assessment-subtitle">Complete in 5 minutes → Get instant results</p>
+            <p class="assessment-social-proof">Trusted by 130+ BJJ competitors from white belt to ADCC champions</p>
+
+            <div class="form-container">
+                <form id="bjj-assessment-form" class="bjj-form">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Your Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <button type="submit" class="hero-cta form-submit">Start My Assessment</button>
+                    
+                    <div class="form-message" id="form-message"></div>
+                    
+                    <div class="form-privacy">
+                        <p style="margin: 8px 0 0; padding: 0;">We'll never share your information. You can unsubscribe at any time.</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Fix Your BJJ Nutrition Mistakes?</h2>
+            <a href="#assessment-form" class="hero-cta">Get My Assessment Now</a>
+            <p class="cta-subheadline">Stop wasting your potential — start fueling your BJJ today</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <img src="https://framerusercontent.com/images/BWEaipn67Qc3Jg3inQssO6rrJ4.png" alt="Nutrion Health" class="footer-logo">
+            <div class="footer-links">
+                <!-- <a href="#" class="footer-link">About Us</a>
+                <a href="pricing.html" class="footer-link">Pricing</a>
+                <a href="#" class="footer-link">Contact</a>
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Terms of Service</a> -->
+            </div>
+            <p class="copyright">© 2025 Nutrion Health. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+    <!-- Form Submission Script -->
+    <script>
+        // Global submission tracking to prevent any duplicate submissions
+        window.formSubmissionInProgress = false;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all CTA buttons that should scroll to the form
+            const ctaButtons = document.querySelectorAll('a.hero-cta[href="#assessment-form"]');
+            const form = document.getElementById('assessment-form');
+            
+            // Add click handlers to CTA buttons to scroll to the form
+            ctaButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    form.scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+            
+            // Form submission handler
+            const bjjForm = document.getElementById('bjj-assessment-form');
+            const formMessage = document.getElementById('form-message');
+            
+            bjjForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Prevent multiple submissions globally
+                if (window.formSubmissionInProgress) {
+                    console.log('Form submission already in progress, ignoring duplicate attempt');
+                    return;
+                }
+                
+                window.formSubmissionInProgress = true;
+                
+                // Reset any previous error messages
+                formMessage.textContent = '';
+                formMessage.className = 'form-message';
+                
+                // Remove any previous error styling
+                document.querySelectorAll('.form-group.error').forEach(el => {
+                    el.classList.remove('error');
+                });
+                
+                // Basic client-side validation
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                
+                let hasErrors = false;
+                let errorMessage = 'Please correct the following:';
+                
+                // Check each field and apply error styling
+                if (!name) {
+                    document.getElementById('name').parentElement.classList.add('error');
+                    errorMessage += '<br>• Enter your name';
+                    hasErrors = true;
+                }
+                
+                if (!email) {
+                    document.getElementById('email').parentElement.classList.add('error');
+                    errorMessage += '<br>• Enter your email address';
+                    hasErrors = true;
+                } else if (!isValidEmail(email)) {
+                    document.getElementById('email').parentElement.classList.add('error');
+                    errorMessage += '<br>• Enter a valid email address';
+                    hasErrors = true;
+                }
+                
+                if (hasErrors) {
+                    formMessage.innerHTML = errorMessage;
+                    formMessage.className = 'form-message error';
+                    window.formSubmissionInProgress = false; // Reset flag on validation error
+                    return;
+                }
+                
+                // Prevent duplicate submissions using localStorage
+                const submissionKey = btoa(name + '|' + email).substring(0, 20);
+                const lastSubmission = localStorage.getItem('sub_' + submissionKey);
+                const now = Date.now();
+                
+                if (lastSubmission && (now - parseInt(lastSubmission)) < 30000) {
+                    console.log('Duplicate submission blocked - same data submitted within 30 seconds');
+                    formMessage.textContent = 'Form already submitted recently. Please wait 30 seconds before resubmitting.';
+                    formMessage.className = 'form-message error';
+                    window.formSubmissionInProgress = false;
+                    return;
+                }
+                
+                localStorage.setItem('sub_' + submissionKey, now.toString());
+                
+                // Show loading state
+                const submitButton = bjjForm.querySelector('button[type="submit"]');
+                const originalButtonText = submitButton.textContent;
+                submitButton.textContent = 'Processing...';
+                submitButton.disabled = true;
+                
+                // Prepare form data for Zapier
+                const formData = {
+                    name: name,
+                    email: email,
+                    is_active_bjj: true, // Since they're on a BJJ nutrition page, assume true
+                    is_over_18: true, // Since we removed the checkbox, assume true for adults
+                    submission_date: new Date().toISOString(),
+                    submission_id: 'sid_' + Math.random().toString(36).substring(2, 15),
+                    source: 'landing_page_form'
+                };
+                
+                // Track submission status to prevent duplicates
+                let submissionCompleted = false;
+                
+                // Function to redirect to assessment (called after webhook or on timeout)
+                const redirectToAssessment = () => {
+                    // Reset global flag before redirecting
+                    window.formSubmissionInProgress = false;
+                    const assessmentUrl = `assessment.html?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`;
+                    window.location.href = assessmentUrl;
+                };
+                
+                // Function to reset form state (in case of error)
+                const resetFormState = () => {
+                    submitButton.textContent = originalButtonText;
+                    submitButton.disabled = false;
+                };
+                
+                // Send to Zapier webhook (but don't let it block the user experience)
+                console.log('Submitting data via XMLHttpRequest:', formData);
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', 'https://hooks.zapier.com/hooks/catch/15710462/27301n5/', true);
+                xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+                xhr.timeout = 10000; // 10 second timeout (same as index.html)
+                
+                xhr.onload = function() {
+                    console.log('XHR status:', xhr.status);
+                    console.log('XHR response:', xhr.responseText);
+                    
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        console.log('XHR submission successful');
+                        if (!submissionCompleted) {
+                            submissionCompleted = true;
+                            redirectToAssessment();
+                        }
+                    } else {
+                        console.error('XHR failed with status:', xhr.status);
+                        if (!submissionCompleted) {
+                            fallbackToFetchMethod();
+                        }
+                    }
+                };
+                
+                xhr.onerror = function() {
+                    console.error('XHR network error occurred');
+                    if (!submissionCompleted) {
+                        fallbackToFetchMethod();
+                    }
+                };
+                
+                xhr.ontimeout = function() {
+                    console.error('XHR request timed out');
+                    if (!submissionCompleted) {
+                        fallbackToFetchMethod();
+                    }
+                };
+                
+                // Send the data
+                xhr.send(JSON.stringify(formData));
+                
+                // Fallback to fetch API method if XHR fails
+                function fallbackToFetchMethod() {
+                    if (submissionCompleted) return; // Prevent duplicate submissions
+                    
+                    console.log('Trying fetch API fallback method');
+                    fetch('https://hooks.zapier.com/hooks/catch/15710462/27301n5/', {
+                        method: 'POST',
+                        body: JSON.stringify(formData),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        console.log('Fetch response status:', response.status);
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok: ' + response.status);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Fetch submission successful');
+                        if (!submissionCompleted) {
+                            submissionCompleted = true;
+                            redirectToAssessment();
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Fetch fallback failed:', error);
+                        if (!submissionCompleted) {
+                            fallbackToFormMethod();
+                        }
+                    });
+                }
+                
+                // Fallback to form submission if fetch fails
+                function fallbackToFormMethod() {
+                    if (submissionCompleted) return; // Prevent duplicate submissions
+                    
+                    console.log('Trying form submission fallback method');
+                    
+                    // Create a form element to submit directly
+                    const backupForm = document.createElement('form');
+                    backupForm.method = 'POST';
+                    backupForm.action = 'https://hooks.zapier.com/hooks/catch/15710462/27301n5/';
+                    backupForm.style.display = 'none';
+                    backupForm.enctype = 'application/x-www-form-urlencoded';
+                    
+                    // Add each field as a hidden input
+                    for (const key in formData) {
+                        const input = document.createElement('input');
+                        input.type = 'hidden';
+                        input.name = key;
+                        input.value = typeof formData[key] === 'boolean' 
+                            ? (formData[key] ? 'true' : 'false') 
+                            : formData[key];
+                        backupForm.appendChild(input);
+                    }
+                    
+                    // Add form to document
+                    document.body.appendChild(backupForm);
+                    
+                    try {
+                        // Create an iframe to catch the response
+                        const iframe = document.createElement('iframe');
+                        iframe.name = 'submission-frame';
+                        iframe.style.display = 'none';
+                        document.body.appendChild(iframe);
+                        
+                        // Configure form to submit to iframe
+                        backupForm.target = 'submission-frame';
+                        
+                        // Submit the form
+                        backupForm.submit();
+                        
+                        // Redirect after 2 seconds
+                        setTimeout(() => {
+                            console.log('Form submission completed, redirecting');
+                            if (!submissionCompleted) {
+                                submissionCompleted = true;
+                                redirectToAssessment();
+                            }
+                            document.body.removeChild(iframe);
+                            document.body.removeChild(backupForm);
+                        }, 2000);
+                    } catch (backupError) {
+                        console.error('Form fallback failed:', backupError);
+                        document.body.removeChild(backupForm);
+                        // Still redirect even if form submission fails
+                        redirectToAssessment();
+                    }
+                }
+                
+                // Final fallback: redirect after 12 seconds regardless of webhook status
+                setTimeout(() => {
+                    if (submitButton.disabled && !submissionCompleted) {
+                        console.log('Final fallback redirect triggered');
+                        redirectToAssessment();
+                    }
+                }, 12000);
+            });
+            
+            // Email validation helper
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+        });
+    </script>
+
+    <!-- Animation script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Process steps toggle functionality
+            document.querySelectorAll('.step-title').forEach(title => {
+                title.addEventListener('click', () => {
+                    const stepContent = title.closest('.step-content');
+                    const isActive = stepContent.classList.contains('active');
+                    
+                    // Close all expanded steps
+                    document.querySelectorAll('.step-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // Toggle current step
+                    if (!isActive) {
+                        stepContent.classList.add('active');
+                    }
+                });
+            });
+            
+            // Feature cards animation
+            const featureCards = document.querySelectorAll('.feature');
+            
+            const featureObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        // Add delay based on index
+                        setTimeout(() => {
+                            entry.target.classList.add('animate-in');
+                        }, index * 150); // 150ms delay between each card
+                        featureObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+            
+            featureCards.forEach(card => {
+                card.classList.add('pre-animation');
+                featureObserver.observe(card);
+            });
+            
+            // Service component cards animation
+            const serviceCards = document.querySelectorAll('.service-component');
+            
+            const serviceObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        // Add delay based on index
+                        setTimeout(() => {
+                            entry.target.classList.add('animate-in');
+                        }, index * 150); // 150ms delay between each card
+                        serviceObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+            
+            serviceCards.forEach(card => {
+                card.classList.add('pre-animation');
+                serviceObserver.observe(card);
+            });
+        });
+    </script>
+
+    <!-- Add JavaScript for testimonials slider -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const controlsContainer = document.querySelector('.testimonial-controls');
+        const prevButton = document.querySelector('.testimonial-prev');
+        const nextButton = document.querySelector('.testimonial-next');
+        
+        let currentSlide = 0;
+        let slideInterval;
+        
+        // Create dots
+        slides.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('testimonial-dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                goToSlide(index);
+                restartInterval();
+            });
+            controlsContainer.appendChild(dot);
+        });
+        
+        const dots = document.querySelectorAll('.testimonial-dot');
+        
+        // Set up navigation
+        prevButton.addEventListener('click', () => {
+            goToSlide(currentSlide - 1);
+            restartInterval();
+        });
+        
+        nextButton.addEventListener('click', () => {
+            goToSlide(currentSlide + 1);
+            restartInterval();
+        });
+        
+        // Functions
+        function goToSlide(slideIndex) {
+            // Handle wrapping
+            if (slideIndex < 0) {
+                slideIndex = slides.length - 1;
+            } else if (slideIndex >= slides.length) {
+                slideIndex = 0;
+            }
+            
+            // Hide current slide
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            
+            // Show new slide
+            currentSlide = slideIndex;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+        
+        function nextSlide() {
+            goToSlide(currentSlide + 1);
+        }
+        
+        function startInterval() {
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+        
+        function restartInterval() {
+            clearInterval(slideInterval);
+            startInterval();
+        }
+        
+        // Start the automatic slideshow
+        startInterval();
+    });
+    </script>
+
+</body>
+</html> 

@@ -3229,219 +3229,291 @@
 
     <!-- Form Submission Script -->
     <script>
+        // Global submission tracking to prevent any duplicate submissions
+        window.formSubmissionInProgress = false;
+        
         document.addEventListener('DOMContentLoaded', function() {
-            // Get all CTA buttons that should scroll to the form
-            const ctaButtons = document.querySelectorAll('a.hero-cta[href="#assessment-form"]');
-            const form = document.getElementById('assessment-form');
-            
-            // Add click handlers to CTA buttons to scroll to the form
-            ctaButtons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    form.scrollIntoView({ behavior: 'smooth' });
-                });
-            });
-            
-            // Form submission handler
             const bjjForm = document.getElementById('bjj-assessment-form');
             const formMessage = document.getElementById('form-message');
             
-            bjjForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Reset any previous error messages
-                formMessage.textContent = '';
-                formMessage.className = 'form-message';
-                
-                // Remove any previous error styling
-                document.querySelectorAll('.form-group.error, .form-check.error').forEach(el => {
-                    el.classList.remove('error');
-                });
-                
-                // Basic client-side validation
-                const name = document.getElementById('name').value.trim();
-                const email = document.getElementById('email').value.trim();
-                const isBjj = document.getElementById('is-bjj').checked;
-                const isAdult = document.getElementById('is-adult').checked;
-                
-                let hasErrors = false;
-                let errorMessage = 'Please correct the following:';
-                
-                // Check each field and apply error styling
-                if (!name) {
-                    document.getElementById('name').parentElement.classList.add('error');
-                    errorMessage += '<br>• Enter your name';
-                    hasErrors = true;
-                }
-                
-                if (!email) {
-                    document.getElementById('email').parentElement.classList.add('error');
-                    errorMessage += '<br>• Enter your email address';
-                    hasErrors = true;
-                } else if (!isValidEmail(email)) {
-                    document.getElementById('email').parentElement.classList.add('error');
-                    errorMessage += '<br>• Enter a valid email address';
-                    hasErrors = true;
-                }
-                
-                if (!isBjj) {
-                    document.getElementById('is-bjj').parentElement.classList.add('error');
-                    errorMessage += '<br>• Confirm you are an active BJJ practitioner';
-                    hasErrors = true;
-                }
-                
-                if (!isAdult) {
-                    document.getElementById('is-adult').parentElement.classList.add('error');
-                    errorMessage += '<br>• Confirm you are 18 years or older';
-                    hasErrors = true;
-                }
-                
-                if (hasErrors) {
-                    formMessage.innerHTML = errorMessage;
-                    formMessage.className = 'form-message error';
-                    return;
-                }
-                
-                // If validation passes, prepare form data
-                const formData = {
-                    name: name,
-                    email: email,
-                    is_active_bjj: isBjj,
-                    is_over_18: isAdult,
-                    submission_date: new Date().toISOString()
-                };
-                
-                // Show loading state
-                const submitButton = bjjForm.querySelector('button[type="submit"]');
-                const originalButtonText = submitButton.textContent;
-                submitButton.textContent = 'Submitting...';
-                submitButton.disabled = true;
-                
-                // Function to handle successful submission
-                const handleSuccess = (data) => {
-                    console.log('Success data:', data);
-                    formMessage.textContent = 'Thank you! Your assessment request has been submitted successfully.';
-                    formMessage.className = 'form-message success';
-                    bjjForm.reset();
-                };
-                
-                // Function to handle submission error
-                const handleError = (error) => {
-                    console.error('Error details:', error);
-                    formMessage.textContent = 'There was an error submitting your request. Please try again.';
-                    formMessage.className = 'form-message error';
-                };
-                
-                // Function to reset form state
-                const resetFormState = () => {
-                    submitButton.textContent = originalButtonText;
-                    submitButton.disabled = false;
-                };
-                
-                // Try fetch API first
-                fetch('https://hooks.zapier.com/hooks/catch/15710462/27301n5/', {
-                    method: 'POST',
-                    body: JSON.stringify(formData),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(response => {
-                    console.log('Response status:', response.status);
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok: ' + response.status);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    handleSuccess(data);
-                })
-                .catch(error => {
-                    console.error('Fetch failed, trying alternative method:', error);
+            if (bjjForm) {
+                bjjForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
                     
-                    // Create a form element to submit directly
-                    const backupForm = document.createElement('form');
-                    backupForm.method = 'POST';
-                    backupForm.action = 'https://hooks.zapier.com/hooks/catch/15710462/27301n5/';
-                    backupForm.style.display = 'none';
-                    
-                    // Add each field as a hidden input
-                    for (const key in formData) {
-                        const input = document.createElement('input');
-                        input.type = 'hidden';
-                        input.name = key;
-                        input.value = typeof formData[key] === 'boolean' 
-                            ? (formData[key] ? 'true' : 'false') 
-                            : formData[key];
-                        backupForm.appendChild(input);
+                    // Prevent multiple submissions globally
+                    if (window.formSubmissionInProgress) {
+                        console.log('Form submission already in progress, ignoring duplicate attempt');
+                        return;
                     }
                     
-                    // Add form to document, submit it, and handle response
-                    document.body.appendChild(backupForm);
+                    window.formSubmissionInProgress = true;
                     
-                    try {
-                        // Create an iframe to catch the response
-                        const iframe = document.createElement('iframe');
-                        iframe.name = 'submission-frame';
-                        iframe.style.display = 'none';
-                        document.body.appendChild(iframe);
+                    // Reset any previous error messages
+                    formMessage.textContent = '';
+                    formMessage.className = 'form-message';
+                    
+                    // Remove any previous error styling
+                    document.querySelectorAll('.form-group.error, .form-check.error').forEach(el => {
+                        el.classList.remove('error');
+                    });
+                    
+                    // Basic client-side validation
+                    const name = document.getElementById('name').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const isBjj = document.getElementById('is-bjj').checked;
+                    const isAdult = document.getElementById('is-adult').checked;
+                    
+                    let hasErrors = false;
+                    let errorMessage = 'Please correct the following:';
+                    
+                    // Check each field and apply error styling
+                    if (!name) {
+                        document.getElementById('name').parentElement.classList.add('error');
+                        errorMessage += '<br>• Enter your name';
+                        hasErrors = true;
+                    }
+                    
+                    if (!email) {
+                        document.getElementById('email').parentElement.classList.add('error');
+                        errorMessage += '<br>• Enter your email address';
+                        hasErrors = true;
+                    } else if (!isValidEmail(email)) {
+                        document.getElementById('email').parentElement.classList.add('error');
+                        errorMessage += '<br>• Enter a valid email address';
+                        hasErrors = true;
+                    }
+                    
+                    if (!isBjj) {
+                        document.getElementById('is-bjj').parentElement.classList.add('error');
+                        errorMessage += '<br>• Confirm you are an active BJJ practitioner';
+                        hasErrors = true;
+                    }
+                    
+                    if (!isAdult) {
+                        document.getElementById('is-adult').parentElement.classList.add('error');
+                        errorMessage += '<br>• Confirm you are 18 years or older';
+                        hasErrors = true;
+                    }
+                    
+                    if (hasErrors) {
+                        formMessage.innerHTML = errorMessage;
+                        formMessage.className = 'form-message error';
+                        window.formSubmissionInProgress = false; // Reset flag on validation error
+                        return;
+                    }
+                    
+                    // Prevent duplicate submissions using localStorage
+                    const submissionKey = btoa(name + '|' + email).substring(0, 20);
+                    const lastSubmission = localStorage.getItem('sub_' + submissionKey);
+                    const now = Date.now();
+                    
+                    if (lastSubmission && (now - parseInt(lastSubmission)) < 30000) {
+                        console.log('Duplicate submission blocked - same data submitted within 30 seconds');
+                        formMessage.textContent = 'Form already submitted recently. Please wait 30 seconds before resubmitting.';
+                        formMessage.className = 'form-message error';
+                        window.formSubmissionInProgress = false;
+                        return;
+                    }
+                    
+                    localStorage.setItem('sub_' + submissionKey, now.toString());
+                    
+                    // If validation passes, prepare form data
+                    const formData = {
+                        name: name,
+                        email: email,
+                        is_active_bjj: isBjj,
+                        is_over_18: isAdult,
+                        submission_date: new Date().toISOString(),
+                        submission_id: 'sid_' + Math.random().toString(36).substring(2, 15) // Add unique ID
+                    };
+                    
+                    // Show loading state
+                    const submitButton = bjjForm.querySelector('button[type="submit"]');
+                    const originalButtonText = submitButton.textContent;
+                    submitButton.textContent = 'Submitting...';
+                    submitButton.disabled = true;
+                    
+                    // Function to handle successful submission
+                    const handleSuccess = (data) => {
+                        console.log('Success data:', data);
+                        // Reset global flag on success
+                        window.formSubmissionInProgress = false;
+                        // Redirect to assessment page with user data
+                        const assessmentUrl = `assessment.html?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`;
+                        window.location.href = assessmentUrl;
+                    };
+                    
+                    // Function to log errors without showing to user
+                    const logError = (error) => {
+                        console.error('Error details:', error);
+                        // Don't update UI for intermediate errors
+                    };
+                    
+                    // Function to handle final submission error after all methods fail
+                    const handleFinalError = (error) => {
+                        console.error('Final error after all methods failed:', error);
+                        formMessage.textContent = 'There was an error submitting your request. Please try again.';
+                        formMessage.className = 'form-message error';
+                        resetFormState();
+                        // Reset global flag on error
+                        window.formSubmissionInProgress = false;
+                    };
+                    
+                    // Function to reset form state
+                    const resetFormState = () => {
+                        submitButton.textContent = originalButtonText;
+                        submitButton.disabled = false;
+                    };
+                    
+                    // Track submission status to prevent duplicates
+                    let submissionCompleted = false;
+                    
+                    // Use direct XMLHttpRequest for main submission method
+                    console.log('Submitting data via XMLHttpRequest:', formData);
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('POST', 'https://hooks.zapier.com/hooks/catch/15710462/27301n5/', true);
+                    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+                    
+                    xhr.onload = function() {
+                        console.log('XHR status:', xhr.status);
+                        console.log('XHR response:', xhr.responseText);
                         
-                        // Configure form to submit to iframe
-                        backupForm.target = 'submission-frame';
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            console.log('XHR submission successful');
+                            if (!submissionCompleted) {
+                                submissionCompleted = true;
+                                try {
+                                    const data = JSON.parse(xhr.responseText);
+                                    handleSuccess(data);
+                                } catch (e) {
+                                    // If response isn't valid JSON, still treat as success
+                                    console.log('Response not valid JSON but request succeeded');
+                                    handleSuccess({ status: 'success', responseText: xhr.responseText });
+                                }
+                            }
+                        } else {
+                            console.error('XHR failed with status:', xhr.status);
+                            logError(new Error(`XHR failed with status: ${xhr.status}`));
+                            if (!submissionCompleted) {
+                                fallbackToFetchMethod();
+                            }
+                        }
+                    };
+                    
+                    xhr.onerror = function() {
+                        console.error('XHR network error occurred');
+                        logError(new Error('XHR network error occurred'));
+                        if (!submissionCompleted) {
+                            fallbackToFetchMethod();
+                        }
+                    };
+                    
+                    xhr.ontimeout = function() {
+                        console.error('XHR request timed out');
+                        logError(new Error('XHR request timed out'));
+                        if (!submissionCompleted) {
+                            fallbackToFetchMethod();
+                        }
+                    };
+                    
+                    // Set timeout and send request
+                    xhr.timeout = 10000; // 10 seconds
+                    xhr.send(JSON.stringify(formData));
+                    
+                    // Fallback to fetch API method if XHR fails
+                    function fallbackToFetchMethod() {
+                        if (submissionCompleted) return; // Prevent duplicate submissions
                         
-                        // Submit the form
-                        backupForm.submit();
+                        console.log('Trying fetch API fallback method');
+                        fetch('https://hooks.zapier.com/hooks/catch/15710462/27301n5/', {
+                            method: 'POST',
+                            body: JSON.stringify(formData),
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                        .then(response => {
+                            console.log('Fetch response status:', response.status);
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok: ' + response.status);
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (!submissionCompleted) {
+                                submissionCompleted = true;
+                                handleSuccess(data);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Fetch fallback failed:', error);
+                            logError(error);
+                            if (!submissionCompleted) {
+                                fallbackToFormMethod();
+                            }
+                        });
+                    }
+                    
+                    // Fallback to form submission if fetch fails
+                    function fallbackToFormMethod() {
+                        if (submissionCompleted) return; // Prevent duplicate submissions
                         
-                        // Assume success after 2 seconds if no error
-                        setTimeout(() => {
-                            handleSuccess({ status: 'success', note: 'Submitted via alternative method' });
-                            document.body.removeChild(iframe);
-                            document.body.removeChild(backupForm);
-                        }, 2000);
-                    } catch (backupError) {
-                        console.error('Backup submission failed:', backupError);
+                        console.log('Trying form submission fallback method');
                         
-                        // Last resort: try a GET request with URL parameters
-                        console.log('Trying last resort GET method');
+                        // Create a form element to submit directly
+                        const backupForm = document.createElement('form');
+                        backupForm.method = 'POST';
+                        backupForm.action = 'https://hooks.zapier.com/hooks/catch/15710462/27301n5/';
+                        backupForm.style.display = 'none';
+                        backupForm.enctype = 'application/x-www-form-urlencoded';
                         
-                        // Build URL with parameters
-                        let getUrl = 'https://hooks.zapier.com/hooks/catch/15710462/27301n5/?';
-                        const params = new URLSearchParams();
-                        
-                        // Add each parameter
+                        // Add each field as a hidden input
                         for (const key in formData) {
-                            params.append(key, typeof formData[key] === 'boolean' 
+                            const input = document.createElement('input');
+                            input.type = 'hidden';
+                            input.name = key;
+                            input.value = typeof formData[key] === 'boolean' 
                                 ? (formData[key] ? 'true' : 'false') 
-                                : formData[key]);
+                                : formData[key];
+                            backupForm.appendChild(input);
                         }
                         
-                        // Append params to URL
-                        getUrl += params.toString();
+                        // Add form to document
+                        document.body.appendChild(backupForm);
                         
-                        // Create a script tag to do a JSONP-like request
-                        const script = document.createElement('script');
-                        script.src = getUrl;
-                        script.onerror = () => {
-                            console.error('GET request failed');
-                            handleError(new Error('All submission methods failed'));
-                            document.body.removeChild(script);
-                        };
-                        script.onload = () => {
-                            console.log('GET request completed');
-                            handleSuccess({ status: 'success', note: 'Submitted via GET method' });
-                            document.body.removeChild(script);
-                        };
-                        
-                        // Add script to document to execute the request
-                        document.body.appendChild(script);
-                        
-                        document.body.removeChild(backupForm);
+                        try {
+                            // Create an iframe to catch the response
+                            const iframe = document.createElement('iframe');
+                            iframe.name = 'submission-frame';
+                            iframe.style.display = 'none';
+                            document.body.appendChild(iframe);
+                            
+                            // Configure form to submit to iframe
+                            backupForm.target = 'submission-frame';
+                            
+                            // Submit the form
+                            backupForm.submit();
+                            
+                            // Assume success after 2 seconds if no error
+                            setTimeout(() => {
+                                if (!submissionCompleted) {
+                                    submissionCompleted = true;
+                                    handleSuccess({ status: 'success', note: 'Submitted via form method' });
+                                }
+                                document.body.removeChild(iframe);
+                                document.body.removeChild(backupForm);
+                            }, 2000);
+                        } catch (backupError) {
+                            console.error('Form fallback failed:', backupError);
+                            document.body.removeChild(backupForm);
+                            // All methods have failed, now show the error to the user
+                            if (!submissionCompleted) {
+                                handleFinalError(backupError);
+                            }
+                        }
                     }
-                })
-                .finally(() => {
-                    resetFormState();
                 });
-            });
+            }
             
             // Email validation helper
             function isValidEmail(email) {
